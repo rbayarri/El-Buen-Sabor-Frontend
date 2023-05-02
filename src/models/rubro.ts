@@ -12,6 +12,4 @@ export class Rubro{
     this.activo = activo
     this.children = children
   }
-
-  
 }
