@@ -4,7 +4,7 @@ import {Person, Bag, Shop, Power, Receipt} from "react-bootstrap-icons";
 export const DropDownMenu = () =>{
 
     const handleLogout = () => {
-
+        return;
     }
 
     return (
@@ -21,7 +21,6 @@ export const DropDownMenu = () =>{
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => handleLogout()} className="text-danger"><Power size={20} color={"red"} className="mx-2"/>Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
-
         </div>
     )
 }
