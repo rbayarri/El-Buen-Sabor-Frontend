@@ -11,7 +11,7 @@ export const Navigation = () => {
     return (
         <Container fluid>
             <Row>
-                <Navbar expand="lg" className="border-bottom border-opacity-50">
+                <Navbar expand="lg" className="border-bottom border-opacity-50 bg-secondary">
                     <Container fluid="lg" className="">
                         <div className="d-flex justify-content-start align-items-center">
                             <Logo />
