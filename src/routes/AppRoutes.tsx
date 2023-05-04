@@ -4,6 +4,7 @@ import FormSignup from "../components/FormSignup";
 import { Navigation } from "../components/Navigation";
 import App from "../App";
 import { Container } from "react-bootstrap";
+import ProductoIndividual from "../components/ProductoIndividual";
 
 export const AppRoutes = () => {
   return (
@@ -15,6 +16,11 @@ export const AppRoutes = () => {
           <Route path="/login" element={<FormLogin />} />
           <Route path="/signup" element={<FormSignup />} />
         </Routes>
+
+        <Route path="/detalle">
+            <Route path=":id"  element={<ProductoIndividual/>}/>
+        </Route>
+              
       </Container>
       {/** Footer */}
     </>

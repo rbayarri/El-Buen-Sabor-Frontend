@@ -1,8 +1,8 @@
 export default class Producto {
-    id: string = ""
-    nombre: string = ""
-    precio: string = ""
-    detalle: string = ""
-    image: string = ""
+    id = ""
+    nombre = ""
+    precio = ""
+    detalle = ""
+    image = ""
 
 }
