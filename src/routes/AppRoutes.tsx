@@ -1,4 +1,3 @@
-import { Component, ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import FormSignup from "../components/Auth/FormSignup";
 import { Navigation } from "../components/Navbar/Navigation";
