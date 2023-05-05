@@ -1,0 +1,10 @@
+.StyleCards {
+    background-color: rgb(238, 69, 64);
+    width: 100vh;
+    height: 100vh;
+    background: rgb(119, 15, 2);
+    background: linear-gradient(180deg,
+            rgba(119, 15, 2, 0.8323704481792717) 0%,
+            rgba(121, 26, 9, 1) 49%,
+            rgba(177, 99, 3, 0.8575805322128851) 97%);
+}

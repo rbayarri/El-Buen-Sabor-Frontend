@@ -1,5 +1,5 @@
 
-import React from "react"
+
 import Producto from "../models/producto"
 
 interface myprops{

@@ -4,7 +4,7 @@ import FormSignup from "../components/FormSignup";
 import { Navigation } from "../components/Navigation";
 import App from "../App";
 import { Container } from "react-bootstrap";
-import ProductoIndividual from "../components/ProductoIndividual";
+import CardDetalle from "../components/Card/CardDetalle";
 
 export const AppRoutes = () => {
   return (
@@ -16,13 +16,16 @@ export const AppRoutes = () => {
           <Route path="/login" element={<FormLogin />} />
           <Route path="/signup" element={<FormSignup />} />
         </Routes>
-
-        <Route path="/detalle">
-            <Route path=":id"  element={<ProductoIndividual/>}/>
-        </Route>
-              
+       
+   
       </Container>
       {/** Footer */}
     </>
   )
 }
+
+{/* <Route path="/detalle">
+<Route path=":id"  element={<CardDetalle/>}/>
+</Route>  */}
+
+// https://cssgradient.io/

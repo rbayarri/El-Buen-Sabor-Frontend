@@ -4,7 +4,7 @@
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"2",
