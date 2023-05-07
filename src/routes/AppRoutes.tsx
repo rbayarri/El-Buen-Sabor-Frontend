@@ -10,7 +10,7 @@ export const AppRoutes = () => {
   return (
     <>
       <Navigation />
-      <Container>
+      
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/login" element={<FormLogin />} />
@@ -18,7 +18,7 @@ export const AppRoutes = () => {
         </Routes>
        
    
-      </Container>
+     
       {/** Footer */}
     </>
   )

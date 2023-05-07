@@ -8,10 +8,11 @@ interface myprops{
     cardinfo: Producto
 }
 
-export  const Card = ({cardinfo}:myprops) => {
+export  const Card = ({cardinfo}:myprops) => { 
+  console.log(cardinfo.image)
   return (
     <div className='card text-center bg-dark'>
-        <img className='imagen' src={"/img/" + cardinfo.image} alt="" />
+        <img  src={"src/assets/img/"+cardinfo.image } alt="" />
 <div className='card-body text-light '>
 <h4 className='card-title'>{cardinfo.nombre}</h4>
 <p className='card-text'>{cardinfo.detalle}</p>

@@ -8,11 +8,11 @@ export const cardinfo: Producto[] = productoJson.producto
 export const Cards = () => {
   return (
     
-      <div className='container d-flex justify-content-center align-items-center h-100 '>
+      <div className='container d-flex justify-content-center align-items-center'>
           <div className='row'>
               {
                   cardinfo.map((card: Producto) => (
-                      <div className='col-md-4' key={card.id}>
+                      <div className='col-md-4' key={card.id}  style={{margin:".5rem 0rem"}}>
                           <Card cardinfo={card} />
                       </div>
                   ))

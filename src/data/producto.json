@@ -11,14 +11,14 @@
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"3",
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 			
 		},
 		{
@@ -26,21 +26,21 @@
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"5",
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"6",
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 			
 		},
 		{
@@ -48,21 +48,21 @@
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"8",
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		},
 		{
 			"id":"9",
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		
 		},
 		{
@@ -70,7 +70,7 @@
 			"nombre": "Hamburguesa con queso",		
 			"precio": "2450",		
 			"detalle": "Queso",
-			"image": "pizza"
+			"image": "pizza.png"
 		
 		}
 	]
