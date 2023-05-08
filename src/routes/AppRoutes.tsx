@@ -15,6 +15,8 @@ export const AppRoutes = () => {
           <Route path="/" element={<App />} />
           <Route path="/login" element={<FormLogin />} />
           <Route path="/signup" element={<FormSignup />} />
+          <Route path="/detalle"/>
+          <Route path=":id"  element={<CardDetalle/>}/>
         </Routes>
        
    

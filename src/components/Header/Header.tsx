@@ -6,7 +6,7 @@ export const Header = () => {
     <>
     <div className='header'>
         <img className='imagenH' src={ "src/assets/img/FondoHeader.png" } alt="" />
-        <img className='logo' src={ "src/assets/el_buen_sabor.png" } alt="" />
+        <img className='logoH' src={ "src/assets/img/lcfbr.png" } alt="" />
     </div>
     </>
   )

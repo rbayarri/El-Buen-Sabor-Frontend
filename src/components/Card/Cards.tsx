@@ -8,19 +8,24 @@ export const cardinfo: Producto[] = productoJson.producto
 export const Cards = () => {
   return (
     
+    <>
+    <div className="titulo">
+        <h2>Pizzas</h2>
+    </div>
       <div className='container d-flex justify-content-center align-items-center'>
           <div className='row'>
               {
                   cardinfo.map((card: Producto) => (
-                      <div className='col-md-4' key={card.id}  style={{margin:".5rem 0rem"}}>
+                      <div className='col-md-4' key={card.id} style={{margin:".5rem 0rem"}}>
                           <Card cardinfo={card} />
                       </div>
                   ))
               }
           </div>
       </div>
-
+      </>
      
   )
 }
 
+// style={{margin:".5rem 0rem"}}
