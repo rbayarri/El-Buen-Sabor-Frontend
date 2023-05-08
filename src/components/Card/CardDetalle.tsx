@@ -23,6 +23,26 @@ export default function CardDetalle() {
   }, []);
 
   return (
-    <div>Hola</div>
+    <>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <img className='imagen' src={"/img/" + card?.image} alt="" />
+              <p>Descipcion: </p>
+              <p className='descripcion'>{card?.detalle}</p>
+            </td>
+            <td>
+              <p className='instrumento'>{card?.nombre}</p>
+              <p className='precio'>Precio: {card?.precio}</p>
+              <p className='boton'>
+                <Link className='agregar' to={""}>Agregar al Carrito</Link>
+              </p>
+
+            </td>
+          </tr>
+        </table>
+      </div>
+    </>
   )
 }
