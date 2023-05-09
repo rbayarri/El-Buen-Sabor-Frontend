@@ -16,7 +16,7 @@ export const Cards = () => {
           <div className='row'>
               {
                   cardinfo.map((card: Producto) => (
-                      <div className='col-md-4' key={card.id} style={{margin:".5rem 0rem"}}>
+                      <div className='col-md-4' key={card.id} style={{margin:".5rem 0rem", width: '20%', height: '20% '}}>
                           <Card cardinfo={card} />
                       </div>
                   ))
@@ -28,4 +28,3 @@ export const Cards = () => {
   )
 }
 
-// style={{margin:".5rem 0rem"}}

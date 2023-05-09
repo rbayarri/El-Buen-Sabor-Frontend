@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Producto from '../../models/producto';
 import productoJson from "../../data/producto.json"
+import "./StyleCards.css";
 
 export const cardinfo: Producto[] = productoJson.producto
 export default function CardDetalle() {
@@ -24,24 +25,30 @@ export default function CardDetalle() {
 
   return (
     <>
-      <div>
-        <table>
-          <tr>
-            <td>
-              <img className='imagen' src={"/img/" + card?.image} alt="" />
-              <p>Descipcion: </p>
-              <p className='descripcion'>{card?.detalle}</p>
-            </td>
-            <td>
-              <p className='instrumento'>{card?.nombre}</p>
-              <p className='precio'>Precio: {card?.precio}</p>
-              <p className='boton'>
-                <Link className='agregar' to={""}>Agregar al Carrito</Link>
-              </p>
+      <div className='carddetalle'>
+        <div className='contenedor'>
+          <table>
+            <tr>
+              <td>
+                <img className='imagen' src={"/src/assets/img/" + card?.image} alt="" />
+              </td>
+              <td>
+                <p className='instrumento'>{card?.nombre}</p>
+                <p className='precio'>Precio: {card?.precio}</p>
+                <p className='descripcion'>{card?.detalle}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Link className='btn btn-outline-secondary' style={{placeItems: 'center',  display: 'grid'}} to={""}>Continuar Comprando</Link>
 
-            </td>
-          </tr>
-        </table>
+              </td>
+              <td>
+                <Link className='btn btn-outline-secondary' style={{placeItems: 'center',  display: 'grid'}} to={""}>Agregar al Carrito</Link>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </>
   )
