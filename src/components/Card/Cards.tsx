@@ -9,9 +9,7 @@ export const Cards = () => {
   return (
     
     <>
-    <div className="titulo">
-        <h2>Pizzas</h2>
-    </div>
+   
       <div className='container d-flex justify-content-center align-items-center'>
           <div className='row'>
               {

@@ -9,16 +9,16 @@ interface myprops{
 }
 
 export  const Card = ({cardinfo}:myprops) => { 
-  console.log(cardinfo.image)
+ 
   return (
     <div className='card text-center bg-dark'>
-        <img  src={"/src/assets/img/"+cardinfo.image } alt="" />
-<div className='card-body text-light '>
-<h4 className='card-title'>{cardinfo.nombre}</h4>
-<p className='card-text'>{cardinfo.detalle}</p>
-<p className='card-text'>$: {cardinfo.precio}</p>
-<Link className='btn btn-outline-secondary' to={`/detalle/${cardinfo.id}`}>Ver Detalle</Link>
-</div>
+      <img src={"/src/assets/img/" + cardinfo.image} alt="" />
+      <div className='card-body text-light '>
+        <h4 className='card-title'>{cardinfo.nombre}</h4>
+        <p className='card-text'>{cardinfo.detalle}</p>
+        <p className='card-text'>$: {cardinfo.precio}</p>
+        <Link className='btn btn-outline-secondary' to={`/detalle/${cardinfo.id}`}>Ver Detalle</Link>
+      </div>
     </div>
   )
 }
