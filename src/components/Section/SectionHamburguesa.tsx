@@ -5,6 +5,7 @@ import { Cards } from '../Card/Cards'
 export default function SectionHamburguesa() {
   return (
     <>
+    <h2 id='Hamburguesas'></h2>
     <NavbarTabs />
     <div className="titulo">
         <h2>Hamburguesas</h2>
