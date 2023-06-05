@@ -1,59 +1,64 @@
-import React, { useContext, useEffect } from "react";
-import { myContext } from "../../routes/AppRoutes";
+import React, {useContext, useEffect} from "react";
+import {globalContext} from "../../routes/AppRoutes.tsx";
+import {doRequest} from "../../lib/fetch.ts";
+import {settings} from "../../lib/settings.ts";
+import {Token} from "../../models/token.ts";
+import {getUserFromCookie, saveTokenCookie} from "../../lib/cookies.ts";
+import {useNavigate} from "react-router-dom";
+import swal from "sweetalert";
 
 interface GoogleOneTapButtonProps {
-  clientId: string;
+    clientId: string;
 }
 
-const GoogleOneTapButton: React.FC<GoogleOneTapButtonProps> = ({ clientId }) => {
+const GoogleOneTapButton: React.FC<GoogleOneTapButtonProps> = ({clientId}) => {
 
-  const myGoogleConxtext = useContext(myContext)
+    const myGoogleContext = useContext(globalContext)
+    const navigation = useNavigate();
 
-  function handleCredentialResponse(response: any) {
+    const googleApiSettings = settings.api.auth.googleAuthentication;
 
+    async function handleCredentialResponse(response: any) {
 
-    //TODO: Send request to backend to verify jwt and retrieve a new jwt from backend
-    //TODO: Save it into a cookie, in this case we're saving the google jwt for testing
-
-    const expires = new Date();
-    expires.setDate(Date.now() + 7 * 24 * 60 * 60 * 1000); // Set cookie to expire in 7 days
-    document.cookie = `USERJWT=${response.credential}; expires=${expires.toUTCString()}; path=/; sameSite=lax;`;
-
-    //TODO: Decode the jwt to set the new user state, here it's hardcoded for testing
-    const renzo = {
-      name: "Renzo",
-      lastName: "Bayarri",
-      picture: "empty",
-      role: "ADMIN",
-      authenticated: true,
-      onChange: myGoogleConxtext.onChange
+        const apiResponse = await doRequest<Token>({
+            path: googleApiSettings.path,
+            method: googleApiSettings.method,
+            body: response.credential
+        });
+        if(response){
+            const {token} = apiResponse as Token;
+            saveTokenCookie(token);
+            const userFromCookie = getUserFromCookie();
+            if (userFromCookie) {
+                userFromCookie.onChange = myGoogleContext.onChange;
+                if (myGoogleContext.onChange !== undefined) {
+                    myGoogleContext.onChange(userFromCookie);
+                }
+                navigation("/");
+            }
+        }else{
+            swal("Error", "Error al conectarse con el servidor", "error");
+        }
     }
 
-    myGoogleConxtext.onChange(renzo)
+    useEffect(() => {
+        google.accounts.id.initialize({
+            client_id: clientId,
+            callback: handleCredentialResponse
+        });
 
-    //TODO: Eliminar
-    console.log("Encoded JWT ID token: " + response.credential);
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            {theme: "outline", size: "large", width: 300}  // customization attributes
+        );
 
-  }
+        google.accounts.id.prompt(); // also display the One Tap dialog
 
-  useEffect(() => {
+    }, [clientId]);
 
-    google.accounts.id.initialize({
-      client_id: clientId,
-      callback: handleCredentialResponse
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "large", width: 300 }  // customization attributes
+    return (
+        <div id="buttonDiv" className="text-center"></div>
     );
-
-    google.accounts.id.prompt(); // also display the One Tap dialog
-  }, [clientId]);
-
-  return (
-    <div id="buttonDiv" className="text-center"></div>
-  );
 };
 
 export default GoogleOneTapButton;

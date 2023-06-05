@@ -1,13 +1,16 @@
 import { Button, Form } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
-import { myContext } from "../../routes/AppRoutes";
+import { globalContext } from "../../routes/AppRoutes";
 import { useContext } from "react"
+import {useMediaQuery} from "react-responsive";
 
 const SearchForm = () => {
 
-  const searchFormContext = useContext(myContext)
+  const searchFormContext = useContext(globalContext);
 
-  if (!searchFormContext.authenticated || searchFormContext.role === "USER") {
+  const isSmallScreen = useMediaQuery({ maxWidth: 480 });
+
+  if ((!searchFormContext.authenticated || searchFormContext.role === "USER") && !isSmallScreen) {
     return (
       <>
         {/* Formulario para buscar */}

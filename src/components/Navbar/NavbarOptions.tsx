@@ -1,11 +1,11 @@
 import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import { myContext } from '../../routes/AppRoutes';
+import {globalContext} from '../../routes/AppRoutes';
 import { useContext } from "react"
 import { Link } from 'react-router-dom';
 
 const NavbarOptions = () => {
 
-  const myNavbarOptionsContext = useContext(myContext)
+  const myNavbarOptionsContext = useContext(globalContext)
 
   const chef = () => {
     return (
@@ -37,7 +37,6 @@ const NavbarOptions = () => {
     return (
       <>
         {cashier()}
-        {/** TODO: Falta que se oculten cuando se hace click */}
         <NavDropdown title="Informes" id="basic-nav-dropdown" className="me-3">
           <NavDropdown.Item as={Link} to="/admin/ranking/productos" key="1">Ranking de productos</NavDropdown.Item>
           <NavDropdown.Item as={Link} to="/admin/ranking/clientes" key="2">Ranking de clientes</NavDropdown.Item>
@@ -53,30 +52,24 @@ const NavbarOptions = () => {
     switch (myNavbarOptionsContext.role) {
       case "CASHIER":
         return cashier()
-        break;
 
       case "CHEF":
         return chef()
-        break;
 
       case "DELIVERY":
         return delivery()
-        break;
 
       case "ADMIN":
         return admin()
-        break;
     }
   }
 
   return (
-    <>
       <Navbar.Collapse id="navbarScroll">
         <Nav className='ms-auto ps-3'>
           {optionsToRender()}
         </Nav>
       </Navbar.Collapse>
-    </>
   )
 }
 

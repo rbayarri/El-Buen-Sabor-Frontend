@@ -1,10 +1,10 @@
 import { Cart2 } from "react-bootstrap-icons";
-import { myContext } from "../../routes/AppRoutes";
+import { globalContext } from "../../routes/AppRoutes";
 import { useContext } from "react"
 
 const CartButton = () => {
 
-  const cartButtonContext = useContext(myContext)
+  const cartButtonContext = useContext(globalContext)
 
   if (!cartButtonContext.authenticated || cartButtonContext.role === "USER") {
     return (

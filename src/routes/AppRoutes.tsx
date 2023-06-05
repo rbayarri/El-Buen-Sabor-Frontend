@@ -1,57 +1,69 @@
-import { Route, Routes } from "react-router-dom";
-import FormSignup from "../components/Auth/FormSignup";
-import { Navigation } from "../components/Navbar/Navigation";
+import {Route, Routes} from "react-router-dom";
+import {Navigation} from "../components/Navbar/Navigation";
 import App from "../App";
-import { Container } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import { LoginPage } from "../pages/auth/LoginPage";
+import {Container} from "react-bootstrap";
+import React, {useContext, useEffect, useState} from "react";
+import {LogInPage} from "../pages/auth/LogInPage.tsx";
+import {SignUpPage} from "../pages/auth/SignUpPage.tsx";
+import {getUserFromCookie} from "../lib/cookies.ts";
+import {ContextUser} from "../models/context-user.ts";
+import {NewEditCategoryPage} from "../pages/categories/NewEditCategoryPage.tsx";
+import Categories from "../pages/categories/Categories.tsx";
 
-export type Role = "USER" | "ADMIN" | "CASHIER" | "CHEF" | "DELIVERY"
-
-type User = {
-  name: string
-  lastName: string
-  picture: string
-  role: Role
-  authenticated: boolean
-  onChange?: (newUser: User) => void
+export const emptyUser: ContextUser = {
+    name: "",
+    lastName: "",
+    role: "USER",
+    authenticated: false
 }
 
-const emptyUser: User = {
-  name: "",
-  lastName: "",
-  picture: "",
-  role: "USER",
-  authenticated: false
+const initialUser = () => {
+    const userFromCookie = getUserFromCookie();
+    if (userFromCookie) {
+        return userFromCookie;
+    }
+    return emptyUser;
 }
-
-export const myContext = React.createContext<User>(emptyUser);
-
+export const globalContext = React.createContext<ContextUser>(initialUser());
 export const AppRoutes = () => {
 
-  const [user, setUser] = useState<User>(emptyUser);
+    const myContext = useContext(globalContext);
+    const [user, setUser] = useState<ContextUser>(myContext);
 
-  const handleUserChanges = (newUser: User) => {
-    setUser(newUser)
-  }
+    const handleUserChanges = (newUser: ContextUser) => {
+        setUser(newUser)
+    }
 
-  useEffect(()=>{
-    emptyUser.onChange = handleUserChanges
-  })
+    useEffect((() => {
+        myContext.onChange = handleUserChanges;
+        myContext.onChange(user);
+    }), []);
 
-  return (
-    <>
-      <myContext.Provider value={user}>
-        <Navigation />
-        <Container className="mt-5 pt-5">
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<FormSignup />} />
-          </Routes>
-        </Container>
-        {/** Footer */}
-      </myContext.Provider>
-    </>
-  )
+    return (
+        <>
+            <globalContext.Provider value={user}>
+                <Navigation/>
+                <Container className="mt-5 pt-5">
+                    <Routes>
+                        <Route path="/" element={<App/>}/>
+                        <Route path="/login" element={<LogInPage/>}/>
+                        <Route path="/signup" element={<SignUpPage/>}/>
+                        <Route path="/rubros/ingredientes" element={<Categories target={"ingredientes"}/>}/>
+                        <Route path="/rubros/productos" element={<Categories target={"productos"}/>}/>
+                        <Route path="/rubros/ingredientes/:id" element={<NewEditCategoryPage target={"ingredientes"}/>}/>
+                        <Route path="/rubros/productos/:id" element={<NewEditCategoryPage target={"productos"}/>}/>
+                        {/*<Route path="/listaProductos" element={<ListadoProductos />} />*/}
+                        {/*<Route path="/listaIngredientes" element={<ListadoIngredientes />} />*/}
+                        {/*<Route path="/ingredient/:id" element={<NewIngredient />} />*/}
+                        {/*<Route path="/prueba" element={<EnhancedTable />} />*/}
+                        {/*<Route path="/product/:id" element={<NewProduct />} />*/}
+                        {/*<Route path="/ingredient/buy/:id" element={<BuyIngredient />} />*/}
+                        {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
+                        {/*<Route path="/detalle/:id/"  element={<CardDetalle/>}/>*/}
+                    </Routes>
+                </Container>
+                {/** Footer */}
+            </globalContext.Provider>
+        </>
+    )
 }
