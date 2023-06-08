@@ -9,6 +9,14 @@ import {getUserFromCookie} from "../lib/cookies.ts";
 import {ContextUser} from "../models/context-user.ts";
 import {NewEditCategoryPage} from "../pages/categories/NewEditCategoryPage.tsx";
 import Categories from "../pages/categories/Categories.tsx";
+import IngredientsPage from "../pages/ingredients/IngredientsPage.tsx";
+import NewEditIngredientPage from "../pages/ingredients/NewEditIngredientPage.tsx";
+import BuyIngredientPage from "../pages/ingredients/BuyIngredientPage.tsx";
+import ProductsPage from "../pages/products/ProductsPage.tsx";
+import NewEditProductPage from "../pages/products/NewEditProductPage.tsx";
+import VerifyEmailPage from "../pages/auth/VerifyEmailPage.tsx";
+import ForgetPasswordPage from "../pages/auth/ForgetPasswordPage.tsx";
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage.tsx";
 
 export const emptyUser: ContextUser = {
     name: "",
@@ -48,16 +56,18 @@ export const AppRoutes = () => {
                         <Route path="/" element={<App/>}/>
                         <Route path="/login" element={<LogInPage/>}/>
                         <Route path="/signup" element={<SignUpPage/>}/>
+                        <Route path="/verifyEmail/:userId/:tokenId" element={<VerifyEmailPage/>}/>
+                        <Route path="/forgetPassword" element={<ForgetPasswordPage/>}/>
+                        <Route path="/resetPassword/:userId/:tokenId" element={<ResetPasswordPage/>}/>
                         <Route path="/rubros/ingredientes" element={<Categories target={"ingredientes"}/>}/>
                         <Route path="/rubros/productos" element={<Categories target={"productos"}/>}/>
                         <Route path="/rubros/ingredientes/:id" element={<NewEditCategoryPage target={"ingredientes"}/>}/>
                         <Route path="/rubros/productos/:id" element={<NewEditCategoryPage target={"productos"}/>}/>
-                        {/*<Route path="/listaProductos" element={<ListadoProductos />} />*/}
-                        {/*<Route path="/listaIngredientes" element={<ListadoIngredientes />} />*/}
-                        {/*<Route path="/ingredient/:id" element={<NewIngredient />} />*/}
-                        {/*<Route path="/prueba" element={<EnhancedTable />} />*/}
-                        {/*<Route path="/product/:id" element={<NewProduct />} />*/}
-                        {/*<Route path="/ingredient/buy/:id" element={<BuyIngredient />} />*/}
+                        <Route path="/productos" element={<ProductsPage/>}/>
+                        <Route path="/ingredientes" element={<IngredientsPage/>}/>
+                        <Route path="/ingredientes/:id" element={<NewEditIngredientPage/>}/>
+                        <Route path="/productos/:id" element={<NewEditProductPage/>}/>
+                        <Route path="/ingredientes/compra/:id" element={<BuyIngredientPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
                         {/*<Route path="/detalle/:id/"  element={<CardDetalle/>}/>*/}
                     </Routes>

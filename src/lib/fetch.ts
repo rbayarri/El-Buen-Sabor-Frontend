@@ -21,18 +21,18 @@ const headersWithJwt = (jwt: string) => {
     )
 }
 
-const headersImages = (jwt: string) => {
-    return ({
-        "Content-Type": "multipart/form-data",
-        "Authorization": "Bearer " + jwt
-    })
-}
+// const headersImages = (jwt: string) => {
+//     return ({
+//         "Content-Type": "multipart/form-data",
+//         "Authorization": "Bearer " + jwt
+//     })
+// }
 
-const host = "http://localhost:8080/api/v1";
+export const host = "http://localhost:8080/api/v1";
 export const doRequest = async <E>({path, method, body, jwt}: RequestInformationProps) => {
 
     const requestOptions: RequestInit = {
-        headers: path.includes("images") && (jwt) ? headersImages(jwt) : ((jwt) ? headersWithJwt(jwt) : basicHeader),
+        headers: jwt ? headersWithJwt(jwt) : basicHeader,
         method: method
     }
     if (body) {
@@ -44,16 +44,16 @@ export const doRequest = async <E>({path, method, body, jwt}: RequestInformation
     try {
         const response = await fetch(path, requestOptions);
         if (response.status == 200 || response.status == 201) {
-            return response.json() as E;
+            return await response.json() as E;
         } else {
             showErrorMessages(await response.json() as ApiResponseError);
         }
-    }catch(e){
+    } catch (e) {
         swal("Error", "Error de conexión", "error");
     }
 }
 
-const showErrorMessages = (errorResponse: ApiResponseError) => {
+export const showErrorMessages = (errorResponse: ApiResponseError) => {
     if (errorResponse.errors) {
         let message = "";
         Object.entries(errorResponse.errors).forEach(([key, value]) => {

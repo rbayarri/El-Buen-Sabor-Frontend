@@ -1,0 +1,21 @@
+.form-control-sm::file-selector-button {
+    display: none;
+}
+
+.file-icon {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+label {
+    font-size: 0.9rem;
+}
+
+.add-ingredient, .remove-ingredient {
+    cursor: pointer;
+}
+
+.add-ingredient:hover {
+    color: green;
+}

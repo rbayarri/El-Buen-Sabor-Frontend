@@ -1,37 +1,50 @@
-import {Col, Row} from "react-bootstrap";
+import {Product} from "../../models/product.ts";
 import {Navigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
-import {NewEditCategoryForm} from "../../components/Categories/NewEditCategoryForm.tsx";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
-import {NewEditCategory} from "../../models/categories/new-edit-category.ts";
+import {Col, Row} from "react-bootstrap";
+import NewEditProductForm from "../../components/Cook/NewEditProductForm.tsx";
 
-const initCategory: NewEditCategory = {
+const initProduct: Product = {
+    id: "",
     name: "",
+    description: "",
+    cookingTime: 0,
+    category: {
+        id: ""
+    },
+    recipe: "",
     active: true,
-    container: false
+    profitMargin: 0,
+    productDetails: [{
+        ingredient: {
+            id: "0"
+        },
+        clientMeasurementUnit: "0",
+        quantity: 0
+    }],
+    image: null
 }
-
-export const NewEditCategoryPage = (props: { target: string }) => {
+const NewEditProductPage = () => {
 
     const {id} = useParams()
     const myContext = useContext(globalContext);
-    const target = props.target;
-    const [category, setCategory] = useState<NewEditCategory>(initCategory);
+    const [product, setProduct] = useState<Product>(initProduct);
     const [found, setFound] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getCategory = async (id: string) => {
-        const findCategoryApiSetting = settings.api.categories.findById;
+    const getProduct = async (id: string) => {
+        const api = settings.api.products.findById;
 
-        const fetchedCategory = await doRequest<NewEditCategory>({
-            path: findCategoryApiSetting.path + id,
-            method: findCategoryApiSetting.method,
+        const fetchedProduct = await doRequest<Product>({
+            path: api.path + "/" + id,
+            method: api.method,
             jwt: myContext.jwt
         });
-        if (fetchedCategory) {
-            setCategory(fetchedCategory);
+        if (fetchedProduct) {
+            setProduct(fetchedProduct);
             setFound(true);
             setIsLoading(false);
         }
@@ -43,10 +56,10 @@ export const NewEditCategoryPage = (props: { target: string }) => {
                 setIsLoading(false);
                 setFound(false);
             } else {
-                getCategory(id);
+                getProduct(id);
             }
         }
-    }), [target]);
+    }), []);
 
     if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
         return (
@@ -55,20 +68,22 @@ export const NewEditCategoryPage = (props: { target: string }) => {
                     <>
                         <Row>
                             <Col lg={6}>
-                                <h1 className="my-4 me-4 fs-2">{found ? "Editar" : "Nuevo"} Rubro</h1>
+                                <h1 className="my-2 fs-2">{found ? "Editar" : "Nuevo"} Producto</h1>
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg={6}>
-                                <NewEditCategoryForm target={target} category={category} found={found}/>
+                            <Col className={"mb-5"}>
+                                <NewEditProductForm product={product} found={found}/>
                             </Col>
                         </Row>
                     </>
                 )}
             </>
-        )
+        );
     }
     return (
         <Navigate to={"/"}/>
     )
-}
+};
+
+export default NewEditProductPage;

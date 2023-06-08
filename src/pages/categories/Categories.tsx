@@ -2,7 +2,7 @@ import {Col, Row} from "react-bootstrap";
 import {useContext} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
 import {Link, Navigate} from "react-router-dom";
-import {CategoriesTable} from "../../components/CategoriesTable.tsx";
+import {CategoriesTable} from "../../components/Categories/CategoriesTable.tsx";
 
 const Categories = (props: { target: string }) => {
 

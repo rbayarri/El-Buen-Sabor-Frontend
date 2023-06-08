@@ -11,7 +11,7 @@ const NavbarOptions = () => {
     return (
       <NavDropdown title="Cocina" id="basic-nav-dropdown" className="me-3">
         <NavDropdown.Item as={Link} to="/cocina/pedidos" key="1">Pedidos a Preparar</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="/ingredientes/compra" key="2">Compra de Ingredientes</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/ingredientes/compra/nuevo" key="2">Compra de Ingredientes</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item as={Link} to="/rubros/productos" key="3">Rubro Productos</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/rubros/ingredientes" key="4">Rubro Ingredientes</NavDropdown.Item>

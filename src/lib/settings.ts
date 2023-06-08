@@ -14,6 +14,22 @@ export const settings = {
             googleAuthentication: {
                 path: "/auth/googleLoginSignup",
                 method: "POST" as Method,
+            },
+            verifyEmail: {
+                path: "/auth/verifyEmail",
+                method: "POST" as Method,
+            },
+            forgetPassword: {
+                path: "/auth/forgetPassword",
+                method: "POST" as Method
+            },
+            verifyForgetPasswordToken:{
+                path: "/auth/verifyForgetPasswordToken",
+                method: "POST" as Method
+            },
+            resetPassword:{
+                path: "/auth/resetPassword",
+                method: "POST" as Method
             }
         },
         categories: {

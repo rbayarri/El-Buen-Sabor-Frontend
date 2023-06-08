@@ -1,14 +1,14 @@
 import {useContext, useEffect, useState} from "react";
-import {globalContext} from "../routes/AppRoutes.tsx";
-import {NewEditCategory} from "../models/categories/new-edit-category.ts";
+import {globalContext} from "../../routes/AppRoutes.tsx";
+import {NewEditCategory} from "../../models/categories/new-edit-category.ts";
 import {Link, useNavigate} from "react-router-dom";
-import {doRequest} from "../lib/fetch.ts";
-import {settings} from "../lib/settings.ts";
-import {EntityReference} from "../models/entity-reference.ts";
+import {doRequest} from "../../lib/fetch.ts";
+import {settings} from "../../lib/settings.ts";
+import {EntityReference} from "../../models/entity-reference.ts";
 import {Field, Form, Formik} from "formik";
-import {Method} from "../types/method.ts";
+import {Method} from "../../types/method.ts";
 import {Button, FloatingLabel} from "react-bootstrap";
-import {FormFieldWithMessage} from "./FormFieldWithMessage.tsx";
+import {FormFieldWithMessage} from "../FormFieldWithMessage.tsx";
 import * as Yup from "yup";
 import swal from 'sweetalert';
 
