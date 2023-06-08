@@ -151,7 +151,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                             profitMargin: Yup.number().required("Campo requerido").min(0.01, "Valor no permitido"),
                             active: Yup.boolean().required("Campo requerido"),
                             imageUrl: Yup.string().url("Url no válida").optional(),
-                            recipe: Yup.string().required("Campo requerido"),
+                            recipe: Yup.string().optional(),
                             productDetails: Yup.array().min(1, "Al menos un ingrediente").of(Yup.object({
                                 ingredient: Yup.object({
                                     id: Yup.string().required("Campo requerido").not(["0"], "Campo requerido")
@@ -171,11 +171,15 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                 category: {
                                     id: values.categoryId
                                 },
-                                recipe: values.recipe,
                                 active: values.active,
                                 profitMargin: values.profitMargin,
                                 productDetails: values.productDetails
                             }
+
+                            if(values.recipe !== "") {
+                                bodyProduct.recipe = values.recipe;
+                            }
+
                             const productBlob = new Blob([JSON.stringify(bodyProduct)], {type: 'application/json'});
                             formdata.append("product", productBlob);
                             if (file) {
