@@ -1,15 +1,12 @@
-interface Category {
-  id: number;
-  name: string;
-}
+import {EntityReference} from "./entity-reference.ts";
 
-export default interface ingredient {
-  id: number;
-  name: string;
-  category: Category;
-  minimumStock: number;
-  measurementUnit: string;
-  active: boolean;
-  currentStock: number;
-  lastCost: number;
+export default interface Ingredient {
+    id: string;
+    name: string;
+    category: EntityReference;
+    minimumStock: number;
+    measurementUnit: string;
+    active: boolean;
+    currentStock: number;
+    lastCost: number;
 }
