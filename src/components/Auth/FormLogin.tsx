@@ -88,7 +88,7 @@ const FormLogin = () => {
                             </label>
                         </div>
                         <div className="my-3">
-                            <Link to={"/sendPassword"} className={"small"}>Olvidé mi contraseña</Link>
+                            <Link to={"/forgetPassword"} className={"small"}>Olvidé mi contraseña</Link>
                         </div>
                         <Button variant="primary" type={"submit"} className={"d-block w-100 mt-3"}
                                 disabled={(isSubmitting)}>

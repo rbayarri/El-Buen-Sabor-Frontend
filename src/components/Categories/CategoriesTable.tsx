@@ -1,9 +1,9 @@
 import {Button, Table} from "react-bootstrap";
-import {settings} from "../lib/settings.ts";
-import {doRequest} from "../lib/fetch.ts";
-import {Category} from "../models/categories/categories.ts";
+import {settings} from "../../lib/settings.ts";
+import {doRequest} from "../../lib/fetch.ts";
+import {Category} from "../../models/categories/categories.ts";
 import {ReactElement, useContext, useEffect, useState} from "react";
-import {globalContext} from "../routes/AppRoutes.tsx";
+import {globalContext} from "../../routes/AppRoutes.tsx";
 import {Link} from "react-router-dom";
 
 const categoryLine = (target: string, category: Category, parent: Category | null, level: number): ReactElement => {

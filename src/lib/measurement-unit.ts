@@ -1,4 +1,4 @@
-const measurementUnitData = [
+export const measurementUnitData = [
     {
         name: "GRAMS",
         nombre: "gramos",
