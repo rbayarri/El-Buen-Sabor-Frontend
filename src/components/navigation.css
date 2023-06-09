@@ -1,8 +1,0 @@
-img.logo{
-  filter: contrast(0) brightness(0.4)
-}
-
-.dropdown-menu.show{
-  right: 0;
-  left: auto!important;
-}
