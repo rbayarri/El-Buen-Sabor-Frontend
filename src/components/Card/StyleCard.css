@@ -4,7 +4,6 @@
 }
 
 .titulo {
-    margin-left:8%;
     margin-top: 20px;
     margin-bottom: 15px;
 }
@@ -18,11 +17,11 @@
   border-color: black;
   border: solid;
 }
-.contenedor{
+/* .contenedor{
   
    display: grid;
    place-items: center;
-}
+} */
 .imagen{
     width: 400px;
     height: 400px;

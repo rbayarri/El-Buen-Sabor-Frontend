@@ -146,6 +146,10 @@ export const settings = {
             findById: {
                 path: "/products/client",
                 method: "GET" as Method
+            },
+            findActiveCategories: {
+                path: "/categories/products/final/active",
+                method: "GET" as Method
             }
         },
         users: {

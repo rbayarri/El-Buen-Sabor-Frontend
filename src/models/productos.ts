@@ -1,8 +1,15 @@
-export interface Producto {
-    id?: string
-    nombre: string,
-    precio: string,
-    detalle: string,
-    image: string
+import { EntityReference } from "./entity-reference"
 
+export interface Producto {
+
+    id?: string
+    name: string,
+    price: string,
+    description: string,
+    image?: Image,
+    category: EntityReference
+}
+interface Image {
+    id: string,
+    location: string
 }

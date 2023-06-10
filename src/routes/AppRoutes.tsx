@@ -17,6 +17,7 @@ import NewEditProductPage from "../pages/products/NewEditProductPage.tsx";
 import VerifyEmailPage from "../pages/auth/VerifyEmailPage.tsx";
 import ForgetPasswordPage from "../pages/auth/ForgetPasswordPage.tsx";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage.tsx";
+import CardDetalle from "../components/Card/CardDetalle.tsx";
 
 export const emptyUser: ContextUser = {
     name: "",
@@ -69,7 +70,7 @@ export const AppRoutes = () => {
                         <Route path="/productos/:id" element={<NewEditProductPage/>}/>
                         <Route path="/ingredientes/compra/:id" element={<BuyIngredientPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
-                        {/*<Route path="/detalle/:id/"  element={<CardDetalle/>}/>*/}
+                        <Route path="/detalle/:id/"  element={<CardDetalle/>}/>
                     </Routes>
                 </Container>
                 {/** Footer */}
