@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { Producto } from '../../models/productos';
 
 export const Card = ({ cardinfo }: { cardinfo: Producto }) => {
