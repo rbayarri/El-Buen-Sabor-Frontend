@@ -1,12 +1,11 @@
 import { Header } from "./components/Header/Header";
-import './components/Card/StyleCard.css'
 import NavbarTabs from "./components/NavbarTabs/NavbarTabs";
 import Section from "./components/Section/Section";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doRequest } from "./lib/fetch";
 import { settings } from "./lib/settings";
 import { Category } from "./models/categories/categories";
-import { Producto } from "./models/productos";
+
 
 
 export default function App() {
@@ -30,14 +29,14 @@ export default function App() {
 
   return (
     <>
-      {/* <Header />
-    <NavbarTabs /> */}
+       <Header />
+       <NavbarTabs />
       {isLoading ? <h1>Loading</h1> : (<>
         {categories.map(c => {
           return <Section category={c} />
-
         })}
       </>)}
+      
     </>
   )
 }

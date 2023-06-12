@@ -1,8 +1,4 @@
-import React from 'react'
-
 import './NavbarTabs.css'
-import { Link, NavLink } from 'react-router-dom'
-import { Nav, Navbar } from 'react-bootstrap'
 
 export default function NavbarTabs() {
   return (

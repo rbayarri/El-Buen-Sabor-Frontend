@@ -1,6 +1,5 @@
 .header {
     position: relative;
-    margin-top: 10px;
     border-radius: 5px;
 }
 .imagenH {
@@ -12,7 +11,7 @@
 .logoH {
 position: absolute;
   top: 50%;
-  left: 300px; /* Espacio a la izquierda */
+  left: 250px; /* Espacio a la izquierda */
   transform: translate(-50%, -50%);
   border-radius: 50%;
   width: 400px; /* Tamaño del círculo */

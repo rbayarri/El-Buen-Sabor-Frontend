@@ -1,22 +1,35 @@
 
 import { Link } from 'react-router-dom';
 import { Producto } from '../../models/productos';
+import  defaultImage  from '../../assets/FondoHeader.png'
+import Carta from 'react-bootstrap/Card';
+import { Button, ListGroup } from 'react-bootstrap';
 
 export const Card = ({ cardinfo }: { cardinfo: Producto }) => {
  
   return (
-    <div className='card text-center bg-dark'>
-      {cardinfo.image && 
-      <img src={`${cardinfo.image.location}`} alt='' />}
-      <div className='card-body text-light'>
-        <h4 className='card-title'>{cardinfo.name}</h4>
-        <p className='card-text'>{cardinfo.description}</p>
-        <p className='card-text'>$: {cardinfo.price}</p>
-        <Link className='btn btn-outline-secondary' to={`/detalle/${cardinfo?.id}`}>
+    <>
+  <Carta style={{ width: '15rem' }}>
+  {cardinfo.image ? (
+        <Carta.Img src={`${cardinfo.image.location}`} alt='' style={{ height: '145px', maxWidth: '240px'}}/>
+      ) : (
+        <Carta.Img src={defaultImage} alt='Imagen por defecto' style={{height: '145px', maxWidth: '240px' }}/>
+      )}
+      <Carta.Body>
+        <Carta.Title>{cardinfo.name}</Carta.Title>
+        <Carta.Subtitle className="mb-2 text-muted">{cardinfo.price}</Carta.Subtitle>
+        <Carta.Text>
+        {cardinfo.description}
+        </Carta.Text>
+        
+        <Button variant="success" size="sm">
+        <Link to={`/detalle/${cardinfo?.id}`} style={{textDecoration:'none', color: 'white'}}>
           Ver Detalle
         </Link>
-      </div>
-    </div>
+        </Button>
+      </Carta.Body>
+    </Carta>
+    </>
   );
 };
 

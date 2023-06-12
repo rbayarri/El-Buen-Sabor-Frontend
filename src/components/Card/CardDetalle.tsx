@@ -1,9 +1,12 @@
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Producto } from '../../models/productos';
 import { settings } from '../../lib/settings';
 import { doRequest } from '../../lib/fetch';
 import swal from 'sweetalert';
+import './CardDetalle.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function CardDetalle() {
   const { id } = useParams();
@@ -37,11 +40,11 @@ export default function CardDetalle() {
     <>
      {isLoading ? <h1>Loading...</h1> : (
       <div className='carddetalle'>
-        <div className='contenedor'>
           <table>
             <tr>
-              <td>
-                {product && <img className='imagen' src={`/src/assets/img/${product.image}`} alt='' />}
+              <td>                           
+                {
+                product?.image && <img className='imagen' src={`${product.image.location}`} alt='' />}                           
               </td>
               <td>
                 <p className='nombre'>{product?.name}</p>
@@ -51,18 +54,18 @@ export default function CardDetalle() {
             </tr>
             <tr>
               <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid' }} to={''}>
+                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', width: '200px' }} to={''}>
                   Continuar Comprando
                 </Link>
               </td>
               <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid' }} to={''}>
+                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid', width: '200px' }} to={''}>
+                <FontAwesomeIcon icon={faCartArrowDown} size="xs" />
                   Agregar al Carrito
                 </Link>
               </td>
             </tr>
-          </table>
-        </div>
+          </table>     
       </div>
      )}
     </>
