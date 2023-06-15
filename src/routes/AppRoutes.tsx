@@ -19,7 +19,9 @@ import ForgetPasswordPage from "../pages/auth/ForgetPasswordPage.tsx";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage.tsx";
 import CardDetalle from "../components/Card/CardDetalle.tsx";
 import Footer from "../components/Footer/Footer.tsx";
-import FooterCopi from "../components/Footer/FooterCopi.tsx";
+import Orders from "../pages/Chef/Orders.tsx";
+import DetallePedido from "../pages/Chef/DetallePedido.tsx";
+
 
 export const emptyUser: ContextUser = {
     name: "",
@@ -73,7 +75,9 @@ export const AppRoutes = () => {
                         <Route path="/ingredientes/compra/:id" element={<BuyIngredientPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
                         <Route path="/detalle/:id/"  element={<CardDetalle/>}/>
-                    </Routes>                  
+                        <Route path="/cocina/pedidos/" element= {<Orders/>}/>
+                        <Route path="/detallepedido/" element= {<DetallePedido/>}/>
+                     </Routes>                  
                 </Container>
                 <Footer />
             </globalContext.Provider>

@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 export default function Section(props: { category: Category }) {
   const { category } = props;
   const [products, setProducts] = useState<Producto[]>();
-  const getProducts = async () => {
 
+  const getProducts = async () => {
     const api = settings.api.home.findProductsByCategoryId;
     const response = await doRequest<Producto[]>({ path: api.path + "/" + category.id, method: api.method });
     if (response) {
@@ -26,7 +26,7 @@ export default function Section(props: { category: Category }) {
   return (
     <>
       <div className="titulo" style={{ marginTop: '10px', marginBottom: '10px' }}>
-        <h2 id={category.name} style={{}} ></h2>
+        <h2 id={category.name} style={{}} >{category.name}</h2>
       </div>
       <div className="StyleCards" style={{ marginTop: '10px', marginBottom: '10px'}}>
           <div className='row'>

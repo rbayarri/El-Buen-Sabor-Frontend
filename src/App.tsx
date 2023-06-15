@@ -30,13 +30,12 @@ export default function App() {
   return (
     <>
        <Header />
-       <NavbarTabs />
+       <NavbarTabs />      
       {isLoading ? <h1>Loading</h1> : (<>
         {categories.map(c => {
           return <Section category={c} />
         })}
       </>)}
-      
     </>
   )
 }

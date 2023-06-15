@@ -14,9 +14,9 @@ export default function CardDetalle() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const getProduct = async (id: string) => {
-    const api = settings.api.products.findById;
+  const api = settings.api.products.findById;
 
-    const fetchedProduct = await doRequest<Producto>({
+  const fetchedProduct = await doRequest<Producto>({
       path: api.path + "/" + id,
       method: api.method,
 
@@ -44,7 +44,7 @@ export default function CardDetalle() {
             <tr>
               <td>                           
                 {
-                product?.image && <img className='imagen' src={`${product.image.location}`} alt='' />}                           
+                product?.image && <img className='imagenDetalle' src={`${product.image.location}`} alt='' />}                           
               </td>
               <td>
                 <p className='nombre'>{product?.name}</p>
@@ -60,7 +60,7 @@ export default function CardDetalle() {
               </td>
               <td>
                 <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid', width: '200px' }} to={''}>
-                <FontAwesomeIcon icon={faCartArrowDown} size="xs" />
+                <FontAwesomeIcon icon={faCartArrowDown} size="xs"/>
                   Agregar al Carrito
                 </Link>
               </td>

@@ -1,6 +1,6 @@
 .navbartabs {
     position: sticky;
-    top: 0;
+    top: 60px;
     z-index: 100;
     margin-top: 10px;
     border-radius: 5px;
