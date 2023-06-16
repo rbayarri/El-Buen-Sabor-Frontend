@@ -1,7 +1,7 @@
-import {Product} from "../../models/product.ts";
+import {CompleteProduct} from "../../models/products/complete-product.ts";
 import {Link} from "react-router-dom";
 
-export default function ProductsTable(props: { products: Product[] }) {
+export default function ProductsTable(props: { products: CompleteProduct[] }) {
 
     const {products} = props;
 

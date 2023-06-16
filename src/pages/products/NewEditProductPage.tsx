@@ -1,4 +1,4 @@
-import {Product} from "../../models/product.ts";
+import {CompleteProduct} from "../../models/products/complete-product.ts";
 import {Navigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
@@ -7,7 +7,7 @@ import {doRequest} from "../../lib/fetch.ts";
 import {Col, Row} from "react-bootstrap";
 import NewEditProductForm from "../../components/Cook/NewEditProductForm.tsx";
 
-const initProduct: Product = {
+const initProduct: CompleteProduct = {
     id: "",
     name: "",
     description: "",
@@ -29,14 +29,14 @@ const NewEditProductPage = () => {
 
     const {id} = useParams()
     const myContext = useContext(globalContext);
-    const [product, setProduct] = useState<Product>(initProduct);
+    const [product, setProduct] = useState<CompleteProduct>(initProduct);
     const [found, setFound] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const getProduct = async (id: string) => {
         const api = settings.api.products.findById;
 
-        const fetchedProduct = await doRequest<Product>({
+        const fetchedProduct = await doRequest<CompleteProduct>({
             path: api.path + "/" + id,
             method: api.method,
             jwt: myContext.userContext.jwt

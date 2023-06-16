@@ -1,5 +1,5 @@
 import {Form, Formik} from "formik";
-import {LoginCredentials} from "../../models/login-credentials.ts";
+import {LoginCredentials} from "../../models/auth/login-credentials.ts";
 import * as Yup from 'yup';
 import {Button} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
@@ -7,7 +7,7 @@ import {FormFieldWithMessage} from "../FormFieldWithMessage.tsx";
 import {FormField} from "../FormField.tsx";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
-import {Token} from "../../models/token.ts";
+import {Token} from "../../models/auth/token.ts";
 import {getUserFromCookie, saveTokenCookie} from "../../lib/cookies.ts";
 import {RequestInformation} from "../../types/request-information.ts";
 import {useContext} from "react";

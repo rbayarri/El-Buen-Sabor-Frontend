@@ -1,0 +1,15 @@
+.navbartabs {
+    top: 60px;
+    z-index: 100;
+    border-radius: 5px;
+    font-size: 16pt;
+    background-color: whitesmoke;
+}
+a.nav-link{
+color: rgb(12, 12, 12);
+--bs-nav-link-hover-color: #0f740c;
+
+}
+.nav-link:focus{
+    color: #0f740c;
+}

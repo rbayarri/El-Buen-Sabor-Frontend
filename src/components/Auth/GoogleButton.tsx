@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
 import {doRequest} from "../../lib/fetch.ts";
 import {settings} from "../../lib/settings.ts";
-import {Token} from "../../models/token.ts";
+import {Token} from "../../models/auth/token.ts";
 import {getUserFromCookie, saveTokenCookie} from "../../lib/cookies.ts";
 import {useNavigate} from "react-router-dom";
 import swal from "sweetalert";

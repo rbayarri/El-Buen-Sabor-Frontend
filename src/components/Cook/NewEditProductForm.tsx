@@ -1,7 +1,7 @@
 import {ChangeEvent, useContext, useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
-import {Product} from "../../models/product.ts";
+import {CompleteProduct} from "../../models/products/complete-product.ts";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import {globalContext} from "../../routes/AppRoutes.tsx";
@@ -17,8 +17,9 @@ import {getMeasurementUnits} from "../../lib/measurement-unit.ts";
 import {ApiResponseError} from "../../models/api-response-error.ts";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {pink} from "@mui/material/colors";
+import {ProductDetail} from "../../models/product-detail.ts";
 
-export default function NewEditProductForm(props: { product: Product, found: boolean }) {
+export default function NewEditProductForm(props: { product: CompleteProduct, found: boolean }) {
 
     const myContext = useContext(globalContext);
     const [posibleCategories, setPosibleCategories] = useState<EntityReference[]>();
@@ -160,6 +161,13 @@ export default function NewEditProductForm(props: { product: Product, found: boo
         }, 0)
     }
 
+    function getMeasurementUnits1(productDetail: ProductDetail) {
+        const currentIngredient = ingredients.find(i => i.id === productDetail.ingredient.id);
+        if (currentIngredient) {
+            return getMeasurementUnits(currentIngredient.measurementUnit);
+        }
+    }
+
     return (
         <>
             {isLoading ? <h1>Loading...</h1> : (
@@ -188,7 +196,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
 
                             const formdata = new FormData();
 
-                            const bodyProduct = {
+                            const bodyProduct: CompleteProduct = {
                                 name: values.name,
                                 description: values.description,
                                 cookingTime: values.cookingTime,
@@ -377,11 +385,12 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                                             >
                                                                 <option key="0" value="0">Seleccione..</option>
                                                                 <option
-                                                                    key={getMeasurementUnits(ingredients.find(i => i.id === values.productDetails[index].ingredient.id)?.measurementUnit)?.name}
-                                                                    value={getMeasurementUnits(ingredients.find(i => i.id === values.productDetails[index].ingredient.id)?.measurementUnit)?.name}
-                                                                >{getMeasurementUnits(ingredients.find(i => i.id === values.productDetails[index].ingredient.id)?.measurementUnit)?.nombre}
+                                                                    key={getMeasurementUnits1(productDetail)?.name}
+                                                                    value={getMeasurementUnits1(productDetail)?.name}
+                                                                >
+                                                                    {getMeasurementUnits1(productDetail)?.nombre}
                                                                 </option>
-                                                                {getMeasurementUnits(ingredients.find(i => i.id === values.productDetails[index].ingredient.id)?.measurementUnit)?.other.map(mu =>
+                                                                {getMeasurementUnits1(productDetail)?.other.map(mu =>
                                                                     <option key={mu.name}
                                                                             value={mu.name}>{mu.nombre}</option>
                                                                 )}

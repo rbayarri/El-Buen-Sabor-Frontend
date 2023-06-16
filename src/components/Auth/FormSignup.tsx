@@ -3,12 +3,12 @@ import {FormFieldWithMessage} from "../FormFieldWithMessage.tsx";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as Yup from 'yup';
-import {Registration} from "../../models/registration.ts";
+import {Registration} from "../../models/auth/registration.ts";
 import {useContext} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
-import {Token} from "../../models/token.ts";
+import {Token} from "../../models/auth/token.ts";
 import {getUserFromCookie, saveTokenCookie} from "../../lib/cookies.ts";
 
 const FormSignup = () => {

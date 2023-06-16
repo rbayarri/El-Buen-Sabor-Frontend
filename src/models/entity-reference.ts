@@ -1,4 +1,4 @@
-import {Image} from "./cookie-product.ts";
+import {Image} from "./image.ts";
 
 export interface EntityReference {
     id: string,

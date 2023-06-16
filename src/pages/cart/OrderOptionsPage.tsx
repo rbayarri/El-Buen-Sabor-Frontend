@@ -1,14 +1,14 @@
 import {ChangeEventHandler, useContext, useEffect, useState} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
-import {DeliveryMethod, PaymentMethod} from "../../models/order.ts";
-import {Address} from "../../models/address.ts";
+import {Address} from "../../models/users/address.ts";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
-import {PhoneNumber} from "../../models/phone-number.ts";
+import {PhoneNumber} from "../../models/users/phone-number.ts";
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import swal from "sweetalert";
-import TotalAndSubtotalOrder from "../../components/TotalAndSubtotalOrder.tsx";
+import TotalAndSubtotalOrder from "../../components/Orders/TotalAndSubtotalOrder.tsx";
+import {DeliveryMethod, PaymentMethod} from "../../types/order-types.ts";
 
 const OrderOptionsPage = () => {
 

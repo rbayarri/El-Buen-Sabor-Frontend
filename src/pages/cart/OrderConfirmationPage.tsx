@@ -4,12 +4,12 @@ import {Link, Navigate, useNavigate} from "react-router-dom";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
 import {Button} from "react-bootstrap";
-import TotalAndSubtotalOrder from "../../components/TotalAndSubtotalOrder.tsx";
-import {CookieOrder} from "../../models/order.ts";
+import TotalAndSubtotalOrder from "../../components/Orders/TotalAndSubtotalOrder.tsx";
 import swal from "sweetalert";
 import {EntityReference} from "../../models/entity-reference.ts";
-import BasicOrderInfo from "../../components/BasicOrderInfo.tsx";
-import OrderProducts from "../../components/OrderProducts.tsx";
+import BasicOrderInfo from "../../components/Orders/BasicOrderInfo.tsx";
+import OrderProducts from "../../components/Orders/OrderProducts.tsx";
+import {ContextOrder} from "../../models/context/context-order.ts";
 
 const OrderConfirmationPage = () => {
 
@@ -18,7 +18,7 @@ const OrderConfirmationPage = () => {
 
     const handleConfirmacion: MouseEventHandler<HTMLButtonElement> = async () => {
 
-        const body: CookieOrder = {
+        const body: ContextOrder = {
             deliveryMethod: myContext.order.deliveryMethod,
             paymentMethod: myContext.order.paymentMethod,
             orderDetails: myContext.order.orderDetails.filter(od => od.product !== undefined)

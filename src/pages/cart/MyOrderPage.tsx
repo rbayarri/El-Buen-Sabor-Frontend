@@ -1,22 +1,22 @@
 import {useContext, useEffect, useState} from "react";
-import {CookieProduct} from "../../models/cookie-product.ts";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
 import {globalContext} from "../../routes/AppRoutes.tsx";
-import CartTotal from "../../components/CartTotal.tsx";
+import CartTotal from "../../components/Cart/CartTotal.tsx";
 import {Link, Navigate} from "react-router-dom";
-import OrderProducts from "../../components/OrderProducts.tsx";
+import OrderProducts from "../../components/Orders/OrderProducts.tsx";
+import {ClientProduct} from "../../models/products/client-product.ts";
 
 const MyOrderPage = () => {
 
     const myContext = useContext(globalContext);
-    const [products, setProducts] = useState<CookieProduct[]>();
+    const [products, setProducts] = useState<ClientProduct[]>();
     const [isLoading, setIsLoading] = useState(true);
 
     const getProducts = async () => {
 
         const api = settings.api.home.findProducts;
-        const response = await doRequest<CookieProduct[]>({
+        const response = await doRequest<ClientProduct[]>({
             path: api.path,
             method: api.method
         });

@@ -1,5 +1,4 @@
-import {Status} from "../models/order.ts";
-
+import {Status} from "../types/order-types.ts";
 
 export const translateStatus = (status: Status) => {
 
