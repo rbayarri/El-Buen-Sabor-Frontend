@@ -13,7 +13,7 @@ interface GoogleOneTapButtonProps {
 
 const GoogleOneTapButton: React.FC<GoogleOneTapButtonProps> = ({clientId}) => {
 
-    const myGoogleContext = useContext(globalContext)
+    const myContext = useContext(globalContext)
     const navigation = useNavigate();
 
     const googleApiSettings = settings.api.auth.googleAuthentication;
@@ -30,9 +30,9 @@ const GoogleOneTapButton: React.FC<GoogleOneTapButtonProps> = ({clientId}) => {
             saveTokenCookie(token);
             const userFromCookie = getUserFromCookie();
             if (userFromCookie) {
-                userFromCookie.onChange = myGoogleContext.onChange;
-                if (myGoogleContext.onChange !== undefined) {
-                    myGoogleContext.onChange(userFromCookie);
+                userFromCookie.onChange = myContext.userContext.onChange;
+                if (myContext.userContext.onChange !== undefined) {
+                    myContext.userContext.onChange(userFromCookie);
                 }
                 navigation("/");
             }

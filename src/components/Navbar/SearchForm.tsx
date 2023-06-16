@@ -10,7 +10,7 @@ const SearchForm = () => {
 
   const isSmallScreen = useMediaQuery({ maxWidth: 480 });
 
-  if ((!searchFormContext.authenticated || searchFormContext.role === "USER") && !isSmallScreen) {
+  if ((!searchFormContext.userContext.authenticated || searchFormContext.userContext.role === "USER") && !isSmallScreen) {
     return (
       <>
         {/* Formulario para buscar */}

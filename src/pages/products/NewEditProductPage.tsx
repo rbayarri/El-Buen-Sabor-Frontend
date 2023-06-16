@@ -15,17 +15,15 @@ const initProduct: Product = {
     category: {
         id: ""
     },
-    recipe: "",
     active: true,
-    profitMargin: 0,
+    profitMargin: 100,
     productDetails: [{
         ingredient: {
             id: "0"
         },
         clientMeasurementUnit: "0",
         quantity: 0
-    }],
-    image: null
+    }]
 }
 const NewEditProductPage = () => {
 
@@ -41,7 +39,7 @@ const NewEditProductPage = () => {
         const fetchedProduct = await doRequest<Product>({
             path: api.path + "/" + id,
             method: api.method,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (fetchedProduct) {
             setProduct(fetchedProduct);
@@ -61,7 +59,7 @@ const NewEditProductPage = () => {
         }
     }), []);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 {isLoading ? <h1>Loading...</h1> : (

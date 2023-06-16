@@ -9,7 +9,7 @@ const Categories = (props: { target: string }) => {
     const myContext = useContext(globalContext);
     const target = props.target;
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
 
         return (
             <>

@@ -49,9 +49,9 @@ const FormLogin = () => {
                             saveTokenCookie(token);
                             const userFromCookie = getUserFromCookie();
                             if (userFromCookie) {
-                                userFromCookie.onChange = myContext.onChange;
-                                if (myContext.onChange !== undefined) {
-                                    myContext.onChange(userFromCookie);
+                                userFromCookie.onChange = myContext.userContext.onChange;
+                                if (myContext.userContext.onChange !== undefined) {
+                                    myContext.userContext.onChange(userFromCookie);
                                 }
                             }
                             setSubmitting(false);

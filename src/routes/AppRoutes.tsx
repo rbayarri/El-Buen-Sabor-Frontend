@@ -23,7 +23,7 @@ import {Context} from "../models/Context.ts";
 import {CookieOrder} from "../models/order.ts";
 import OrderOptionsPage from "../pages/cart/OrderOptionsPage.tsx";
 import OrderConfirmationPage from "../pages/cart/OrderConfirmationPage.tsx";
-import OrderPage from "../pages/OrderPage.tsx";
+import SingleOrderPage from "../pages/SingleOrderPage.tsx";
 import OrdersPage from "../pages/OrdersPage.tsx";
 
 export const emptyUser: ContextUser = {
@@ -150,7 +150,7 @@ export const AppRoutes = () => {
                         <Route path="/pedido/opciones" element={<OrderOptionsPage/>}/>
                         <Route path="/pedido/confirmacion" element={<OrderConfirmationPage/>}/>
                         <Route path="/user/pedidos" element={<OrdersPage/>}/>
-                        <Route path="/user/pedidos/:id" element={<OrderPage/>}/>
+                        <Route path="/user/pedidos/:id" element={<SingleOrderPage/>}/>
                         <Route path="/feedback" element={<MercadoPago/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
                         {/*<Route path="/detalle/:id/"  element={<CardDetalle/>}/>*/}

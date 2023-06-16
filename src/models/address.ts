@@ -5,5 +5,6 @@ export interface Address {
     floor: string,
     apartment: string,
     zipCode: string,
-    details: string
+    details: string,
+    isPredetermined: boolean
 }

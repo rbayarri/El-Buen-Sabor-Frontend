@@ -33,7 +33,11 @@ export default function NewEditProductForm(props: { product: Product, found: boo
     const getPosibleCategories = async () => {
         const api = settings.api.products.findPossibleParents;
 
-        const response = await doRequest<EntityReference[]>({path: api.path, method: api.method, jwt: myContext.jwt});
+        const response = await doRequest<EntityReference[]>({
+            path: api.path,
+            method: api.method,
+            jwt: myContext.userContext.jwt
+        });
         if (response) {
             setPosibleCategories(response);
             setIsLoading(false);
@@ -43,7 +47,11 @@ export default function NewEditProductForm(props: { product: Product, found: boo
     const getIngredientes = async () => {
 
         const api = settings.api.ingredients.findAll;
-        const response = await doRequest<Ingredient[]>({path: api.path, method: api.method, jwt: myContext.jwt});
+        const response = await doRequest<Ingredient[]>({
+            path: api.path,
+            method: api.method,
+            jwt: myContext.userContext.jwt
+        });
         if (response) {
             setIngredients(response);
             setIsLoading(false);
@@ -81,7 +89,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
         const requestOptions: RequestInit = {
             method: api.method,
             headers: {
-                "Authorization": "Bearer " + myContext.jwt
+                "Authorization": "Bearer " + myContext.userContext.jwt
             },
             body: formData,
             redirect: 'follow'
@@ -104,7 +112,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
         const requestOptions: RequestInit = {
             method: api.method,
             headers: {
-                "Authorization": "Bearer " + myContext.jwt
+                "Authorization": "Bearer " + myContext.userContext.jwt
                 // "Content-Type" : "multipart/form-data"
             },
             body: formData,
@@ -132,8 +140,24 @@ export default function NewEditProductForm(props: { product: Product, found: boo
         profitMargin: product.profitMargin,
         active: product.active,
         imageUrl: product.image ? product.image.location : "",
-        recipe: product.recipe,
+        recipe: product.recipe ? product.recipe : undefined,
         productDetails: product.productDetails
+    }
+
+    const numberInputOnWheelPreventChange = (e: WheelEvent) => {
+        // Prevent the input value change
+        if (e.target instanceof HTMLInputElement) {
+            e.target.blur()
+        }
+        // Prevent the page/container scrolling
+        e.stopPropagation()
+
+        // Refocus immediately, on the next tick (after the current function is done)
+        setTimeout(() => {
+            if (e.target instanceof HTMLInputElement) {
+                e.target.focus();
+            }
+        }, 0)
     }
 
     return (
@@ -150,7 +174,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                             cookingTime: Yup.number().required("Campo requerido").integer("Debe ser un valor entero"),
                             profitMargin: Yup.number().required("Campo requerido").min(0.01, "Valor no permitido"),
                             active: Yup.boolean().required("Campo requerido"),
-                            imageUrl: Yup.string().url("Url no válida").optional(),
+                            imageUrl: Yup.string().optional(),
                             recipe: Yup.string().optional(),
                             productDetails: Yup.array().min(1, "Al menos un ingrediente").of(Yup.object({
                                 ingredient: Yup.object({
@@ -172,11 +196,11 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                     id: values.categoryId
                                 },
                                 active: values.active,
-                                profitMargin: values.profitMargin,
+                                profitMargin: values.profitMargin / 100,
                                 productDetails: values.productDetails
                             }
 
-                            if(values.recipe !== "") {
+                            if (values.recipe) {
                                 bodyProduct.recipe = values.recipe;
                             }
 
@@ -247,7 +271,8 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                     <Field className={"form-control form-control-sm"}
                                            id={"cookingTime"}
                                            type={"number"}
-                                           name={"cookingTime"}/>
+                                           name={"cookingTime"}
+                                           onWheel={numberInputOnWheelPreventChange}/>
                                     <div className="invalid-feedback d-block" style={{whiteSpace: "pre-wrap"}}>
                                         <ErrorMessage name={"cookingTime"}/>
                                     </div>
@@ -256,10 +281,15 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                     <label htmlFor="profitMargin" className="form-label">
                                         Margen de ganancia
                                     </label>
-                                    <Field className={"form-control form-control-sm"}
-                                           id={"profitMargin"}
-                                           type={"number"}
-                                           name={"profitMargin"}/>
+                                    <div className="input-group">
+                                        <Field className={"form-control form-control-sm"}
+                                               id={"profitMargin"}
+                                               type={"number"}
+                                               name={"profitMargin"}
+                                               onWheel={numberInputOnWheelPreventChange}
+                                        />
+                                        <span className="input-group-text">%</span>
+                                    </div>
                                     <div className="invalid-feedback d-block" style={{whiteSpace: "pre-wrap"}}>
                                         <ErrorMessage name={"profitMargin"}/>
                                     </div>
@@ -317,7 +347,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                                                 name={`productDetails[${index}].ingredient.id`}
                                                                 id={`productDetails[${index}].ingredient.id`}
                                                                 className={"form-select form-select-sm"}
-                                                                onChange={e => {
+                                                                onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                                                                     setFieldValue(`productDetails[${index}].ingredient.id`, e.target.value);
                                                                     setFieldValue(`productDetails[${index}].clientMeasurementUnit`, "0");
                                                                 }}
@@ -368,6 +398,7 @@ export default function NewEditProductForm(props: { product: Product, found: boo
                                                                 type="number"
                                                                 className="form-control form-control-sm"
                                                                 id={`productDetails[${index}].quantity`}
+                                                                onWheel={numberInputOnWheelPreventChange}
                                                             />
                                                             <div className="invalid-feedback d-block"
                                                                  style={{whiteSpace: "pre-wrap"}}>

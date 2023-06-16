@@ -27,9 +27,9 @@ export default function IngredientsTable(props: { ingredients: Ingredient[] }) {
                         <tr
                             key={index}
                             className={
-                                ingr.currentStock - ingr.minimumStock < 1
+                                ingr.currentStock - ingr.minimumStock < 0
                                     ? "bg-danger"
-                                    : ingr.currentStock - ingr.minimumStock < 25
+                                    : ingr.currentStock - ingr.minimumStock < 5
                                         ? "bg-warning"
                                         : ""
                             }

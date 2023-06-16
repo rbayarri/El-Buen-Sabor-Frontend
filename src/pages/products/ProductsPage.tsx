@@ -19,7 +19,7 @@ const ProductsPage = () => {
     const getProducts = async () => {
 
         const api = settings.api.products.findAll;
-        const response = await doRequest<Product[]>({path: api.path, method: api.method, jwt: myContext.jwt});
+        const response = await doRequest<Product[]>({path: api.path, method: api.method, jwt: myContext.userContext.jwt});
         if (response) {
             setProducts(response);
             setFilteredProducts(response);
@@ -39,7 +39,7 @@ const ProductsPage = () => {
         getProducts();
     }), []);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 <div className={"my-4 d-flex justify-content-between align-items-center"}>

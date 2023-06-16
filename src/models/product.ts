@@ -7,14 +7,14 @@ interface Image {
 }
 
 export interface Product {
-  id: string,
+  id?: string,
   name: string,
   description: string,
   cookingTime: number,
   category: EntityReference,
-  recipe: string,
+  recipe?: string,
   active: boolean,
   profitMargin: number,
   productDetails: ProductDetail[]
-  image: Image | null
+  image?: Image
 }

@@ -1,4 +1,4 @@
-import Product from "../../models/product.ts";
+import {Product} from "../../models/product.ts";
 import {Link} from "react-router-dom";
 
 export default function ProductsTable(props: { products: Product[] }) {

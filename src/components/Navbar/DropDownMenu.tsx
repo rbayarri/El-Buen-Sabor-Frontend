@@ -11,9 +11,9 @@ export const DropDownMenu = () => {
 
     const handleLogout = () => {
         const newEmptyUser = emptyUser;
-        newEmptyUser.onChange = myContext.onChange;
-        if(myContext.onChange) {
-            myContext.onChange(newEmptyUser);
+        newEmptyUser.onChange = myContext.userContext.onChange;
+        if(myContext.userContext.onChange) {
+            myContext.userContext.onChange(newEmptyUser);
         }
         deleteTokenCookie();
     }
@@ -22,13 +22,13 @@ export const DropDownMenu = () => {
         <div className="start-0 d-flex">
             {/*Normal*/}
             <Button variant="outline-primary" className="profile-btn px-0 py-1 me-2" style={{width:"fit-content"}}>
-                <NavDropdown drop="down" title={<><PersonFill size="28"/> {myContext.name}</>}
+                <NavDropdown drop="down" title={<><PersonFill size="28"/> {myContext.userContext.name}</>}
                              id="navbarScrollingDropdown" className="navUserMenuContainer p0-2">
                     <NavDropdown.ItemText
-                        className="text-muted text-center">{myContext.name + " " + myContext.lastName}</NavDropdown.ItemText>
+                        className="text-muted text-center">{myContext.userContext.name + " " + myContext.userContext.lastName}</NavDropdown.ItemText>
                     <NavDropdown.Divider/>
                     <NavDropdown.Item as={Link} to="/user/perfil">Mi Perfil</NavDropdown.Item>
-                    {myContext.role === "USER" &&
+                    {myContext.userContext.role === "USER" &&
                         <NavDropdown.Item as={Link} to="/user/pedidos">Mis Pedidos</NavDropdown.Item>}
                     <NavDropdown.Divider/>
                     <NavDropdown.Item onClick={() => handleLogout()} className="text-danger">
