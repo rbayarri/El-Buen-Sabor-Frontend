@@ -23,11 +23,11 @@ export const settings = {
                 path: "/auth/forgetPassword",
                 method: "POST" as Method
             },
-            verifyForgetPasswordToken:{
+            verifyForgetPasswordToken: {
                 path: "/auth/verifyForgetPasswordToken",
                 method: "POST" as Method
             },
-            resetPassword:{
+            resetPassword: {
                 path: "/auth/resetPassword",
                 method: "POST" as Method
             }
@@ -129,10 +129,6 @@ export const settings = {
                 path: "/ingredients/active",
                 method: "GET"
             },
-            saveImage: {
-                path: "/images",
-                method: "POST" as Method
-            }
         },
         home: {
             findProducts: {
@@ -194,19 +190,23 @@ export const settings = {
         },
         phoneNumber: {
             findAllActive: {
-                path: "/phoneNumber/actives",
+                path: "/phoneNumbers/actives",
                 method: "GET" as Method
             },
             save: {
-                path: "/phoneNumber",
+                path: "/phoneNumbers",
                 method: "POST"
             },
             update: {
-                path: "/phoneNumber",
+                path: "/phoneNumbers",
                 method: "PUT" as Method
             }
         },
         orders: {
+            findByIdForUser:{
+                path: "/orders",
+                method: "GET" as Method
+            },
             findAllByUser: {
                 path: "/orders",
                 method: "GET" as Method
@@ -250,6 +250,10 @@ export const settings = {
             toDelivered: {
                 path: "/orders/newState/delivered",
                 method: "PATCH" as Method
+            },
+            getPreference: {
+                path: "/mercadoPago/createPreference",
+                method: "POST" as Method
             }
         }
     },
