@@ -1,59 +1,73 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Producto } from '../../models/productos';
+import { settings } from '../../lib/settings';
+import { doRequest } from '../../lib/fetch';
+import swal from 'sweetalert';
+import './CardDetalle.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function CardDetalle() {
   const { id } = useParams();
-  const [card, setCard] = useState<Producto | null>(null);
+  const [product, setProduct] = useState<Producto>();
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const getProduct = async (id: string) => {
+  const api = settings.api.products.findById;
 
-  useEffect(() => {
-    const obtenerProducto = async () => {
-      try {
-        const response = await fetch(`http://localhost:3306/products/${id}`);
-        if (response.ok) {
-          const data = await response.json();
-          setCard(data);
-        } else {
-          console.error('Error al obtener el producto:', response.status);
-        }
-      } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-      }
-    };
+  const fetchedProduct = await doRequest<Producto>({
+      path: api.path + "/" + id,
+      method: api.method,
 
-    obtenerProducto();
-  }, [id]);
+    });
+    if (fetchedProduct) {
+      setProduct(fetchedProduct);
+      setIsLoading(false);
+    } else {
+      swal("Producto no encontrado", '', "error")
+      navigate('/');
+    }
+  }
+
+  useEffect((() => {
+    if (id) {
+      getProduct(id);
+    }
+  }), []);
 
   return (
     <>
+     {isLoading ? <h1>Loading...</h1> : (
       <div className='carddetalle'>
-        <div className='contenedor'>
           <table>
             <tr>
-              <td>
-                {card && <img className='imagen' src={`/src/assets/img/${card.image}`} alt='' />}
+              <td>                           
+                {
+                product?.image && <img className='imagenDetalle' src={`${product.image.location}`} alt='' />}                           
               </td>
               <td>
-                <p className='nombre'>{card?.nombre}</p>
-                <p className='precio'>Precio: {card?.precio}</p>
-                <p className='descripcion'>{card?.detalle}</p>
+                <p className='nombre'>{product?.name}</p>
+                <p className='precio'>Precio: {product?.price}</p>
+                <p className='descripcion'>{product?.description}</p>
               </td>
             </tr>
             <tr>
               <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid' }} to={''}>
+                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', width: '200px' }} to={''}>
                   Continuar Comprando
                 </Link>
               </td>
               <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid' }} to={''}>
+                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid', width: '200px' }} to={''}>
+                <FontAwesomeIcon icon={faCartArrowDown} size="xs"/>
                   Agregar al Carrito
                 </Link>
               </td>
             </tr>
-          </table>
-        </div>
+          </table>     
       </div>
+     )}
     </>
   );
 }
