@@ -17,6 +17,11 @@ import NewEditProductPage from "../pages/products/NewEditProductPage.tsx";
 import VerifyEmailPage from "../pages/auth/VerifyEmailPage.tsx";
 import ForgetPasswordPage from "../pages/auth/ForgetPasswordPage.tsx";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage.tsx";
+import CardDetalle from "../components/Card/CardDetalle.tsx";
+import Footer from "../components/Footer/Footer.tsx";
+import Orders from "../pages/Chef/Orders.tsx";
+import DetallePedido from "../pages/Chef/DetallePedido.tsx";
+
 
 export const emptyUser: ContextUser = {
     name: "",
@@ -69,10 +74,12 @@ export const AppRoutes = () => {
                         <Route path="/productos/:id" element={<NewEditProductPage/>}/>
                         <Route path="/ingredientes/compra/:id" element={<BuyIngredientPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
-                        {/*<Route path="/detalle/:id/"  element={<CardDetalle/>}/>*/}
-                    </Routes>
+                        <Route path="/detalle/:id/"  element={<CardDetalle/>}/>
+                        <Route path="/cocina/pedidos/" element= {<Orders/>}/>
+                        <Route path="/detallepedido/" element= {<DetallePedido/>}/>
+                     </Routes>                  
                 </Container>
-                {/** Footer */}
+                <Footer />
             </globalContext.Provider>
         </>
     )
