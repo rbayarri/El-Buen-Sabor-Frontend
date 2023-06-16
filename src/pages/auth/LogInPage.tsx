@@ -10,7 +10,7 @@ export const LogInPage = () => {
 
     const myContext = useContext(globalContext);
 
-    if (!myContext.authenticated) {
+    if (!myContext.userContext.authenticated) {
         return (
             <div
                 className="col-12 col-md-8 col-lg-5 m-auto d-flex justify-content-center flex-column align-items-center">

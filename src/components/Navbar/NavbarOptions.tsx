@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const NavbarOptions = () => {
 
-  const myNavbarOptionsContext = useContext(globalContext)
+  const myContext = useContext(globalContext)
 
   const chef = () => {
     return (
@@ -49,7 +49,7 @@ const NavbarOptions = () => {
   }
 
   const optionsToRender = (): React.ReactNode => {
-    switch (myNavbarOptionsContext.role) {
+    switch (myContext.userContext.role) {
       case "CASHIER":
         return cashier()
 

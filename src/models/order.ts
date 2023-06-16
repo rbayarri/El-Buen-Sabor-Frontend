@@ -1,57 +1,48 @@
-interface Image {
-  id: string;
-  location: string;
+import {EntityReference} from "./entity-reference.ts";
+import {Address} from "./users/address.ts";
+import {PhoneNumber} from "./users/phone-number.ts";
+import {Image} from "./image.ts";
+import {ProductDetail} from "./product-detail.ts";
+import {DeliveryMethod, PaymentMethod, Status} from "../types/order-types.ts";
+
+export interface Order {
+
+    id: string,
+    dateTime: string,
+    user?: User;
+    address: Address,
+    phoneNumber: PhoneNumber,
+    deliveryMethod: DeliveryMethod,
+    paymentMethod: PaymentMethod,
+    paid: boolean,
+    status: Status,
+    orderDetails: OrderDetail[],
+    discount: number
+    cookingTime: number
+    delayedMinutes?: number;
+    deliveryTime?: number;
+    totalTime: number;
+}
+
+export interface OrderDetail {
+    product: EntityReference | Product,
+    quantity: number,
+    unitPrice: number,
+    discount: number
 }
 
 interface User {
-  username: string;
-  name: string;
-  lastName: string;
-  image: Image;
-}
-
-interface Ingredient {
-  id: string;
-  name: string;
-}
-
-interface ProductDetails {
-  ingredient: Ingredient;
-  clientMeasurementUnit: string;
-  quantity: number;
+    username: string;
+    name: string;
+    lastName: string;
+    image: Image;
 }
 
 interface Product {
-  id: string;
-  name: string;
-  description: string;
-  image: Image;
-  recipe: string;
-  productDetails: ProductDetails[];
-}
-
-interface OrderDetail {
-  product: Product;
-  quantity: number;
-  unitPrice: number;
-  unitCost: number;
-  discount: number;
-}
-
-export default interface Order {
-  id: string;
-  dateTime: string;
-  user: User;
-  deliveryMethod: string;
-  address: string;
-  phoneNumber: string;
-  paymentMethod: string;
-  paid: boolean;
-  status: string;
-  discount: number;
-  orderDetails: OrderDetail[];
-  cookingTime: number;
-  delayedMinutes: number;
-  deliveryTime: number;
-  totalTime: number;
+    id: string;
+    name: string;
+    description: string;
+    image: Image;
+    recipe?: string;
+    productDetails: ProductDetail[];
 }
