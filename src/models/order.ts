@@ -9,7 +9,7 @@ export interface Order {
 
     id: string,
     dateTime: string,
-    user?: User;
+    user?: OrderUser;
     address: Address,
     phoneNumber: PhoneNumber,
     deliveryMethod: DeliveryMethod,
@@ -31,7 +31,7 @@ export interface OrderDetail {
     discount: number
 }
 
-interface User {
+interface OrderUser {
     username: string;
     name: string;
     lastName: string;

@@ -5,6 +5,7 @@ export type ContextUser = {
     lastName: string
     role: Role
     authenticated: boolean
-    jwt?: string | undefined
+    jwt?: string | undefined,
+    firstTimeAccess: boolean,
     onChange?: (newUser: ContextUser) => void
 }
