@@ -35,6 +35,7 @@ export const getUserFromCookie = () => {
                 role: jwtContent.role,
                 authenticated: true,
                 jwt: jwt,
+                firstTimeAccess: jwtContent.firtTimeAccess
             }
             return jwtUser;
         }

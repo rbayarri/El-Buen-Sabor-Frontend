@@ -150,12 +150,16 @@ export const settings = {
         },
         users: {
             findAll: {
-                path: "/users/",
+                path: "/users",
                 method: "GET" as Method
             },
             findById: {
                 path: "/users",
                 method: "GET" as Method
+            },
+            save: {
+                path: "/users",
+                method: "POST" as Method
             },
             update: {
                 path: "/users/",

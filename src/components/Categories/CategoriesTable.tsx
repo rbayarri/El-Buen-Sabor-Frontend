@@ -51,7 +51,6 @@ export const CategoriesTable = (props: { target: string }) => {
                 jwt: myContext.userContext.jwt
             });
             if (response) {
-                console.log(response);
                 setCategories(response);
             }
         }
