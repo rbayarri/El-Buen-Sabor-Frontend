@@ -35,7 +35,7 @@ const NewEditIngredientPage = () => {
         const fetchedIngredient = await doRequest<Ingredient>({
             path: findIngredientApi.path + "/" + id,
             method: findIngredientApi.method,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (fetchedIngredient) {
             setIngredient(fetchedIngredient);
@@ -55,7 +55,7 @@ const NewEditIngredientPage = () => {
         }
     }), []);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 {isLoading ? <h1>Loading...</h1> : (

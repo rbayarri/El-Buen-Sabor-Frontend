@@ -48,10 +48,9 @@ export const CategoriesTable = (props: { target: string }) => {
             const response = await doRequest<Category[]>({
                 path: apiSettings.path,
                 method: apiSettings.method,
-                jwt: myContext.jwt
+                jwt: myContext.userContext.jwt
             });
             if (response) {
-                console.log(response);
                 setCategories(response);
             }
         }

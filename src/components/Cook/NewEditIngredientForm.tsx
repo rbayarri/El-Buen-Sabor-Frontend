@@ -23,7 +23,11 @@ export default function NewEditIngredientForm(props: { ingredient: Ingredient, f
     const getPosibleCategories = async () => {
         const api = settings.api.ingredients.findPossibleParents;
 
-        const response = await doRequest<EntityReference[]>({path: api.path, method: api.method, jwt: myContext.jwt});
+        const response = await doRequest<EntityReference[]>({
+            path: api.path,
+            method: api.method,
+            jwt: myContext.userContext.jwt
+        });
         if (response) {
             setPosibleCategories(response);
             setIsLoading(false);
@@ -53,7 +57,7 @@ export default function NewEditIngredientForm(props: { ingredient: Ingredient, f
             path: api.path,
             method: api.method,
             body: body,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (response) {
             swal("Ingrediente guardado", "", "success");
@@ -67,12 +71,29 @@ export default function NewEditIngredientForm(props: { ingredient: Ingredient, f
             path: api.path + "/" + ingredient.id,
             method: api.method,
             body: body,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (response) {
             swal("Ingrediente guardado", "", "success");
             navigate("/ingredientes")
         }
+    }
+
+    const numberInputOnWheelPreventChange = (e: WheelEvent) => {
+        // Prevent the input value change
+        if (e.target instanceof HTMLInputElement) {
+            e.target.blur();
+        }
+
+        // Prevent the page/container scrolling
+        e.stopPropagation()
+
+        // Refocus immediately, on the next tick (after the current function is done)
+        setTimeout(() => {
+            if (e.target instanceof HTMLInputElement) {
+                e.target.focus();
+            }
+        }, 0)
     }
 
     return (
@@ -151,7 +172,8 @@ export default function NewEditIngredientForm(props: { ingredient: Ingredient, f
                                            id={"minimumStock"}
                                            type={"number"}
                                            placeholder={0}
-                                           name={"minimumStock"}/>
+                                           name={"minimumStock"}
+                                           onWheel={numberInputOnWheelPreventChange}/>
                                     <div className="invalid-feedback d-block" style={{whiteSpace: "pre-wrap"}}>
                                         <ErrorMessage name={"minimumStock"}/>
                                     </div>

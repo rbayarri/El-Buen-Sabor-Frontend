@@ -1,4 +1,4 @@
-import {ChangeEventHandler, KeyboardEventHandler, useContext, useEffect, useState} from "react";
+import {ChangeEventHandler, useContext, useEffect, useState} from "react";
 import {Link, Navigate} from "react-router-dom";
 import Ingredient from "../../models/ingredient.ts";
 import {Button, Form} from "react-bootstrap";
@@ -19,7 +19,11 @@ const IngredientsPage = () => {
     const getIngredientes = async () => {
 
         const api = settings.api.ingredients.findAll;
-        const response = await doRequest<Ingredient[]>({path: api.path, method: api.method, jwt: myContext.jwt});
+        const response = await doRequest<Ingredient[]>({
+            path: api.path,
+            method: api.method,
+            jwt: myContext.userContext.jwt
+        });
         if (response) {
             setIngredientes(response);
             setIngredientesFiltrados(response);
@@ -39,7 +43,7 @@ const IngredientsPage = () => {
         getIngredientes();
     }), []);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 <div className={"my-4 d-flex justify-content-between align-items-center"}>

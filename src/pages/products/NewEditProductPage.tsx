@@ -1,4 +1,4 @@
-import {Product} from "../../models/product.ts";
+import {CompleteProduct} from "../../models/products/complete-product.ts";
 import {Navigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
@@ -7,7 +7,7 @@ import {doRequest} from "../../lib/fetch.ts";
 import {Col, Row} from "react-bootstrap";
 import NewEditProductForm from "../../components/Cook/NewEditProductForm.tsx";
 
-const initProduct: Product = {
+const initProduct: CompleteProduct = {
     id: "",
     name: "",
     description: "",
@@ -15,33 +15,31 @@ const initProduct: Product = {
     category: {
         id: ""
     },
-    recipe: "",
     active: true,
-    profitMargin: 0,
+    profitMargin: 100,
     productDetails: [{
         ingredient: {
             id: "0"
         },
         clientMeasurementUnit: "0",
         quantity: 0
-    }],
-    image: null
+    }]
 }
 const NewEditProductPage = () => {
 
     const {id} = useParams()
     const myContext = useContext(globalContext);
-    const [product, setProduct] = useState<Product>(initProduct);
+    const [product, setProduct] = useState<CompleteProduct>(initProduct);
     const [found, setFound] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const getProduct = async (id: string) => {
         const api = settings.api.products.findById;
 
-        const fetchedProduct = await doRequest<Product>({
+        const fetchedProduct = await doRequest<CompleteProduct>({
             path: api.path + "/" + id,
             method: api.method,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (fetchedProduct) {
             setProduct(fetchedProduct);
@@ -61,7 +59,7 @@ const NewEditProductPage = () => {
         }
     }), []);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 {isLoading ? <h1>Loading...</h1> : (
