@@ -1,0 +1,18 @@
+img.logo{
+  filter: contrast(0) brightness(0.4)
+}
+
+.dropdown-menu.show{
+  right: 0;
+  left: auto!important;
+}
+
+.navUserMenuContainer>a {
+  display: flex!important;
+  align-items: center!important;
+  justify-content: space-around!important;
+}
+
+.profile-btn{
+  width: 7em;
+}
