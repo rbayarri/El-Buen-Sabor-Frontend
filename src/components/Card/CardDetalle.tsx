@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import './CardDetalle.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row } from 'react-bootstrap';
 
 export default function CardDetalle() {
   const { id } = useParams();
@@ -14,9 +15,9 @@ export default function CardDetalle() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const getProduct = async (id: string) => {
-  const api = settings.api.products.findById;
+    const api = settings.api.products.findById;
 
-  const fetchedProduct = await doRequest<Producto>({
+    const fetchedProduct = await doRequest<Producto>({
       path: api.path + "/" + id,
       method: api.method,
 
@@ -38,36 +39,27 @@ export default function CardDetalle() {
 
   return (
     <>
-     {isLoading ? <h1>Loading...</h1> : (
-      <div className='carddetalle'>
-          <table>
-            <tr>
-              <td>                           
-                {
-                product?.image && <img className='imagenDetalle' src={`${product.image.location}`} alt='' />}                           
-              </td>
-              <td>
-                <p className='nombre'>{product?.name}</p>
-                <p className='precio'>Precio: {product?.price}</p>
-                <p className='descripcion'>{product?.description}</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', width: '200px' }} to={''}>
-                  Continuar Comprando
-                </Link>
-              </td>
-              <td>
-                <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid', width: '200px' }} to={''}>
-                <FontAwesomeIcon icon={faCartArrowDown} size="xs"/>
-                  Agregar al Carrito
-                </Link>
-              </td>
-            </tr>
-          </table>     
-      </div>
-     )}
+      {isLoading ? <h1>Loading...</h1> : (
+        <div className='carddetalle'>
+          <Row>
+            <Col xs={12} md={8}>
+            {product?.image && <img className='imagenDetalle' src={`${product.image.location}`} alt='' />}
+            <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', width: '200px' }} to={''}>
+              Continuar Comprando
+            </Link>
+            </Col>
+            <Col xs={6} md={4}>
+            <p className='nombre'>{product?.name}</p>
+            <p className='precio'>Precio: {product?.price}</p>
+            <p className='descripcion'>{product?.description}</p>
+            <Link className='btn btn-outline-secondary' style={{ placeItems: 'center', display: 'grid', width: '200px' }} to={''}>
+              <FontAwesomeIcon icon={faCartArrowDown} size="xs" />
+              Agregar al Carrito
+            </Link>
+            </Col>
+          </Row>
+        </div>
+      )}
     </>
   );
 }

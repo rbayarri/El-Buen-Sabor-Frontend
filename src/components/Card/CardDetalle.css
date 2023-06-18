@@ -1,20 +1,31 @@
 .carddetalle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-8 {
   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
  .imagenDetalle {
+  width: 400px;
      border-radius: 8px;
-     box-shadow: 14px -11px 1px 4px rgba(3, 206, 64, 0.9);
+     box-shadow: 14px -11px 1px 4px rgba(231, 247, 4);
 
  }
+ 
   .nombre {
     font-size: 24px;
     font-weight: bold;
@@ -22,12 +33,14 @@
   }
   
   .precio {
-    background-color: #333;
+    background-color: #333;     
+    width: 170px;
+    color: white;
+    height: 45px;
     font-size: 18px;
-    text-align: left;
-    margin-top: 10px;
+    text-align: center;
     border-radius: 8px;
-    box-shadow: 11px -6px 0px 0px rgba(3, 206, 64, 0.9);
+    box-shadow: 11px -6px 0px 0px rgb(231, 247, 4);
   }
   
   .descripcion {
@@ -37,13 +50,11 @@
   }
   
   .btn {
-    display: flex;
     justify-content: center;
-    align-items: center;
     width: 200px;
     height: 40px;
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #33e606;
     border-radius: 4px;
     text-decoration: none;
     color: #333;
@@ -52,16 +63,11 @@
   }
   
   .btn:hover {
-    background-color: #eee;
+    background-color: #05e94a;
   }
   
   .btn-outline-secondary {
     background-color: transparent;
-  }
-  
-  td {
-    padding: 10px;
-    vertical-align: top;
   }
   
   .rr {
