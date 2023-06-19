@@ -10,7 +10,7 @@ const TimeOrderInfo = (props: { deliveryMethod: DeliveryMethod, status: Status, 
                     (deliveryMethod === "LOCAL_PICKUP" && status !== "READY")) &&
                 <p className="col">
                     <b>Tiempo estimado de entrega: </b>
-                    {totalTime} minutos
+                    {totalTime === 0? "0" : totalTime} minutos
                 </p>}
         </>
 

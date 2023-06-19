@@ -5,6 +5,7 @@ import {Order} from "../../models/order.ts";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
 import OrderIteration from "../../components/Orders/OrderIteration.tsx";
+import UserPanel from "../../components/Users/UserPanel.tsx";
 
 const UserOrdersPage = () => {
 
@@ -31,21 +32,26 @@ const UserOrdersPage = () => {
 
     if (myContext.userContext.authenticated && myContext.userContext.role === "USER") {
         return (
-            <>
-                {isLoading ? <h1>Loading</h1> :
-                    <div className={"col-10 mx-auto"}>
-                        <h1 className={"fs-2 mb-4"}>Mis Pedidos</h1>
-                        {orders ?
-                            <OrderIteration orders={orders} cancelable={true}/> :
-                            <>
-                                <p>Aún no has realizado pedidos</p>
-                                <p>Crea tu primer pedido desde la página princial</p>
-                                <Link to={"/"} className="btn btn-primary">Home</Link>
-                            </>
-                        }
-                    </div>
-                }
-            </>
+            <div className="row">
+                <div className="col-3">
+                    <UserPanel/>
+                </div>
+                <div className="col-9">
+                    {isLoading ? <h1>Loading</h1> :
+                        <>
+                            <h1 className={"fs-2 mb-4"}>Mis Pedidos</h1>
+                            {orders ?
+                                <OrderIteration orders={orders} cancelable={true}/> :
+                                <>
+                                    <p>Aún no has realizado pedidos</p>
+                                    <p>Crea tu primer pedido desde la página princial</p>
+                                    <Link to={"/"} className="btn btn-primary">Home</Link>
+                                </>
+                            }
+                        </>
+                    }
+                </div>
+            </div>
         );
     }
     return <Navigate to={"/"}/>

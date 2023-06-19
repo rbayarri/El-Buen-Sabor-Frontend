@@ -2,5 +2,6 @@ export interface PhoneNumber {
     id?: string
     areaCode: string,
     phoneNumber: string,
-    isPredetermined: boolean
+    active:boolean,
+    predetermined: boolean
 }

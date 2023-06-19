@@ -48,7 +48,7 @@ const OrderConfirmationPage = () => {
             if (myContext.order.onChange) {
                 myContext.order.onChange({orderDetails: [], onChange: myContext.order.onChange});
             }
-            navigate(`/user/pedidos/${response.id}`)
+            navigate(`/pedidos/${response.id}`)
         }
     }
 

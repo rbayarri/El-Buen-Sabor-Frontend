@@ -27,9 +27,9 @@ export const DropDownMenu = () => {
                     <NavDropdown.ItemText
                         className="text-muted text-center">{myContext.userContext.name + " " + myContext.userContext.lastName}</NavDropdown.ItemText>
                     <NavDropdown.Divider/>
-                    <NavDropdown.Item as={Link} to="/user/perfil">Mi Perfil</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/cuenta">Mi Perfil</NavDropdown.Item>
                     {myContext.userContext.role === "USER" &&
-                        <NavDropdown.Item as={Link} to="/user/pedidos">Mis Pedidos</NavDropdown.Item>}
+                        <NavDropdown.Item as={Link} to="/pedidos">Mis Pedidos</NavDropdown.Item>}
                     <NavDropdown.Divider/>
                     <NavDropdown.Item onClick={() => handleLogout()} className="text-danger">
                         <Power size={20} color={"red"} className="me-2"/>Cerrar Sesión</NavDropdown.Item>
