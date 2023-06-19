@@ -177,19 +177,31 @@ export const settings = {
                 path: "/users/password",
                 method: "PUT" as Method
             },
+            sendVerificationEmail: {
+                path: "/users/verifyEmail",
+                method: "POST" as Method
+            },
             saveImage: {
                 path: "/images",
                 method: "POST" as Method
             }
         },
         addresses: {
+            findAll: {
+                path: "/addresses",
+                method: "GET" as Method
+            },
             findAllActive: {
                 path: "/addresses/actives",
                 method: "GET" as Method
             },
+            findById: {
+                path: "/addresses",
+                method: "GET" as Method
+            },
             save: {
                 path: "/addresses",
-                method: "POST"
+                method: "POST" as Method
             },
             update: {
                 path: "/addresses",
@@ -197,13 +209,21 @@ export const settings = {
             }
         },
         phoneNumber: {
+            findAll: {
+                path: "/phoneNumbers",
+                method: "GET" as Method
+            },
             findAllActive: {
                 path: "/phoneNumbers/actives",
                 method: "GET" as Method
             },
+            findById: {
+                path: "/phoneNumbers",
+                method: "GET" as Method
+            },
             save: {
                 path: "/phoneNumbers",
-                method: "POST"
+                method: "POST" as Method
             },
             update: {
                 path: "/phoneNumbers",
@@ -211,7 +231,7 @@ export const settings = {
             }
         },
         orders: {
-            findByIdForUser:{
+            findByIdForUser: {
                 path: "/orders",
                 method: "GET" as Method
             },
@@ -262,6 +282,20 @@ export const settings = {
             getPreference: {
                 path: "/mercadoPago/createPreference",
                 method: "POST" as Method
+            }
+        },
+        reports: {
+            rankingProducts: {
+                path: "/reports/rankingProducts",
+                method: "GET" as Method
+            },
+            rankingClients: {
+                path: "/reports/rankingClients",
+                method: "GET" as Method
+            },
+            profits: {
+                path: "/reports/profits",
+                method: "GET" as Method
             }
         }
     },

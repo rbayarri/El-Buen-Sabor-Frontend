@@ -8,11 +8,11 @@ export interface User {
     username: string;
     name: string;
     lastName: string;
-    role: Role,
+    role?: Role,
     image: Image,
     addresses: Address[],
     phoneNumbers: PhoneNumber[],
     emailConfirmed: boolean,
     active: boolean,
-    firstTimeAccess: boolean
+    firstTimeAccess?: boolean
 }

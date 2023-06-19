@@ -30,6 +30,16 @@ import Footer from "../components/Footer/Footer.tsx";
 import {LogInPage} from "../pages/auth/LogInPage.tsx";
 import UsersPage from "../pages/user/UsersPage.tsx";
 import NewEditUserByAdminPage from "../pages/user/NewEditUserByAdminPage.tsx";
+import AccountPage from "../pages/user/AccountPage.tsx";
+import NewEditAddressPage from "../pages/user/NewEditAddressPage.tsx";
+import NewEditPhoneNumberPage from "../pages/user/NewEditPhoneNumberPage.tsx";
+import AddressesPage from "../pages/user/AddressesPage.tsx";
+import PhoneNumbersPage from "../pages/user/PhoneNumbersPage.tsx";
+import EditAccountPage from "../pages/user/EditAccountPage.tsx";
+import ProductRanking from "../pages/reports/ProductRanking.tsx";
+import ClientRanking from "../pages/reports/ClientRanking.tsx";
+import ClientRankingOrders from "../pages/reports/ClientRankingOrders.tsx";
+import Profit from "../pages/reports/Profit.tsx";
 
 
 export const emptyUser: ContextUser = {
@@ -140,6 +150,7 @@ export const AppRoutes = () => {
                 </Routes>
                 <Container className="mt-5 pt-5 mb-5 pb-5">
                     <Routes>
+                        <Route path="/detalle/:id/" element={<ProductDescription/>}/>
                         <Route path="/login" element={<LogInPage/>}/>
                         <Route path="/signup" element={<SignUpPage/>}/>
                         <Route path="/verifyEmail/:userId/:tokenId" element={<VerifyEmailPage/>}/>
@@ -160,14 +171,23 @@ export const AppRoutes = () => {
                         <Route path="/pedido" element={<MyOrderPage/>}/>
                         <Route path="/pedido/opciones" element={<OrderOptionsPage/>}/>
                         <Route path="/pedido/confirmacion" element={<OrderConfirmationPage/>}/>
-                        <Route path="/user/pedidos" element={<UserOrdersPage/>}/>
-                        <Route path="/user/pedidos/:id" element={<UserOrderPage/>}/>
+                        <Route path="/cuenta" element={<AccountPage/>}/>
+                        <Route path="/cuenta/editar" element={<EditAccountPage/>}/>
+                        <Route path="/pedidos" element={<UserOrdersPage/>}/>
+                        <Route path="/pedidos/:id" element={<UserOrderPage/>}/>
+                        <Route path="/direcciones" element={<AddressesPage/>}/>
+                        <Route path="/direcciones/:id" element={<NewEditAddressPage/>}/>
+                        <Route path="/telefonos" element={<PhoneNumbersPage/>}/>
+                        <Route path="/telefonos/:id" element={<NewEditPhoneNumberPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
-                        <Route path="/detalle/:id/" element={<ProductDescription/>}/>
                         <Route path="/cocina/pedidos/" element={<Orders/>}/>
                         <Route path="/detallepedido/" element={<DetallePedido/>}/>
                         <Route path="/usuarios" element={<UsersPage/>}/>
                         <Route path="/usuarios/:id" element={<NewEditUserByAdminPage/>}/>
+                        <Route path="/rankingProductos" element={<ProductRanking/>}/>
+                        <Route path="/rankingClientes" element={<ClientRanking/>}/>
+                        <Route path="/rankingClientes/:id" element={<ClientRankingOrders/>}/>
+                        <Route path="/ganancias" element={<Profit/>}/>
                     </Routes>
                 </Container>
                 <Footer/>
