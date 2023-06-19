@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const NavbarOptions = () => {
 
-  const myNavbarOptionsContext = useContext(globalContext)
+  const myContext = useContext(globalContext)
 
   const chef = () => {
     return (
@@ -42,14 +42,14 @@ const NavbarOptions = () => {
           <NavDropdown.Item as={Link} to="/admin/ranking/clientes" key="2">Ranking de clientes</NavDropdown.Item>
           <NavDropdown.Item as={Link} to="/admin/ganancias" key="3">Informe ganancias</NavDropdown.Item>
         </NavDropdown>
-        <Link to="/admin/usuarios" className='nav-link me-3'>Usuarios</Link>
+        <Link to="/usuarios" className='nav-link me-3'>Usuarios</Link>
         {chef()}
       </>
     )
   }
 
   const optionsToRender = (): React.ReactNode => {
-    switch (myNavbarOptionsContext.role) {
+    switch (myContext.userContext.role) {
       case "CASHIER":
         return cashier()
 

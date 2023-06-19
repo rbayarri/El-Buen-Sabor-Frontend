@@ -10,10 +10,9 @@ const SearchForm = () => {
 
   const isSmallScreen = useMediaQuery({ maxWidth: 480 });
 
-  if ((!searchFormContext.authenticated || searchFormContext.role === "USER") && !isSmallScreen) {
+  if ((!searchFormContext.userContext.authenticated || searchFormContext.userContext.role === "USER") && !isSmallScreen) {
     return (
       <>
-        {/* Formulario para buscar */}
         <Form className="d-flex position-relative w-100">
           <Form.Control type="search" placeholder="Buscar productos..." aria-label="Buscar productos..." className="" />
           <Button variant="" className="position-absolute" style={{ right: 0 }}><Search /></Button>

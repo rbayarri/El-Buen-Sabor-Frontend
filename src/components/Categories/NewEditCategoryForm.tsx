@@ -39,7 +39,7 @@ export const NewEditCategoryForm = (props: { target: string, category: NewEditCa
         const parents = await doRequest<EntityReference[]>({
             path: parentApiSettings.path,
             method: parentApiSettings.method,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (parents) {
             setPosibleParents(parents);
@@ -93,7 +93,7 @@ export const NewEditCategoryForm = (props: { target: string, category: NewEditCa
                                 }
                             }
 
-                            const result = await doRequest({path, method, body: body, jwt: myContext.jwt});
+                            const result = await doRequest({path, method, body: body, jwt: myContext.userContext.jwt});
 
                             if (result) {
                                 await swal("Guardado con éxito", "", "success");

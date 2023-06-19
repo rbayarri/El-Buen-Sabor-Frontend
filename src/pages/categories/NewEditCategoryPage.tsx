@@ -28,7 +28,7 @@ export const NewEditCategoryPage = (props: { target: string }) => {
         const fetchedCategory = await doRequest<NewEditCategory>({
             path: findCategoryApiSetting.path + id,
             method: findCategoryApiSetting.method,
-            jwt: myContext.jwt
+            jwt: myContext.userContext.jwt
         });
         if (fetchedCategory) {
             setCategory(fetchedCategory);
@@ -48,7 +48,7 @@ export const NewEditCategoryPage = (props: { target: string }) => {
         }
     }), [target]);
 
-    if (myContext.authenticated && (myContext.role === "CHEF" || myContext.role === "ADMIN")) {
+    if (myContext.userContext.authenticated && (myContext.userContext.role === "CHEF" || myContext.userContext.role === "ADMIN")) {
         return (
             <>
                 {isLoading ? <h1>Loading...</h1> : (
