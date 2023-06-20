@@ -1,4 +1,4 @@
-import {Method} from "../types/method.ts";
+import { Method } from "../types/method.ts";
 
 export const settings = {
     api: {
@@ -271,6 +271,10 @@ export const settings = {
                 path: "/orders/newState/ready",
                 method: "PATCH" as Method
             },
+            addMinutes: {
+                path: "/orders/addMinutes",
+                method: "PATCH" as Method
+            },
             toDelivery: {
                 path: "/orders/newState/delivery",
                 method: "PATCH" as Method
@@ -278,6 +282,14 @@ export const settings = {
             toDelivered: {
                 path: "/orders/newState/delivered",
                 method: "PATCH" as Method
+            },
+            toPaid: {
+                path: "/orders/registerPayment",
+                method: "PATCH" as Method,
+            },
+            cancel: {
+                path: "/orders/cancel",
+                method: "POST" as Method,
             },
             getPreference: {
                 path: "/mercadoPago/createPreference",
@@ -310,8 +322,10 @@ export const settings = {
                 method: "GET" as Method
             }
         }
-    },
-    google: {
-        clientId: "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com"
     }
-}
+  },
+  google: {
+    clientId:
+      "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com",
+  },
+};
