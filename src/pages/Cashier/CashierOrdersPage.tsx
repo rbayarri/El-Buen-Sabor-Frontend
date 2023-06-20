@@ -47,8 +47,7 @@ const CashierPage = () => {
 
   if (
     myContext.userContext.authenticated &&
-    (myContext.userContext.role === "CASHIER" ||
-      myContext.userContext.role === "ADMIN")
+    myContext.userContext.role === "CASHIER"
   ) {
     return (
       <>
