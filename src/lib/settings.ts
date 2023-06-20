@@ -289,12 +289,24 @@ export const settings = {
                 path: "/reports/rankingProducts",
                 method: "GET" as Method
             },
+            rankingProductsExcel: {
+                path: "/reports/rankingProductsExcel",
+                method: "GET" as Method
+            },
             rankingClients: {
                 path: "/reports/rankingClients",
                 method: "GET" as Method
             },
+            rankingClientsExcel: {
+                path: "/reports/rankingClientsExcel",
+                method: "GET" as Method
+            },
             profits: {
                 path: "/reports/profits",
+                method: "GET" as Method
+            },
+            profitsExcel: {
+                path: "/reports/profitsExcel",
                 method: "GET" as Method
             }
         }
