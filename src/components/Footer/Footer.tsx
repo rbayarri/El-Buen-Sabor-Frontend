@@ -70,17 +70,18 @@ export default function Footer() {
                                 <path d="M16.5 7.5l0 .01"></path>
                             </svg>
                             <a className="text-white text-decoration-none ms-2" style={font10pt}
-                               href="#">@ElBuenSabor-Restaurante</a>
+                               href="https://www.instagram.com/">@ElBuenSabor-Restaurante</a>
                         </div>
                         <div>
-                            <svg xmlns="http://www.w3.org/2000/svg"
+                            {/* <svg xmlns="http://www.w3.org/2000/svg"
                                  className="icon icon-tabler icon-tabler-brand-twitter"
                                  width="20" height="20" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor"
                                  fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path
                                     d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z"></path>
-                            </svg>
+                            </svg> */}
+                           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" ><style color="white"/><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
                             <a className="text-white text-decoration-none ms-2" style={font10pt}
                                href="https://www.facebook.com/profile.php?id=100093135940429&sk=about">El Buen
                                 Sabor</a>
