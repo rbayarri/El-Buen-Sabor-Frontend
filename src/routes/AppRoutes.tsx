@@ -23,8 +23,7 @@ import OrderConfirmationPage from "../pages/cart/OrderConfirmationPage.tsx";
 import UserOrderPage from "../pages/user/UserOrderPage.tsx";
 import UserOrdersPage from "../pages/user/UserOrdersPage.tsx";
 import ProductDescription from "../pages/home/ProductDescription.tsx";
-import Orders from "../pages/chef/Orders.tsx";
-import DetallePedido from "../pages/chef/DetallePedido.tsx";
+import Orders from "../pages/chef/ChefOrders.tsx";
 import {ContextOrder} from "../models/context/context-order.ts";
 import Footer from "../components/Footer/Footer.tsx";
 import {LogInPage} from "../pages/auth/LogInPage.tsx";
@@ -40,6 +39,7 @@ import ProductRanking from "../pages/reports/ProductRanking.tsx";
 import ClientRanking from "../pages/reports/ClientRanking.tsx";
 import ClientRankingOrders from "../pages/reports/ClientRankingOrders.tsx";
 import Profit from "../pages/reports/Profit.tsx";
+import ChefRecipe from "../pages/chef/ChefRecipe.tsx";
 
 
 export const emptyUser: ContextUser = {
@@ -180,14 +180,14 @@ export const AppRoutes = () => {
                         <Route path="/telefonos" element={<PhoneNumbersPage/>}/>
                         <Route path="/telefonos/:id" element={<NewEditPhoneNumberPage/>}/>
                         {/*<Route path="/deliveryList" element={<DeliveryList />} />*/}
-                        <Route path="/cocina/pedidos/" element={<Orders/>}/>
-                        <Route path="/detallepedido/" element={<DetallePedido/>}/>
+                        <Route path="/cocina/pedidos/" element={<Orders/>}/>   
+                        <Route path="/cocina/producto/:id" element={<ChefRecipe/>}/>         
                         <Route path="/usuarios" element={<UsersPage/>}/>
                         <Route path="/usuarios/:id" element={<NewEditUserByAdminPage/>}/>
                         <Route path="/rankingProductos" element={<ProductRanking/>}/>
                         <Route path="/rankingClientes" element={<ClientRanking/>}/>
                         <Route path="/rankingClientes/:id" element={<ClientRankingOrders/>}/>
-                        <Route path="/ganancias" element={<Profit/>}/>
+                        <Route path="/ganancias" element={<Profit/>}/>                      
                     </Routes>
                 </Container>
                 <Footer/>
