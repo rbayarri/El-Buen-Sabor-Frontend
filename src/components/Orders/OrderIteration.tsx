@@ -39,11 +39,11 @@ const OrderIteration = (props: { orders: Order[], cancelable: boolean }) => {
                         </p>
                         <div className="d-flex align-items-center justify-content-around">
                             {cancelable && <p><Button variant="outline-danger" className="col me-1">Anular</Button></p>}
-                            <p><Link to={`/user/pedidos/${o.id}`}
+                            <p><Link to={`/pedidos/${o.id}`}
                                      className="btn btn-primary col me-1">Detalle</Link>
                             </p>
-                            <p><a href={`http://localhost:8080/api/v1/orders/viewInvoice/${o.id}`}
-                                  className="btn btn-dark col">Factura</a></p>
+                            {o.paid && <p><a href={`http://localhost:8080/api/v1/orders/viewInvoice/${o.id}`}
+                                             className="btn btn-dark col">Factura</a></p>}
                         </div>
                     </div>
                 </div>
