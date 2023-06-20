@@ -271,6 +271,10 @@ export const settings = {
                 path: "/orders/newState/ready",
                 method: "PATCH" as Method
             },
+            addMinutes: {
+                path: "/orders/addMinutes",
+                method: "PATCH" as Method
+            },
             toDelivery: {
                 path: "/orders/newState/delivery",
                 method: "PATCH" as Method
