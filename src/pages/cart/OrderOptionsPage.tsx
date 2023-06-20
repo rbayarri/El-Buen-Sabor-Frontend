@@ -31,6 +31,12 @@ const OrderOptionsPage = () => {
         });
         if (response) {
             setAddresses(response);
+            const predetermined = response.find(r => r.predetermined);
+            if(predetermined){
+                setAddressId(predetermined.id)
+            }else{
+                setAddressId(response.at(0)!.id)
+            }
         }
     }
 
@@ -43,6 +49,12 @@ const OrderOptionsPage = () => {
         });
         if (response) {
             setPhoneNumbers(response);
+            const predetermined = response.find(r => r.predetermined);
+            if(predetermined){
+                setPhoneNumberId(predetermined.id)
+            }else{
+                setPhoneNumberId(response.at(0)!.id)
+            }
         }
         setIsLoading(false);
     }
@@ -136,33 +148,33 @@ const OrderOptionsPage = () => {
                                 <div className="d-flex  align-items-center mt-3">
                                     <div className={"w-50 me-2 d-flex flex-column align-items-center"}>
                                         <div className={"w-100 mb-2"}>
-                                            <label htmlFor="address" className="form-label">Teléfono</label>
+                                            <label htmlFor="address" className="form-label">Dirección</label>
                                             <select className="form-select" id="address" name="address"
                                                     onChange={handleAddressSelector}>
                                                 {addresses &&
                                                     addresses.map(a =>
                                                         <option key={a.id} value={a.id}
-                                                                selected={a.isPredetermined}>{a.street} {a.number}</option>)
+                                                                selected={a.predetermined}>{a.street} {a.number}</option>)
                                                 }
                                             </select>
                                         </div>
-                                        <Link to={"/profile"} className="btn btn-secondary">Nuevo</Link>
+                                        <Link to={"/direcciones/nuevo"} className="btn btn-secondary">Nuevo</Link>
                                     </div>
                                     <div className={"w-50 me-2 d-flex flex-column align-items-center"}>
                                         <div className={"w-100 mb-2"}>
-                                            <label htmlFor="phoneNumber" className="form-label">Dirección</label>
+                                            <label htmlFor="phoneNumber" className="form-label">Teléfono</label>
                                             <select className="form-select" id="phoneNumber" name="phoneNumber"
                                                     onChange={handlePhoneNumberSelector}>
                                                 {phoneNumbers &&
                                                     phoneNumbers.map(pn =>
                                                         <option key={pn.id}
                                                                 value={pn.id}
-                                                                selected={pn.isPredetermined}
+                                                                selected={pn.predetermined}
                                                         >{pn.areaCode} {pn.phoneNumber}</option>)
                                                 }
                                             </select>
                                         </div>
-                                        <Link to={"/profile"} className="btn btn-secondary">Nuevo</Link>
+                                        <Link to={"/telefonos/nuevo"} className="btn btn-secondary">Nuevo</Link>
                                     </div>
                                 </div>
                             </>
