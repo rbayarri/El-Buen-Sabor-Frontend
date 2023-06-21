@@ -32,11 +32,11 @@ export default function CategorySection(props: { category: Category }) {
                     <h2 id={category.name}>{category.name}</h2>
                 </div>
                 <div className="">
-                    <div className='row'>
+                    <div className='d-flex justify-content-center flex-wrap'>
                         {products && products.length > 0 ?
                             products.map((card: ClientProduct) => (
-                                <div className='col-md-4' key={card.id}>
-                                    <ProductCard cardinfo={card}/>
+                                <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mt-3' key={card.id}>
+                                    <ProductCard product={card}/>
                                 </div>
                             )) : <p>No hay productos</p>
                         }

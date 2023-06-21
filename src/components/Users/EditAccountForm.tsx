@@ -25,10 +25,6 @@ const EditAccountForm = () => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedFile = event.target.files[0];
             setFile(selectedFile);
-
-            // // create a URL for the selected file
-            // const previewUrl = URL.createObjectURL(selectedFile);
-            // setPreviewUrl(previewUrl);
         }
     };
 
@@ -38,7 +34,6 @@ const EditAccountForm = () => {
             method: "PUT" as Method,
             headers: {
                 "Authorization": "Bearer " + myContext.userContext.jwt
-                // "Content-Type" : "multipart/form-data"
             },
             body: formData,
             redirect: 'follow'
@@ -58,9 +53,9 @@ const EditAccountForm = () => {
 
     return (
         <>
-            <h1 className="fs-2">Mi cuenta</h1>
-            <div className="d-flex">
-                <div className="d-flex flex-column flex-align-center mt-4 mb-3 col-6 pe-5">
+            <h1 className="fs-2 mt-3 mt-md-0">Mi cuenta</h1>
+            <div className="d-flex flex-column flex-sm-row">
+                <div className="d-flex flex-column flex-align-center mt-4 mb-3 col-12 col-sm-6 text-center pe-0 pe-sm-5">
                     <h2 className="fs-5 fw-bold">Datos personales</h2>
                     <Formik initialValues={{
                         name: user.name,
@@ -137,7 +132,7 @@ const EditAccountForm = () => {
                     }
                     </Formik>
                 </div>
-                <div className="d-flex flex-column mt-4 mb-3 col-6">
+                <div className="d-flex flex-column mt-4 mb-3 col-12 col-sm-6 text-center">
                     <h2 className="fs-5 fw-bold">Cambio de contraseña</h2>
                     <Formik initialValues={{
                         password: "",

@@ -5,9 +5,11 @@ import {useContext, useState} from "react";
 import {globalContext} from "../../routes/AppRoutes.tsx";
 import {ContextOrderDetail} from "../../models/context/context-order.ts";
 import {ClientProduct} from "../../models/products/client-product.ts";
+import {Link} from "react-router-dom";
 
 const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMode: boolean }) => {
 
+    const myContext = useContext(globalContext);
     const {order} = useContext(globalContext);
     const [orderDetail, setOrderDetail] = useState<ContextOrderDetail | OrderDetail>(props.orderDetail);
     const editMode = props.editMode;
@@ -77,17 +79,29 @@ const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMo
                     {editMode && <span
                         className="text-muted small">{(orderDetail as ContextOrderDetail).product?.stock} disponibles</span>}
                 </Col>
-                <Col md="3" lg="3" xl="3"
-                     className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
-                <span
-                    className="fs-5 fw-bold me-3">{(orderDetail.quantity * unitPrice).toLocaleString('es-AR', {
-                    style: 'currency',
-                    currency: 'ARS'
-                })}</span>
-                    {editMode && <DeleteIcon htmlColor={"gray"} fontSize="small" className="me-2 mt-1"
-                                             style={{cursor: "pointer"}}
-                                             onClick={deleteItem}/>}
-                </Col>
+                {myContext.userContext.role === "DELIVERY" ?
+                    <Col md="3" lg="3" xl="3"
+                         className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                    </Col> :
+                    myContext.userContext.role === "CHEF" ?
+                        <Col md="3" lg="3" xl="3"
+                             className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                            <Link to={`/cocina/producto/${orderDetail.product.id}`} className={"btn btn-success"}>Ver
+                                Receta</Link>
+                        </Col> :
+                        <Col md="3" lg="3" xl="3"
+                             className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                            <span
+                                className="fs-5 fw-bold me-3">{(orderDetail.quantity * unitPrice).toLocaleString('es-AR', {
+                                style: 'currency',
+                                currency: 'ARS'
+                            })}</span>
+                            {editMode && <DeleteIcon htmlColor={"gray"} fontSize="small" className="me-2 mt-1"
+                                                     style={{cursor: "pointer"}}
+                                                     onClick={deleteItem}/>}
+                        </Col>
+                }
+
             </Card>
         );
     }

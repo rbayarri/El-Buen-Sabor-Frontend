@@ -1,16 +1,24 @@
-import {DeliveryMethod, Status} from "../../types/order-types.ts";
+import {Order} from "../../models/order.ts";
+import {globalContext} from "../../routes/AppRoutes.tsx";
+import {useContext} from "react";
 
-const TimeOrderInfo = (props: { deliveryMethod: DeliveryMethod, status: Status, totalTime: number }) => {
+const TimeOrderInfo = (props: { order: Order }) => {
 
-    const {deliveryMethod, status, totalTime} = props;
+    const myContext = useContext(globalContext);
+    const {order} = props;
 
     return (
         <>
-            {((deliveryMethod === "HOME_DELIVERY" && status !== "DELIVERED") ||
-                    (deliveryMethod === "LOCAL_PICKUP" && status !== "READY")) &&
+            {((order.deliveryMethod === "HOME_DELIVERY" && order.status !== "DELIVERED") ||
+                    (order.deliveryMethod === "LOCAL_PICKUP" && order.status !== "READY")) &&
                 <p className="col">
                     <b>Tiempo estimado de entrega: </b>
-                    {totalTime === 0? "0" : totalTime} minutos
+                    {myContext.userContext.role !== "CHEF" ? <>
+                            {order.totalTime === 0 ? "0" : order.totalTime} minutos
+                        </>
+                        : <>
+                            {order.cookingTime + order.delayedMinutes!} minutos
+                        </>}
                 </p>}
         </>
 
