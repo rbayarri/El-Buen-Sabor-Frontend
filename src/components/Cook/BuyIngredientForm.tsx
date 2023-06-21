@@ -28,6 +28,23 @@ export default function BuyIngredientForm(props: {
         unitCost: 0
     }
 
+    const numberInputOnWheelPreventChange = (e: WheelEvent) => {
+        // Prevent the input value change
+        if (e.target instanceof HTMLInputElement) {
+            e.target.blur()
+        }
+
+        // Prevent the page/container scrolling
+        e.stopPropagation()
+
+        // Refocus immediately, on the next tick (after the current function is done)
+        setTimeout(() => {
+            if (e.target instanceof HTMLInputElement) {
+                e.target.focus();
+            }
+        }, 0)
+    }
+
     return (
         <>
             <Formik
@@ -56,7 +73,7 @@ export default function BuyIngredientForm(props: {
                         path: api.path,
                         method: api.method,
                         body: body,
-                        jwt: myContext.jwt
+                        jwt: myContext.userContext.jwt
                     });
                     if (response) {
                         swal("Compra guardada", "", "success");
@@ -127,6 +144,7 @@ export default function BuyIngredientForm(props: {
                             type="number"
                             className="form-control"
                             id="quantity"
+                            onWheel={numberInputOnWheelPreventChange}
                         />
                         <div className="invalid-feedback d-block" style={{whiteSpace: "pre-wrap"}}>
                             <ErrorMessage name={"quantity"}/>
@@ -166,6 +184,7 @@ export default function BuyIngredientForm(props: {
                                 type="number"
                                 className="form-control"
                                 id="unitCost"
+                                onWheel={numberInputOnWheelPreventChange}
                             />
                         </div>
                         <div className="invalid-feedback d-block" style={{whiteSpace: "pre-wrap"}}>

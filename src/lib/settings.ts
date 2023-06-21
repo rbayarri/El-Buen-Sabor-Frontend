@@ -23,11 +23,11 @@ export const settings = {
                 path: "/auth/forgetPassword",
                 method: "POST" as Method
             },
-            verifyForgetPasswordToken:{
+            verifyForgetPasswordToken: {
                 path: "/auth/verifyForgetPasswordToken",
                 method: "POST" as Method
             },
-            resetPassword:{
+            resetPassword: {
                 path: "/auth/resetPassword",
                 method: "POST" as Method
             }
@@ -129,10 +129,6 @@ export const settings = {
                 path: "/ingredients/active",
                 method: "GET"
             },
-            saveImage: {
-                path: "/images",
-                method: "POST" as Method
-            }
         },
         home: {
             findProducts: {
@@ -150,16 +146,24 @@ export const settings = {
             findActiveCategories: {
                 path: "/categories/products/final/active",
                 method: "GET" as Method
+            },
+            findProductsByName: {
+                path: "/products/active",
+                method: "GET" as Method
             }
         },
         users: {
             findAll: {
-                path: "/users/",
+                path: "/users",
                 method: "GET" as Method
             },
             findById: {
                 path: "/users",
                 method: "GET" as Method
+            },
+            save: {
+                path: "/users",
+                method: "POST" as Method
             },
             update: {
                 path: "/users/",
@@ -177,19 +181,31 @@ export const settings = {
                 path: "/users/password",
                 method: "PUT" as Method
             },
+            sendVerificationEmail: {
+                path: "/users/verifyEmail",
+                method: "POST" as Method
+            },
             saveImage: {
                 path: "/images",
                 method: "POST" as Method
             }
         },
         addresses: {
+            findAll: {
+                path: "/addresses",
+                method: "GET" as Method
+            },
             findAllActive: {
                 path: "/addresses/actives",
                 method: "GET" as Method
             },
+            findById: {
+                path: "/addresses",
+                method: "GET" as Method
+            },
             save: {
                 path: "/addresses",
-                method: "POST"
+                method: "POST" as Method
             },
             update: {
                 path: "/addresses",
@@ -197,20 +213,32 @@ export const settings = {
             }
         },
         phoneNumber: {
+            findAll: {
+                path: "/phoneNumbers",
+                method: "GET" as Method
+            },
             findAllActive: {
-                path: "/phoneNumber/actives",
+                path: "/phoneNumbers/actives",
+                method: "GET" as Method
+            },
+            findById: {
+                path: "/phoneNumbers",
                 method: "GET" as Method
             },
             save: {
-                path: "/phoneNumber",
-                method: "POST"
+                path: "/phoneNumbers",
+                method: "POST" as Method
             },
             update: {
-                path: "/phoneNumber",
+                path: "/phoneNumbers",
                 method: "PUT" as Method
             }
         },
         orders: {
+            findByIdForUser: {
+                path: "/orders",
+                method: "GET" as Method
+            },
             findAllByUser: {
                 path: "/orders",
                 method: "GET" as Method
@@ -247,6 +275,10 @@ export const settings = {
                 path: "/orders/newState/ready",
                 method: "PATCH" as Method
             },
+            addMinutes: {
+                path: "/orders/addMinutes",
+                method: "PATCH" as Method
+            },
             toDelivery: {
                 path: "/orders/newState/delivery",
                 method: "PATCH" as Method
@@ -254,10 +286,49 @@ export const settings = {
             toDelivered: {
                 path: "/orders/newState/delivered",
                 method: "PATCH" as Method
+            },
+            toPaid: {
+                path: "/orders/registerPayment",
+                method: "PATCH" as Method,
+            },
+            cancel: {
+                path: "/orders/cancel",
+                method: "POST" as Method,
+            },
+            getPreference: {
+                path: "/mercadoPago/createPreference",
+                method: "POST" as Method
+            }
+        },
+        reports: {
+            rankingProducts: {
+                path: "/reports/rankingProducts",
+                method: "GET" as Method
+            },
+            rankingProductsExcel: {
+                path: "/reports/rankingProductsExcel",
+                method: "GET" as Method
+            },
+            rankingClients: {
+                path: "/reports/rankingClients",
+                method: "GET" as Method
+            },
+            rankingClientsExcel: {
+                path: "/reports/rankingClientsExcel",
+                method: "GET" as Method
+            },
+            profits: {
+                path: "/reports/profits",
+                method: "GET" as Method
+            },
+            profitsExcel: {
+                path: "/reports/profitsExcel",
+                method: "GET" as Method
             }
         }
     },
     google: {
-        clientId: "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com"
+        clientId:
+            "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com"
     }
 }

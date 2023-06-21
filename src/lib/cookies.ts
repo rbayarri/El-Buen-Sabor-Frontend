@@ -1,6 +1,8 @@
 import jwtDecode from "jwt-decode";
-import {ContextUser} from "../models/context-user.ts";
-import {TokenClaims} from "../models/token-claims.tsx";
+import {ContextUser} from "../models/context/context-user.ts";
+import {TokenClaims} from "../models/auth/token-claims.tsx";
+
+import {ContextOrder} from "../models/context/context-order.ts";
 
 export const saveTokenCookie = (token: string) => {
     const expires = new Date();
@@ -33,9 +35,22 @@ export const getUserFromCookie = () => {
                 role: jwtContent.role,
                 authenticated: true,
                 jwt: jwt,
+                firstTimeAccess: jwtContent.firstTimeAccess
             }
             return jwtUser;
         }
     }
     return undefined;
+}
+
+export const getOrderFromCookie = () => {
+    const cookie = document.cookie.split(';').find(cookie => cookie.includes('ORDERINFO='));
+    if (cookie) {
+        return JSON.parse(cookie.trim().substring(10)) as ContextOrder;
+    }
+    return undefined;
+}
+
+export const replaceOrderCookie = (newOrder: ContextOrder) => {
+    document.cookie = `ORDERINFO=${JSON.stringify(newOrder)}; path=/; sameSite=lax;`;
 }

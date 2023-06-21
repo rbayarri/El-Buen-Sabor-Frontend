@@ -1,0 +1,17 @@
+.profile-option{
+    cursor: pointer;
+}
+
+.profile-option:hover{
+    background-color: lightblue;
+}
+
+.exit{
+    color: red;
+}
+
+.exit:hover{
+    background-color: indianred;
+    color: whitesmoke;
+
+}
