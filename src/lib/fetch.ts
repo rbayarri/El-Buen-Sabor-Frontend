@@ -21,13 +21,6 @@ const headersWithJwt = (jwt: string) => {
     )
 }
 
-// const headersImages = (jwt: string) => {
-//     return ({
-//         "Content-Type": "multipart/form-data",
-//         "Authorization": "Bearer " + jwt
-//     })
-// }
-
 export const host = "http://localhost:8080/api/v1";
 export const doRequest = async <E>({path, method, body, jwt}: RequestInformationProps) => {
 

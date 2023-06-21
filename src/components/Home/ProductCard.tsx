@@ -28,31 +28,38 @@ export const ProductCard = ({product}: { product: ClientProduct }) => {
 
     return (
         <>
-            <Carta style={{width: '15rem', cursor: 'pointer'}} onClick={() => navigate(`/detalle/${product.id}`)}>
+            <Carta style={{width: '15rem', cursor: 'pointer'}} onClick={() => navigate(`/detalle/${product.id}`)}
+                   key={product.id}>
                 <Carta.Img src={`${product.image?.location}`} alt='' style={{maxHeight: '130px'}}/>
-                <Carta.Body className="text-center">
-                    <Carta.Title className="fw-bold fs-5">{product.name}</Carta.Title>
-                    <Carta.Text className="mb-0">
-                        <p className="small text-muted my-0">{product.description}</p>
-                        <p className="fw-bold fs-5 mt-2 mb-0">
+                <Carta.Body className="text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <Carta.Title className="fw-bold fs-5">{product.name}</Carta.Title>
+                        <Carta.Text className="mb-0">
+                            <span className="d-block small text-muted my-0">{product.description}</span>
+                        </Carta.Text>
+                    </div>
+                    <div>
+                        <Carta.Text className="mb-0">
+                        <span className="fw-bold fs-5 mt-2 mb-0 d-block">
                             {product.stock > 0 ? product.price.toLocaleString("es-AR", {
                                     style: "currency",
                                     currency: "ARS"
                                 }) :
                                 "No disponible"
-                            }</p>
-                    </Carta.Text>
-                    {myContext.userContext.role !== "USER" || product.stock > 0 &&
-                        <Button className='d-block mt-3 mx-auto'
-                                variant="success"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    addProductToOrder();
-                                }}>
-                            <FontAwesomeIcon icon={faCartArrowDown} className={"me-3"}/>
-                            Agregar al pedido
-                        </Button>
-                    }
+                            }</span>
+                        </Carta.Text>
+                        {myContext.userContext.role !== "USER" || product.stock > 0 &&
+                            <Button className='d-block mt-3 mx-auto'
+                                    variant="success"
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                        addProductToOrder();
+                                    }}>
+                                <FontAwesomeIcon icon={faCartArrowDown} className={"me-3"}/>
+                                Agregar al pedido
+                            </Button>
+                        }
+                    </div>
                 </Carta.Body>
             </Carta>
         </>

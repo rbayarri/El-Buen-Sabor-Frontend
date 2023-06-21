@@ -18,9 +18,13 @@ const ErrorPage = () => {
         }
     })
     return (
-        <div>
+        <div className="text-center mt-5">
+            <h1 className="mb-4">Page Not Found</h1>
+            <p className="mb-4">Lo sentimos, la página que estás buscando no fue encontrada.</p>
+            <a href="/" className="btn btn-primary">Página Principal</a>
         </div>
-    );
+    )
+        ;
 };
 
 export default ErrorPage;

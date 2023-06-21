@@ -4,7 +4,6 @@ import {Navigate, useParams} from "react-router-dom";
 import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
 import UserPanel from "../../components/Users/UserPanel.tsx";
-import NewEditAddressForm from "../../components/Users/NewEditAddressForm.tsx";
 import {PhoneNumber} from "../../models/users/phone-number.ts";
 import NewEditPhoneNumberForm from "../../components/Users/NewEditPhoneNumberForm.tsx";
 
@@ -46,14 +45,14 @@ const NewEditPhoneNumberPage = () => {
 
     if (myContext.userContext.authenticated) {
         return (
-            <div className="row">
-                <div className="col-3">
+            <div className="d-flex flex-column flex-md-row">
+                <div className="col-12 col-md-3 col-xl-3">
                     <UserPanel/>
                 </div>
-                <div className="col-9">
+                <div className="col-12 col-md-9 ms-0 ms-md-3 mt-4 mt-sm-0">
                     {isLoading ? <h1>Loading...</h1> :
                         <>
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center mt-3 mt-md-0">
                                 <h1>{found ? "Editar " : "Nuevo "}Teléfono</h1>
                             </div>
                             <NewEditPhoneNumberForm phoneNumber={phoneNumber}/>

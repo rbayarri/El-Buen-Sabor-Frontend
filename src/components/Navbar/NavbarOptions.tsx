@@ -10,7 +10,7 @@ const NavbarOptions = () => {
     const chef = () => {
         return (
             <NavDropdown title="Cocina" id="basic-nav-dropdown" className="me-3">
-                <NavDropdown.Item as={Link} to="/cocina/pedidos" key="1">Pedidos a Preparar</NavDropdown.Item>
+                {myContext.userContext.role === "CHEF" && <NavDropdown.Item as={Link} to="/cocina/pedidos" key="1">Pedidos a Preparar</NavDropdown.Item>}
                 <NavDropdown.Item as={Link} to="/ingredientes/compra/nuevo" key="2">Compra de
                     Ingredientes</NavDropdown.Item>
                 <NavDropdown.Divider/>
@@ -37,7 +37,6 @@ const NavbarOptions = () => {
     const admin = () => {
         return (
             <>
-                {cashier()}
                 <NavDropdown title="Informes" id="basic-nav-dropdown" className="me-3">
                     <NavDropdown.Item as={Link} to="/rankingProductos" key="1">Ranking de productos</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/rankingClientes" key="2">Ranking de clientes</NavDropdown.Item>

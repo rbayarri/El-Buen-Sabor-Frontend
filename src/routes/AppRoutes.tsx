@@ -1,7 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import {Navigation} from "../components/Navbar/Navigation";
 import Home from "../pages/home/Home.tsx";
-import {Container} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
 import {SignUpPage} from "../pages/auth/SignUpPage.tsx";
 import {getOrderFromCookie, getUserFromCookie, replaceOrderCookie,} from "../lib/cookies.ts";
@@ -44,6 +43,8 @@ import DeliveryOrdersPage from "../pages/delivery/DeliveryOrdersPage.tsx";
 import ChefRecipe from "../pages/chef/ChefRecipe.tsx";
 import ErrorPage from "../pages/404/ErrorPage.tsx";
 import {ClientProduct} from "../models/products/client-product.ts";
+import FilterRoute from "./FilterRoute.tsx";
+import ChangePasswordPage from "../pages/auth/ChangePasswordPage.tsx";
 
 export const emptyUser: ContextUser = {
     name: "",
@@ -103,59 +104,87 @@ export const AppRoutes = () => {
         myContext.userContext.onChange(user);
         myContext.order.onChange = handleOrderChanges;
         myContext.order.onChange(order);
-    }, []);
+    }, [myContext]);
 
     return (
         <>
             <globalContext.Provider value={{userContext: user, order: order}}>
                 <Navigation productsChange={handleProductsChange}/>
                 <Routes>
-                    <Route path="/" element={<Home products={products}/>}/>
+                    <Route path="/"
+                           element={<FilterRoute withContainer={false} component={<Home products={products}/>}/>}/>
+                    <Route path="/detalle/:id/"
+                           element={<FilterRoute withContainer={true} component={<ProductDescription/>}/>}/>
+                    <Route path="/login" element={<FilterRoute withContainer={true} component={<LogInPage/>}/>}/>
+                    <Route path="/signup" element={<FilterRoute withContainer={true} component={<SignUpPage/>}/>}/>
+                    <Route path="/firstTimeAccess" element={<ChangePasswordPage/>}/>
+                    <Route path="/verifyEmail/:userId/:tokenId"
+                           element={<FilterRoute withContainer={true} component={<VerifyEmailPage/>}/>}/>
+                    <Route path="/forgetPassword"
+                           element={<FilterRoute withContainer={true} component={<ForgetPasswordPage/>}/>}/>
+                    <Route path="/resetPassword/:userId/:tokenId"
+                           element={<FilterRoute withContainer={true} component={<ResetPasswordPage/>}/>}/>
+                    <Route path="/rubros/ingredientes"
+                           element={<FilterRoute withContainer={true}
+                                                 component={<Categories target={"ingredientes"}/>}/>}/>
+                    <Route path="/rubros/productos"
+                           element={<FilterRoute withContainer={true}
+                                                 component={<Categories target={"productos"}/>}/>}/>
+                    <Route path="/rubros/ingredientes/:id"
+                           element={<FilterRoute withContainer={true}
+                                                 component={<NewEditCategoryPage target={"ingredientes"}/>}/>}/>
+                    <Route path="/rubros/productos/:id"
+                           element={<FilterRoute withContainer={true}
+                                                 component={<NewEditCategoryPage target={"productos"}/>}/>}/>
+                    <Route path="/productos" element={<FilterRoute withContainer={true} component={<ProductsPage/>}/>}/>
+                    <Route path="/ingredientes"
+                           element={<FilterRoute withContainer={true} component={<IngredientsPage/>}/>}/>
+                    <Route path="/ingredientes/:id"
+                           element={<FilterRoute withContainer={true} component={<NewEditIngredientPage/>}/>}/>
+                    <Route path="/productos/:id"
+                           element={<FilterRoute withContainer={true} component={<NewEditProductPage/>}/>}/>
+                    <Route path="/ingredientes/compra/:id"
+                           element={<FilterRoute withContainer={true} component={<BuyIngredientPage/>}/>}/>
+                    <Route path="/pedido" element={<FilterRoute withContainer={true} component={<MyOrderPage/>}/>}/>
+                    <Route path="/pedido/opciones"
+                           element={<FilterRoute withContainer={true} component={<OrderOptionsPage/>}/>}/>
+                    <Route path="/pedido/confirmacion"
+                           element={<FilterRoute withContainer={true} component={<OrderConfirmationPage/>}/>}/>
+                    <Route path="/cuenta" element={<FilterRoute withContainer={true} component={<AccountPage/>}/>}/>
+                    <Route path="/cuenta/editar"
+                           element={<FilterRoute withContainer={true} component={<EditAccountPage/>}/>}/>
+                    <Route path="/pedidos" element={<FilterRoute withContainer={true} component={<UserOrdersPage/>}/>}/>
+                    <Route path="/pedidos/:id"
+                           element={<FilterRoute withContainer={true} component={<UserOrderPage/>}/>}/>
+                    <Route path="/direcciones"
+                           element={<FilterRoute withContainer={true} component={<AddressesPage/>}/>}/>
+                    <Route path="/direcciones/:id"
+                           element={<FilterRoute withContainer={true} component={<NewEditAddressPage/>}/>}/>
+                    <Route path="/telefonos"
+                           element={<FilterRoute withContainer={true} component={<PhoneNumbersPage/>}/>}/>
+                    <Route path="/telefonos/:id"
+                           element={<FilterRoute withContainer={true} component={<NewEditPhoneNumberPage/>}/>}/>
+                    <Route path="/cocina/pedidos/" element={<FilterRoute withContainer={true} component={<Orders/>}/>}/>
+                    <Route path="/cocina/producto/:id"
+                           element={<FilterRoute withContainer={true} component={<ChefRecipe/>}/>}/>
+                    <Route path="/usuarios" element={<FilterRoute withContainer={true} component={<UsersPage/>}/>}/>
+                    <Route path="/usuarios/:id"
+                           element={<FilterRoute withContainer={true} component={<NewEditUserByAdminPage/>}/>}/>
+                    <Route path="/rankingProductos"
+                           element={<FilterRoute withContainer={true} component={<ProductRanking/>}/>}/>
+                    <Route path="/rankingClientes"
+                           element={<FilterRoute withContainer={true} component={<ClientRanking/>}/>}/>
+                    <Route path="/rankingClientes/:id"
+                           element={<FilterRoute withContainer={true} component={<ClientRankingOrders/>}/>}/>
+                    <Route path="/ganancias" element={<FilterRoute withContainer={true} component={<Profit/>}/>}/>
+                    <Route path="/cajero/pedidos"
+                           element={<FilterRoute withContainer={true} component={<CashierPage/>}/>}/>
+                    <Route path="/delivery/pedidos"
+                           element={<FilterRoute withContainer={true} component={<DeliveryOrdersPage/>}/>}/>
+                    <Route path="/error/:message"
+                           element={<FilterRoute withContainer={true} component={<ErrorPage/>}/>}/>
+                    <Route path="*" element={<FilterRoute withContainer={true} component={<ErrorPage/>}/>}/>
                 </Routes>
-                <Container className="mt-5 pt-5 mb-5 pb-5">
-                    <Routes>
-                        <Route path="/detalle/:id/" element={<ProductDescription/>}/>
-                        <Route path="/login" element={<LogInPage/>}/>
-                        <Route path="/signup" element={<SignUpPage/>}/>
-                        <Route path="/verifyEmail/:userId/:tokenId" element={<VerifyEmailPage/>}/>
-                        <Route path="/forgetPassword" element={<ForgetPasswordPage/>}/>
-                        <Route path="/resetPassword/:userId/:tokenId" element={<ResetPasswordPage/>}/>
-                        <Route path="/rubros/ingredientes"
-                               element={<Categories target={"ingredientes"}/>}/>
-                        <Route path="/rubros/productos" element={<Categories target={"productos"}/>}/>
-                        <Route path="/rubros/ingredientes/:id"
-                               element={<NewEditCategoryPage target={"ingredientes"}/>}/>
-                        <Route path="/rubros/productos/:id"
-                               element={<NewEditCategoryPage target={"productos"}/>}/>
-                        <Route path="/productos" element={<ProductsPage/>}/>
-                        <Route path="/ingredientes" element={<IngredientsPage/>}/>
-                        <Route path="/ingredientes/:id" element={<NewEditIngredientPage/>}/>
-                        <Route path="/productos/:id" element={<NewEditProductPage/>}/>
-                        <Route path="/ingredientes/compra/:id" element={<BuyIngredientPage/>}/>
-                        <Route path="/pedido" element={<MyOrderPage/>}/>
-                        <Route path="/pedido/opciones" element={<OrderOptionsPage/>}/>
-                        <Route path="/pedido/confirmacion" element={<OrderConfirmationPage/>}/>
-                        <Route path="/cuenta" element={<AccountPage/>}/>
-                        <Route path="/cuenta/editar" element={<EditAccountPage/>}/>
-                        <Route path="/pedidos" element={<UserOrdersPage/>}/>
-                        <Route path="/pedidos/:id" element={<UserOrderPage/>}/>
-                        <Route path="/direcciones" element={<AddressesPage/>}/>
-                        <Route path="/direcciones/:id" element={<NewEditAddressPage/>}/>
-                        <Route path="/telefonos" element={<PhoneNumbersPage/>}/>
-                        <Route path="/telefonos/:id" element={<NewEditPhoneNumberPage/>}/>
-                        <Route path="/cocina/pedidos/" element={<Orders/>}/>
-                        <Route path="/cocina/producto/:id" element={<ChefRecipe/>}/>
-                        <Route path="/usuarios" element={<UsersPage/>}/>
-                        <Route path="/usuarios/:id" element={<NewEditUserByAdminPage/>}/>
-                        <Route path="/rankingProductos" element={<ProductRanking/>}/>
-                        <Route path="/rankingClientes" element={<ClientRanking/>}/>
-                        <Route path="/rankingClientes/:id" element={<ClientRankingOrders/>}/>
-                        <Route path="/ganancias" element={<Profit/>}/>
-                        <Route path="/cajero/pedidos" element={<CashierPage/>}/>
-                        <Route path="/delivery/pedidos" element={<DeliveryOrdersPage/>}/>
-                        <Route path="/error/:message" element={<ErrorPage/>}/>
-                    </Routes>
-                </Container>
                 <Footer/>
             </globalContext.Provider>
         </>

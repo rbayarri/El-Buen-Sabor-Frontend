@@ -115,7 +115,7 @@ const OrderOptionsPage = () => {
             <>
                 <h1 className={"fs-2"}>Mi Pedido</h1>
                 <div className="row">
-                    <section className="mt-3 col-8">
+                    <section className="mt-3 col-12 col-lg-8">
                         <h2 className="fs-5 fw-bold">Forma de entrega</h2>
                         <label className="border d-flex flex-row p-4 justify-content-between"
                                htmlFor="local_pickup">
@@ -204,7 +204,7 @@ const OrderOptionsPage = () => {
                                 <span className="fs-6 ms-3">Efectivo</span>
                             </label>}
                     </section>
-                    <section className="col-3 ms-3">
+                    <section className="col-12 col-lg-3 ms-3">
                         <TotalAndSubtotalOrder deliveryMethod={deliveryMethod} order={undefined}/>
                     </section>
                 </div>

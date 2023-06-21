@@ -45,14 +45,14 @@ const NewEditAddressPage = () => {
 
     if (myContext.userContext.authenticated) {
         return (
-            <div className="row">
-                <div className="col-3">
+            <div className="d-flex flex-column flex-md-row">
+                <div className="col-12 col-md-3 col-xl-3">
                     <UserPanel/>
                 </div>
-                <div className="col-9">
+                <div className="col-12 col-md-9 ms-0 ms-md-3 mt-4 mt-sm-0">
                     {isLoading ? <h1>Loading...</h1> :
                         <>
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center mt-3 mt-md-0">
                                 <h1>{found ? "Editar " : "Nueva "}Dirección</h1>
                             </div>
                             <NewEditAddressForm address={address}/>
