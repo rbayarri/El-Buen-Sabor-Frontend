@@ -8,8 +8,7 @@ import DeliveryOrdersTable from "../../components/Delivery/DeliveryOrdersTable.t
 
 const DeliveryOrdersPage = () => {
     const myContext = useContext(globalContext);
-    const [ordenes, setOrdenes] = useState<Order[]>([]);
-    const [ordenesFiltradas, setOrdenesFiltradas] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const getDeliveryOrders = async () => {
@@ -20,8 +19,7 @@ const DeliveryOrdersPage = () => {
             jwt: myContext.userContext.jwt,
         });
         if (response) {
-            setOrdenes(response);
-            setOrdenesFiltradas(response);
+            setOrders(response);
             setIsLoading(false);
         }
     };
@@ -47,7 +45,7 @@ const DeliveryOrdersPage = () => {
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
-                    <DeliveryOrdersTable orders={ordenesFiltradas}/>
+                    <DeliveryOrdersTable orders={orders}/>
                 )}
             </>
         );

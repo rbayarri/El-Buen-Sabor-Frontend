@@ -17,7 +17,7 @@ const TimeOrderInfo = (props: { order: Order }) => {
                             {order.totalTime === 0 ? "0" : order.totalTime} minutos
                         </>
                         : <>
-                            {order.cookingTime + order.delayedMinutes!} minutos
+                            {order.cookingTime} minutos
                         </>}
                 </p>}
         </>
