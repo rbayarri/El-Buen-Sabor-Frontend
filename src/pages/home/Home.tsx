@@ -4,14 +4,17 @@ import {useEffect, useState} from "react";
 import {doRequest} from "../../lib/fetch.ts";
 import {settings} from "../../lib/settings.ts";
 import {Category} from "../../models/categories/categories.ts";
-import CategorySection from "../../components/Home/CategorySection.tsx";
 import {Container} from "react-bootstrap";
+import {ClientProduct} from "../../models/products/client-product.ts";
+import {ProductCard} from "../../components/Home/ProductCard.tsx";
+import CategorySection from "../../components/Home/CategorySection.tsx";
 
 
-export default function Home() {
+export default function Home(props: { products: ClientProduct[] | undefined }) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [categories, setCategories] = useState<Category[]>([]);
+    const {products} = props;
 
     const getCategories = async () => {
 
@@ -23,9 +26,14 @@ export default function Home() {
         }
     }
 
+
     useEffect((() => {
-        getCategories();
-    }), []);
+        if (!products) {
+            getCategories();
+        } else {
+            setIsLoading(false);
+        }
+    }), [products]);
 
     return (
         <>
@@ -34,9 +42,32 @@ export default function Home() {
                 <>
                     <NavbarTabs categories={categories}/>
                     <Container>
-                        {categories.map(c => {
-                            return <CategorySection category={c}/>
-                        })}
+                        {products ?
+                            <>
+                                <div className="mt-5 mb-3">
+                                    <h2> Resultado de tu búsqueda</h2>
+                                </div>
+                                {products.length > 0 ?
+                                    <>
+
+                                        {products.map((card: ClientProduct) => (
+                                            <div className='col-6 col-md-3' key={card.id}>
+                                                <ProductCard product={card}/>
+                                            </div>
+                                        ))}
+                                    </>
+                                    :
+                                    <p>No se encontraron resultados para tu búsqueda</p>
+                                }
+                            </> :
+                            <>
+                                {
+                                    categories.map(c => {
+                                        return <CategorySection category={c}/>
+                                    })
+                                }
+                            </>
+                        }
                     </Container>
                 </>)}
         </>

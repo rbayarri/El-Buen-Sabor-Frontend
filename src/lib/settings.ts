@@ -1,4 +1,4 @@
-import { Method } from "../types/method.ts";
+import {Method} from "../types/method.ts";
 
 export const settings = {
     api: {
@@ -145,6 +145,10 @@ export const settings = {
             },
             findActiveCategories: {
                 path: "/categories/products/final/active",
+                method: "GET" as Method
+            },
+            findProductsByName: {
+                path: "/products/active",
                 method: "GET" as Method
             }
         },
@@ -322,10 +326,9 @@ export const settings = {
                 method: "GET" as Method
             }
         }
+    },
+    google: {
+        clientId:
+            "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com"
     }
-  },
-  google: {
-    clientId:
-      "884827796185-0a0kvmu2gj381vvnfmh7ekd8j3a2o613.apps.googleusercontent.com",
-  },
-};
+}

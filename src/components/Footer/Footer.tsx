@@ -88,7 +88,7 @@ export default function Footer() {
                         </div>
                     </Col>
                 </Row>
-                <p className="small text-center mb-0 pb-2" style={{fontSize: "9pt"}}>© Copyright 2023 Website by La
+                <p className="small text-center mb-0 py-2" style={{fontSize: "9pt"}}>© Copyright 2023 Website by La
                     Codigoneta. All Rights reserved.</p>
             </Container>
         </footer>

@@ -11,9 +11,8 @@
 .logoH {
 position: absolute;
   top: 50%;
-  left: 250px; /* Espacio a la izquierda */
+  left: 15%; /* Espacio a la izquierda */
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  width: 400px; /* Tamaño del círculo */
-  height: 400px; /* Tamaño del círculo */
+  width: 25%; /* Tamaño del círculo */
 }

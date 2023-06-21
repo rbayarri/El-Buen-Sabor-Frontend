@@ -14,7 +14,7 @@ const OrderOptionsPage = () => {
 
     const myContext = useContext(globalContext);
     const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>(myContext.order.deliveryMethod ? myContext.order.deliveryMethod : "LOCAL_PICKUP");
-    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(myContext.order.paymentMethod ? myContext.order.paymentMethod : "CASH");
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(myContext.order.paymentMethod ? myContext.order.paymentMethod : "CASH" as PaymentMethod);
     const [addresses, setAddresses] = useState<Address[]>();
     const [phoneNumbers, setPhoneNumbers] = useState<PhoneNumber[]>();
     const [isLoading, setIsLoading] = useState(true);
@@ -61,7 +61,7 @@ const OrderOptionsPage = () => {
 
     const handleDeliveryMethodChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setDeliveryMethod(e.target.value as DeliveryMethod);
-        if (deliveryMethod === "HOME_DELIVERY") {
+        if (e.target.value === "HOME_DELIVERY") {
             setPaymentMethod("MERCADO_PAGO");
         }
     }
@@ -198,7 +198,7 @@ const OrderOptionsPage = () => {
                                        id="cash"
                                        name="paymentMethod"
                                        value="CASH"
-                                       checked={paymentMethod === ("CASH" as PaymentMethod) && deliveryMethod !== ("HOME_DELIVERY" as DeliveryMethod)}
+                                       checked={paymentMethod === ("CASH" as PaymentMethod) || deliveryMethod !== ("HOME_DELIVERY" as DeliveryMethod)}
                                        className="form-check-input"
                                        onChange={handlePaymentMethodChange}/>
                                 <span className="fs-6 ms-3">Efectivo</span>
