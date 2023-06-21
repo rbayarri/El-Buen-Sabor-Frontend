@@ -7,5 +7,5 @@ export interface TokenClaims {
     name: string,
     lastName: string,
     role: Role,
-    firtTimeAccess: boolean
+    firstTimeAccess: boolean
 }

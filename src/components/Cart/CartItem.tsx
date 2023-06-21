@@ -50,12 +50,12 @@ const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMo
 
     if (orderDetail.product !== undefined) {
         return (
-            <Card className="d-flex flex-row border-0 align-items-center">
-                <Col xl={2} lg={2} md={2} className={"p-3"}>
+            <Card className="d-flex flex-column flex-sm-row border-0 align-items-center justify-content-between">
+                <div className="d-none d-md-block col-2 p-3">
                     <Card.Img
                         src={orderDetail.product?.image?.location}/>
-                </Col>
-                <Col md="5" lg="5" xl="5">
+                </div>
+                <div className="col-12 col-sm-5">
                     <Card.Body>
                         <Card.Title>{orderDetail.product?.name}</Card.Title>
                         <Card.Text className="fw-bold">{unitPrice.toLocaleString('es-AR', {
@@ -64,8 +64,8 @@ const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMo
                         })}
                         </Card.Text>
                     </Card.Body>
-                </Col>
-                <Col md="2" lg="2" xl="2"
+                </div>
+                <Col sm="3" md="2"
                      className="d-flex flex-column justify-content-center align-items-center">
                     <div
                         className={`input-group ${editMode && "border"} d-flex align-items-center justify-content-center`}>
@@ -80,7 +80,7 @@ const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMo
                         className="text-muted small">{(orderDetail as ContextOrderDetail).product?.stock} disponibles</span>}
                 </Col>
                 {myContext.userContext.role === "DELIVERY" ?
-                    <Col md="3" lg="3" xl="3"
+                    <Col md="3"
                          className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
                     </Col> :
                     myContext.userContext.role === "CHEF" ?
