@@ -2,26 +2,28 @@ import {Button, NavDropdown} from "react-bootstrap";
 import {PersonFill, Power} from "react-bootstrap-icons";
 import {emptyUser, globalContext} from "../../routes/AppRoutes";
 import {useContext} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {deleteTokenCookie} from "../../lib/cookies.ts";
 
 export const DropDownMenu = () => {
 
     const myContext = useContext(globalContext)
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         const newEmptyUser = emptyUser;
         newEmptyUser.onChange = myContext.userContext.onChange;
-        if(myContext.userContext.onChange) {
+        if (myContext.userContext.onChange) {
             myContext.userContext.onChange(newEmptyUser);
         }
         deleteTokenCookie();
+        navigate("/");
     }
 
     return (
         <div className="start-0 d-flex">
             {/*Normal*/}
-            <Button variant="outline-primary" className="profile-btn px-0 py-1 me-2" style={{width:"fit-content"}}>
+            <Button variant="outline-primary" className="profile-btn px-0 py-1 me-2" style={{width: "fit-content"}}>
                 <NavDropdown drop="down" title={<><PersonFill size="28"/> {myContext.userContext.name}</>}
                              id="navbarScrollingDropdown" className="navUserMenuContainer p0-2">
                     <NavDropdown.ItemText

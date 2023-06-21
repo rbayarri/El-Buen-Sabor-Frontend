@@ -32,11 +32,11 @@ const UserOrdersPage = () => {
 
     if (myContext.userContext.authenticated && myContext.userContext.role === "USER") {
         return (
-            <div className="row">
-                <div className="col-3">
+            <div className="d-flex flex-column flex-md-row">
+                <div className="col-12 col-md-3 col-xl-3">
                     <UserPanel/>
                 </div>
-                <div className="col-9">
+                <div className="col-12 col-md-9 ms-0 ms-md-3 mt-4 mt-sm-0">
                     {isLoading ? <h1>Loading</h1> :
                         <>
                             <h1 className={"fs-2 mb-4"}>Mis Pedidos</h1>

@@ -6,10 +6,10 @@ export default function NavbarTabs(props: { categories: Category[] }) {
     const categories = props.categories;
 
     return (
-        <div className='navbartabs position-sticky border-bottom border-2'>
+        <div className='navbartabs fs-5 position-sticky border-bottom border-2'>
             <ul className="nav justify-content-center">
                 {categories.map(c => (
-                    < li className="nav-item">
+                    <li className="nav-item" key={c.id}>
                         <a href={`#${c.name}`} className="nav-link">{c.name}</a>
                     </li>
                 ))}

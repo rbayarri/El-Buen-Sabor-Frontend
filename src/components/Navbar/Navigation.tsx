@@ -6,23 +6,25 @@ import Logo from "./Logo";
 import CartButton from "./CartButton";
 import {useContext} from "react";
 import {globalContext} from "../../routes/AppRoutes";
-
 import AuthenticationButtons from "./AuthenticationButtons";
 import NavbarOptions from "./NavbarOptions";
 import {useMediaQuery} from "react-responsive";
+import {ClientProduct} from "../../models/products/client-product.ts";
 
-export const Navigation = () => {
+export const Navigation = (props: { productsChange: (products: ClientProduct[] | undefined) => void }) => {
 
     const myContext = useContext(globalContext)
     const isSmallScreen = useMediaQuery({maxWidth: 992});
+    const productsChange = props.productsChange;
+
 
     return (
         <Navbar expand="lg" className="border-bottom border-opacity-50 py-0 bg-light" fixed="top">
             <Container fluid="lg" className="px-0">
                 <div
                     className={`d-flex justify-content-start align-items-center ${(!myContext.userContext.authenticated || myContext.userContext.role === "USER") ? "col col-sm-7" : ""}`}>
-                    <Logo/>
-                    <SearchForm/>
+                    <Logo productsChange={productsChange}/>
+                    <SearchForm productsChange={productsChange}/>
                 </div>
 
                 {!isSmallScreen ?

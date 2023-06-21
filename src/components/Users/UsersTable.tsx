@@ -1,6 +1,7 @@
 import {User} from "../../models/users/User.ts";
 import {Link} from "react-router-dom";
 import {translateRole} from "../../lib/role-transate.ts";
+import {Role} from "../../types/role.ts";
 
 const UsersTable = (props: { users: User[] }) => {
 
@@ -27,7 +28,7 @@ const UsersTable = (props: { users: User[] }) => {
                         <tr key={index}>
                             <td>{u.name}</td>
                             <td>{u.lastName}</td>
-                            <td>{translateRole(u.role)}</td>
+                            <td>{translateRole(u.role as Role)}</td>
                             <td>{u.username}</td>
                             <td>{u.active ? "Si" : "No"}</td>
                             <td>{u.emailConfirmed ? "Si" : "No"}</td>

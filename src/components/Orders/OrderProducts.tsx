@@ -8,7 +8,7 @@ const OrderProducts = (props: { editMode: boolean, order: Order | undefined, who
 
     return (
         <>
-            <section className={`border rounded-3 ${!wholeWidth && "col-8"}`}>
+            <section className={`border rounded-3 ${!wholeWidth && "col-12 col-lg-8"}`}>
                 <CardGroup className="d-flex flex-column">
                     <CartItems editMode={editMode} order={order}/>
                 </CardGroup>

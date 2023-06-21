@@ -13,10 +13,10 @@ const AddressesTable = (props: { addresses: Address[] }) => {
             <tr>
                 <th className=''>Calle</th>
                 <th className='text-center'>Número</th>
-                <th className='text-center'>Piso</th>
-                <th className='text-center'>Apartamento</th>
+                <th className='text-center d-none d-xl-table-cell'>Piso</th>
+                <th className='text-center d-none d-xl-table-cell'>Apartamento</th>
                 <th className='text-center'>CP</th>
-                <th className=''>Detalles</th>
+                <th className='d-none d-xl-table-cell'>Detalles</th>
                 <th className='text-center'>Activo</th>
                 <th className='text-center'>Predeterminado</th>
                 <th className='text-center'>Acciones</th>
@@ -28,10 +28,10 @@ const AddressesTable = (props: { addresses: Address[] }) => {
                     <tr key={add.id}>
                         <td className="">{add.street}</td>
                         <td className="text-center">{add.number}</td>
-                        <td className="text-center">{add.floor}</td>
-                        <td className="text-center">{add.apartment}</td>
+                        <td className="text-center d-none d-xl-table-cell">{add.floor}</td>
+                        <td className="text-center d-none d-xl-table-cell">{add.apartment}</td>
                         <td className="text-center">{add.zipCode}</td>
-                        <td className="">{add.details}</td>
+                        <td className="d-none d-xl-table-cell">{add.details}</td>
                         <td className="text-center">{add.active ? "Si" : "No"}</td>
                         <td className="text-center">{add.predetermined ? "Si" : "No"}</td>
                         <td className="text-center">

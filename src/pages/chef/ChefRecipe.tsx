@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import {useNavigate, useParams } from 'react-router-dom'
 import { CompleteProduct } from '../../models/products/complete-product';
 import { settings } from '../../lib/settings';
 import { doRequest } from '../../lib/fetch';
@@ -8,17 +8,20 @@ import swal from 'sweetalert';
 import { Button, Card, Col } from 'react-bootstrap';
 
 export default function ChefRecipe() {
+
     const { id } = useParams();
     const [product, setProduct] = useState<CompleteProduct>();
     const myContext = useContext(globalContext);
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
-    const getProduct = async (id: string) => {
-        const api = settings.api.products.findById;
 
+    const getProduct = async (id: string) => {
+
+        const api = settings.api.products.findById;
         const fetchedProduct = await doRequest<CompleteProduct>({
             path: api.path + "/" + id,
             method: api.method,
+            jwt: myContext.userContext.jwt
 
         });
         if (fetchedProduct) {
@@ -34,7 +37,7 @@ export default function ChefRecipe() {
         if (id) {
             getProduct(id);
         }
-    }), []);
+    }), [id]);
     return (
         <>
         {isLoading ? <h1>Loading...</h1> : product && (
