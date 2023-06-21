@@ -74,7 +74,7 @@ const UserOrderPage = () => {
             })
     };
 
-    const renderCheckoutButton = (preferenceId) => {
+    const renderCheckoutButton = ({preferenceId}: { preferenceId: any }) => {
         if (!preferenceId) return null;
         return (
             <Wallet
@@ -86,7 +86,7 @@ const UserOrderPage = () => {
     const toCooking = async () => {
         const api = settings.api.orders.toCooking;
         const response = await doRequest<Order>({
-            path: api.path + `/${order!.id}`,
+            path: api.path + `/${id}`,
             method: api.method,
             jwt: myContext.userContext.jwt,
         });
@@ -130,6 +130,7 @@ const UserOrderPage = () => {
                 const newOrder = {...order};
                 newOrder.status = "READY";
                 setOrder(newOrder);
+                navigate(-1);
             }
         }
     };
@@ -197,7 +198,7 @@ const UserOrderPage = () => {
                 swal("Se agregaron 10 minutos", "", "success");
                 const newOrder = {...order};
                 if (newOrder) {
-                    newOrder.delayedMinutes = (newOrder.delayedMinutes ? newOrder.delayedMinutes : 0) + 10;
+                    newOrder.cookingTime = (newOrder.cookingTime ? newOrder.cookingTime : 0) + 10;
                     setOrder(newOrder);
                 }
             }
@@ -241,7 +242,7 @@ const UserOrderPage = () => {
                             <a className="btn btn-primary  mx-5"
                                href={`http://localhost:8080/api/v1/orders/viewCreditNote/${id}`}>VER NOTA DE
                                 CRÉDITO</a>}
-                        {myContext.userContext.role === "USER" && renderCheckoutButton(preferenceId)}
+                        {myContext.userContext.role === "USER" && renderCheckoutButton({preferenceId: preferenceId})}
                         {myContext.userContext.role === "CASHIER" &&
                             <>
                                 {(order.status === "PENDING" && order.cookingTime > 0) &&
@@ -324,7 +325,7 @@ const UserOrderPage = () => {
                                 }
                             </>
                         }
-                        {myContext.userContext.role === "CHEF" &&
+                        {myContext.userContext.role === "CHEF" && order.status === "COOKING" &&
                             <>
                                 <Button variant='success' className="mx-5" onClick={toReady}>
                                     Listo
@@ -336,7 +337,7 @@ const UserOrderPage = () => {
                                 </Button>
                             </>
                         }
-                        {myContext.userContext.role === "DELIVERY" &&
+                        {myContext.userContext.role === "DELIVERY" && order.status === "ON_THE_WAY" &&
                             <>
                                 <Button
                                     variant="info"

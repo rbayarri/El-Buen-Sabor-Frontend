@@ -9,7 +9,7 @@ const ChangePasswordPage = () => {
 
     return (
         <div
-            className="col-12 col-md-8 col-lg-5 m-auto d-flex justify-content-center flex-column align-items-center">
+            className="col-12 col-md-8 col-lg-5 m-auto d-flex justify-content-center flex-column align-items-center mt-5 pt-5">
 
             <h1 className="fs-3 text-center">Hola {myContext.userContext.name}!</h1>
             <h2 className="fs-5 text-center mb-3 mt-4">Ingresá tu nueva clave</h2>

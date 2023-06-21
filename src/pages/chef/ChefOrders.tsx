@@ -52,65 +52,68 @@ export default function ChefOrders() {
             const newOrder = orders.find(o => o.id === id);
             if (newOrder) {
                 swal("Se agregaron 10 minutos", "", "success");
-                newOrder.delayedMinutes = newOrder.delayedMinutes! + 10;
+                newOrder.cookingTime = newOrder.cookingTime + 10;
                 setOrders([...orders]);
             }
         }
     }
 
-    useEffect((() => {
+    useEffect(() => {
         getOrders();
-    }), []);
+    }, []);
 
 
     return (
         <>
             {isLoading ? <h1>Loading...</h1> :
-                <Table striped bordered hover>
-                    <thead style={{textAlign: "center"}}>
-                    <tr className="table-dark">
-                        <th>Pedido</th>
-                        <th>Fecha y Horabro</th>
-                        <th>Tiempo de preparacion</th>
-                        <th>Detalles</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody style={{textAlign: "center"}}>
-                    {
-                        orders.map((ord, index) => (
-                            <tr key={index}>
-                                <td>{ord.id.split('-')[0].toUpperCase()}</td>
-                                <td> {new Date(ord.dateTime).toLocaleDateString("es-AR", {
-                                        day: "2-digit",
-                                        month: "2-digit",
-                                        year: "numeric"
-                                    }) + " - " +
-                                    new Date(ord.dateTime).toLocaleTimeString("es-AR", {
-                                        hour12: false
-                                    })
-                                }</td>
-                                <td>{ord.cookingTime + ord.delayedMinutes!}</td>
-                                <td>
-                                    <Link className='btn btn-primary btn-sm' to={`/pedidos/${ord.id}`}>
-                                        Ver Detalle
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Button variant='success' size="sm" onClick={() => toReady(ord.id)}>
-                                        Listo
-                                    </Button>
-                                    <Button className='ms-2 ' variant='danger' size="sm"
-                                            onClick={() => addMinutes(ord.id)}>
-                                        <TimerOutlinedIcon/>
-                                        + 10 minutos
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    </tbody>
-                </Table>
+                <>
+                    <h1 className={"fs-2 mb-3"}>Pedidos a Preparar</h1>
+                    <Table striped bordered hover>
+                        <thead style={{textAlign: "center"}}>
+                        <tr className="table-dark">
+                            <th>Pedido</th>
+                            <th>Fecha y Hora</th>
+                            <th>Tiempo de preparacion</th>
+                            <th>Detalles</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody style={{textAlign: "center"}}>
+                        {
+                            orders.map((ord, index) => (
+                                <tr key={index}>
+                                    <td>{ord.id.split('-')[0].toUpperCase()}</td>
+                                    <td> {new Date(ord.dateTime).toLocaleDateString("es-AR", {
+                                            day: "2-digit",
+                                            month: "2-digit",
+                                            year: "numeric"
+                                        }) + " - " +
+                                        new Date(ord.dateTime).toLocaleTimeString("es-AR", {
+                                            hour12: false
+                                        })
+                                    }</td>
+                                    <td>{ord.cookingTime}</td>
+                                    <td>
+                                        <Link className='btn btn-primary btn-sm' to={`/pedidos/${ord.id}`}>
+                                            Ver Detalle
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Button variant='success' size="sm" onClick={() => toReady(ord.id)}>
+                                            Listo
+                                        </Button>
+                                        <Button className='ms-2 ' variant='danger' size="sm"
+                                                onClick={() => addMinutes(ord.id)}>
+                                            <TimerOutlinedIcon/>
+                                            + 10 minutos
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                        </tbody>
+                    </Table>
+                </>
             }
         </>
     )

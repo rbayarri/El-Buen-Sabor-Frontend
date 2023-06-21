@@ -10,6 +10,7 @@ import {FormFieldWithMessage} from "../FormFieldWithMessage.tsx";
 import {Button} from "react-bootstrap";
 import swal from "sweetalert";
 import {NewEditUser} from "../../models/users/new-edit-user.ts";
+import {Role} from "../../types/role.ts";
 
 const NewEditUserForm = (props: { user: User | undefined, found: boolean }) => {
 
@@ -24,7 +25,7 @@ const NewEditUserForm = (props: { user: User | undefined, found: boolean }) => {
             name: user.name,
             lastName: user.lastName,
             username: user.username,
-            role: user.role,
+            role: user.role as Role,
             active: user.active
         }
     } else {
