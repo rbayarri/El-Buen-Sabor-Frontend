@@ -11,10 +11,10 @@ const AccountPage = () => {
     if (myContext.userContext.authenticated) {
         return (
             <div className="row">
-                <div className="col-3">
+                <div className="col-12 col-sm-6 col-md-4 col-xl-3">
                     <UserPanel/>
                 </div>
-                <div className="col-9">
+                <div className="col-12 col-sm-6 col-md-8 col-xl-9 mt-4 mt-sm-0">
                     <MyAccount/>
                 </div>
             </div>

@@ -58,19 +58,24 @@ export default function ProductDescription() {
         <>
             {isLoading ? <h1>Loading...</h1> : product && (
                 <>
-                    <Card className="d-flex flex-row border-0">
-                        <Col xl={5} lg={5} md={5} className={"p-3"}>
+                    <Card className="d-flex flex-column flex-md-row border-0">
+                        <div className="col-8 col-md-5 p-3 mx-auto">
                             <Card.Img
                                 src={product.image.location}/>
-                        </Col>
+                        </div>
                         <Col className="ms-4">
                             <Card.Body>
                                 <Card.Title
-                                    className="fw-bold fs-3 mb-4 d-flex align-items-center">
+                                    className="fw-bold fs-3 mb-4 d-flex flex-column flex-sm-row align-items-center">
                                     <div>{product.name}</div>
                                     {product.stock > 0 &&
-                                        <div className="ms-5 d-flex align-items-center p-4 bg-dark rounded-5 text-white"
-                                             style={{height: "70px", boxShadow: "8px -8px 2px #F3C11B"}}
+                                        <div
+                                            className="d-flex align-items-center ms-0 ms-sm-5 mt-3 mt-sm-0 p-4 bg-dark rounded-5 text-white"
+                                            style={{
+                                                height: "10vw",
+                                                maxHeight: "70px",
+                                                boxShadow: "8px -8px 2px #F3C11B"
+                                            }}
                                         >{product.price ? product.price.toLocaleString('es-AR', {
                                             style: 'currency',
                                             currency: 'ARS'
@@ -93,19 +98,31 @@ export default function ProductDescription() {
                             </Card.Body>
                         </Col>
                     </Card>
-                    <div className="d-flex justify-content-center my-5">
-                        <Link className='btn btn-outline-success btn-lg'
+                    <div className="d-flex justify-content-center my-3 my-sm-5">
+                        <Link className='btn btn-outline-success btn-lg d-none d-sm-block'
+                              to={'/'}>
+                            Continuar Comprando
+                        </Link>
+                        <Link className='btn btn-outline-success d-sm-none'
                               to={'/'}>
                             Continuar Comprando
                         </Link>
                         {product.stock > 0 && (!myContext.userContext.authenticated || myContext.userContext.role === "USER") &&
-                            <Button className='ms-5 btn-lg'
-                                    variant="success"
-                                    size="lg"
-                                    onClick={addProductToOrder}>
-                                <FontAwesomeIcon icon={faCartArrowDown} className={"me-3"}/>
-                                Agregar al pedido
-                            </Button>
+                            <>
+                                <Button className='ms-5 btn-lg d-none d-sm-block'
+                                        variant="success"
+                                        size="lg"
+                                        onClick={addProductToOrder}>
+                                    <FontAwesomeIcon icon={faCartArrowDown} className={"me-3"}/>
+                                    Agregar al pedido
+                                </Button>
+                                <Button className='ms-2 d-sm-none'
+                                        variant="success"
+                                        onClick={addProductToOrder}>
+                                    <FontAwesomeIcon icon={faCartArrowDown} className={"me-3"}/>
+                                    Agregar al pedido
+                                </Button>
+                            </>
                         }
                     </div>
                 </>

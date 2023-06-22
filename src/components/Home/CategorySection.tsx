@@ -26,23 +26,22 @@ export default function CategorySection(props: { category: Category }) {
 
 
     return (
-        <>
+        <div key={category.id + "-cs"}>
             {isLoading ? <p>Loading</p> : <>
                 <div className="mt-5 mb-3">
                     <h2 id={category.name}>{category.name}</h2>
                 </div>
-                <div className="">
-                    <div className='row'>
-                        {products && products.length > 0 ?
-                            products.map((card: ClientProduct) => (
-                                <div className='col-md-4' key={card.id}>
-                                    <ProductCard cardinfo={card}/>
-                                </div>
-                            )) : <p>No hay productos</p>
-                        }
-                    </div>
+                <div className='d-flex justify-content-center flex-wrap'>
+                    {products && products.length > 0 ?
+                        products.map((card: ClientProduct) => (
+                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mt-3'
+                                 key={card.id + "-card"}>
+                                <ProductCard product={card}/>
+                            </div>
+                        )) : <p>No hay productos</p>
+                    }
                 </div>
             </>}
-        </>
+        </div>
     )
 }

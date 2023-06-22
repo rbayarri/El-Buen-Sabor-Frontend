@@ -31,14 +31,14 @@ const PhoneNumbersPage = () => {
 
     if (myContext.userContext.authenticated) {
         return (
-            <div className="row">
-                <div className="col-3">
+            <div className="d-flex flex-column flex-md-row">
+                <div className="col-12 col-md-3 col-xl-3">
                     <UserPanel/>
                 </div>
-                <div className="col-9">
+                <div className="col-12 col-md-9 ms-0 ms-md-3 mt-4 mt-sm-0">
                     {isLoading ? <h1>Loading...</h1> :
                         <>
-                            <div className="d-flex align-items-center mb-3">
+                            <div className="d-flex align-items-center mb-3 mt-3 mt-md-3">
                                 <h1>Teléfonos</h1>
                                 <Link className="btn btn-success ms-3" to={"/telefonos/nuevo"}>Nuevo</Link>
                             </div>

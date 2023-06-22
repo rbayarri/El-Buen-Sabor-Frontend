@@ -57,9 +57,9 @@ const MyOrderPage = () => {
                     <>
                         <h1 className={"fs-2"}>Mi Pedido</h1>
                         {myContext.order.orderDetails.filter(od => od.product !== undefined).length > 0 ?
-                            <div className="row">
+                            <div className="d-flex flex-column flex-lg-row align-items-center">
                                 <OrderProducts editMode={true} order={undefined} wholeWidth={false}/>
-                                <section className="col-3 ms-3">
+                                <section className="col-12 col-md-6 col-lg-3 ms-0 ms-lg-3 mt-4 mt-lg-0">
                                     <CartTotal/>
                                 </section>
                             </div> :
