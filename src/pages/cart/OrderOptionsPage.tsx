@@ -15,8 +15,8 @@ const OrderOptionsPage = () => {
     const myContext = useContext(globalContext);
     const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>(myContext.order.deliveryMethod ? myContext.order.deliveryMethod : "LOCAL_PICKUP");
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(myContext.order.paymentMethod ? myContext.order.paymentMethod : "CASH" as PaymentMethod);
-    const [addresses, setAddresses] = useState<Address[]>();
-    const [phoneNumbers, setPhoneNumbers] = useState<PhoneNumber[]>();
+    const [addresses, setAddresses] = useState<Address[]>([]);
+    const [phoneNumbers, setPhoneNumbers] = useState<PhoneNumber[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [addressId, setAddressId] = useState<string>();
     const [phoneNumberId, setPhoneNumberId] = useState<string>();
@@ -143,7 +143,7 @@ const OrderOptionsPage = () => {
                             <span className="fs-6 ms-3">Recibir en mi domicilio</span>
                         </label>
 
-                        {(deliveryMethod === "HOME_DELIVERY" && !isLoading) &&
+                        {(deliveryMethod === "HOME_DELIVERY") &&
                             <>
                                 <div className="d-flex  align-items-center mt-3">
                                     <div className={"w-50 me-2 d-flex flex-column align-items-center"}>
