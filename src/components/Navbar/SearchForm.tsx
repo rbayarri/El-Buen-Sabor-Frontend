@@ -34,9 +34,15 @@ const SearchForm = (props: { productsChange: (products: ClientProduct[]) => void
     if ((!searchFormContext.userContext.authenticated || searchFormContext.userContext.role === "USER") && !isSmallScreen) {
         return (
             <>
-                <Form className="d-flex position-relative w-100">
+                <Form className="d-flex position-relative w-100" onSubmit={e => {
+                    e.preventDefault();
+                    getProductsByName();
+                }}>
                     <Form.Control type="search" placeholder="Buscar productos..." aria-label="Buscar productos..."
-                                  className="" onChange={(e) => setSearch(e.target.value)}/>
+                                  className="" onChange={(e) => {
+                                      e.preventDefault();
+                                      setSearch(e.target.value);
+                                  }}/>
                     <Button variant="" className="position-absolute" style={{right: 0}}
                             onClick={getProductsByName}><Search/></Button>
                 </Form>
