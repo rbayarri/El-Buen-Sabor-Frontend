@@ -9,7 +9,7 @@ export default function IngredientsTable(props: { ingredients: Ingredient[] }) {
     return (
         <>
             {ingredients.length === 0 ? <p>No hay registros</p> : (
-                <table className="table" style={{textAlign: "center"}}>
+                <table className="table table-sm table-responsive small" style={{textAlign: "center"}}>
                     <thead>
                     <tr className="table-dark">
                         <th scope="col">Nombre</th>
