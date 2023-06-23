@@ -7,5 +7,7 @@ export type ContextUser = {
     authenticated: boolean
     jwt?: string | undefined,
     firstTimeAccess: boolean,
+    image: string,
+    username: string,
     onChange?: (newUser: ContextUser) => void
 }

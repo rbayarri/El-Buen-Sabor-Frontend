@@ -41,21 +41,20 @@ export default function Home(props: { products: ClientProduct[] | undefined }) {
             {isLoading ? <h1>Loading</h1> : (
                 <>
                     <NavbarTabs categories={categories}/>
-                    <Container>
+                    <Container className="mb-5 pb-5">
                         {products ?
                             <>
                                 <div className="mt-5 mb-3">
                                     <h2> Resultado de tu búsqueda</h2>
                                 </div>
                                 {products.length > 0 ?
-                                    <>
-
+                                    <div className="d-flex flex-wrap">
                                         {products.map((card: ClientProduct) => (
-                                            <div className='col-6 col-md-3' key={card.id}>
+                                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mt-3' key={card.id}>
                                                 <ProductCard product={card}/>
                                             </div>
                                         ))}
-                                    </>
+                                    </div>
                                     :
                                     <p>No se encontraron resultados para tu búsqueda</p>
                                 }

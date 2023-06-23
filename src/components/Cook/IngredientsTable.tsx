@@ -12,14 +12,14 @@ export default function IngredientsTable(props: { ingredients: Ingredient[] }) {
                 <table className="table table-sm table-responsive small" style={{textAlign: "center"}}>
                     <thead>
                     <tr className="table-dark">
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Rubro</th>
-                        <th scope="col">Costo</th>
-                        <th scope="col">Stock Minimo</th>
-                        <th scope="col">Stock Actual</th>
-                        <th scope="col">Diferencia</th>
-                        <th scope="col">Unidad de Medida</th>
-                        <th scope="col">Accion</th>
+                        <th>Nombre</th>
+                        <th>Rubro</th>
+                        <th>Costo</th>
+                        <th>Stock Minimo</th>
+                        <th>Stock Actual</th>
+                        <th>Diferencia</th>
+                        <th>Unidad de Medida</th>
+                        <th>Accion</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -1,36 +1,14 @@
-import {User} from "../../models/users/User.ts";
 import "./profile.css";
 import {useNavigate} from "react-router-dom";
 import {emptyUser, globalContext} from "../../routes/AppRoutes.tsx";
 import {deleteTokenCookie} from "../../lib/cookies.ts";
-import {useContext, useEffect, useState} from "react";
-import {settings} from "../../lib/settings.ts";
-import {doRequest} from "../../lib/fetch.ts";
+import {useContext} from "react";
 
 const UserPanel = () => {
 
     const myContext = useContext(globalContext);
-    const [user, setUser] = useState<User>();
-    const [isLoading, setIsLoading] = useState(true);
+    const user  = myContext.userContext;
     const navigate = useNavigate();
-
-    const getUser = async () => {
-
-        const api = settings.api.users.profile;
-        const response = await doRequest<User>({
-            path: api.path,
-            method: api.method,
-            jwt: myContext.userContext.jwt
-        });
-        if (response) {
-            setUser(response);
-            setIsLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getUser();
-    }, [])
 
     const handleLogout = () => {
         const newEmptyUser = emptyUser;
@@ -41,15 +19,12 @@ const UserPanel = () => {
         deleteTokenCookie();
     }
 
-    if (isLoading) {
-        return <h1>Loading...</h1>
-    }
     if (user) {
         return (
             <div className={"border d-flex flex-column justify-content-between"}>
                 <div className="d-flex flex-column align-items-center mt-4">
                     <img
-                        src={user.image ? user.image.location : "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"}
+                        src={user.image ? user.image : "https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280.jpg"}
                         alt="User image"
                         className="rounded-circle"
                         style={{maxHeight: "100px"}}/>

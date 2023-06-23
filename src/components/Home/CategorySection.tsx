@@ -31,14 +31,14 @@ export default function CategorySection(props: { category: Category }) {
                 <div className="mt-5 mb-3">
                     <h2 id={category.name}>{category.name}</h2>
                 </div>
-                <div className='d-flex justify-content-center flex-wrap'>
+                <div className='d-flex flex-wrap'>
                     {products && products.length > 0 ?
                         products.map((card: ClientProduct) => (
-                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mt-3'
+                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex mt-3'
                                  key={card.id + "-card"}>
                                 <ProductCard product={card}/>
                             </div>
-                        )) : <p>No hay productos</p>
+                        )) : <p className={"my-4"}>Aún no hay productos disponibles en esta categoría</p>
                     }
                 </div>
             </>}

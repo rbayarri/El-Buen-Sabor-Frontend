@@ -114,7 +114,7 @@ const EditAccountForm = () => {
                             <FormFieldWithMessage type={"text"}
                                                   classes={"form-control mt-3"}
                                                   id={"imageUrl"}
-                                                  placeholder={"Correo electrónico"}
+                                                  placeholder={"Url de imagen"}
                                                   error={errors.imageUrl}
                                                   touched={touched.imageUrl}/>
                             <form className={"mb-3"}>

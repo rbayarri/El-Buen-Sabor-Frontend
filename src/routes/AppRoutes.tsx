@@ -52,6 +52,8 @@ export const emptyUser: ContextUser = {
     role: "USER",
     authenticated: false,
     firstTimeAccess: false,
+    image: "",
+    username: ""
 };
 
 const emptyOrder: ContextOrder = {
