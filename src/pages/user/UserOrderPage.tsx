@@ -32,7 +32,7 @@ const UserOrderPage = () => {
 
     const getOrder = async (id: string) => {
         const api = settings.api.orders.findByIdForUser;
-        const path = myContext.userContext.role === "USER"? `${api.path}/${id}/users` : `${api.path}/${id}`;
+        const path = myContext.userContext.role === "USER" ? `${api.path}/${id}/users` : `${api.path}/${id}`;
         const response = await doRequest<Order>({
             path: path,
             method: api.method,
@@ -237,10 +237,10 @@ const UserOrderPage = () => {
                                 onClick={() => navigate(-1)}>Volver</Button>
                         {order.paid && order.status !== "CANCELLED" &&
                             <a className="btn btn-primary mx-5"
-                               href={`http://localhost:8080/api/v1/orders/viewInvoice/${id}`}>VER FACTURA</a>}
+                               href={`${host}/orders/viewInvoice/${id}`}>VER FACTURA</a>}
                         {order.paid && order.status === "CANCELLED" &&
                             <a className="btn btn-primary  mx-5"
-                               href={`http://localhost:8080/api/v1/orders/viewCreditNote/${id}`}>VER NOTA DE
+                               href={`${host}/orders/viewCreditNote/${id}`}>VER NOTA DE
                                 CRÉDITO</a>}
                         {myContext.userContext.role === "USER" && renderCheckoutButton({preferenceId: preferenceId})}
                         {myContext.userContext.role === "CASHIER" &&

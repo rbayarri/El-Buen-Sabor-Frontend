@@ -2,10 +2,11 @@ import {translateStatus} from "../../lib/status-translate.ts";
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {Order} from "../../models/order.ts";
+import {host} from "../../lib/fetch.ts";
 
-const OrderIteration = (props: { orders: Order[], cancelable: boolean }) => {
+const OrderIteration = (props: { orders: Order[], cancelable: boolean, cancelMethod: ((id:string) => void) | undefined}) => {
 
-    const {orders, cancelable} = props;
+    const {orders, cancelable, cancelMethod} = props;
 
     const getTotalOrder = (order: Order) => {
         return order.orderDetails
@@ -38,11 +39,11 @@ const OrderIteration = (props: { orders: Order[], cancelable: boolean }) => {
                             {translateStatus(o.status)}
                         </p>
                         <div className="d-flex align-items-center justify-content-around">
-                            {cancelable && <p><Button variant="outline-danger" className="col me-1">Anular</Button></p>}
+                            {cancelable && o.status !== "CANCELLED" && <p><Button variant="outline-danger" className="col me-1" onClick={() => cancelMethod!(o.id)}>Anular</Button></p>}
                             <p><Link to={`/pedidos/${o.id}`}
                                      className="btn btn-primary col me-1">Detalle</Link>
                             </p>
-                            {o.paid && <p><a href={`http://localhost:8080/api/v1/orders/viewInvoice/${o.id}`}
+                            {o.paid && <p><a href={`${host}/orders/viewInvoice/${o.id}`}
                                              className="btn btn-dark col">Factura</a></p>}
                         </div>
                     </div>

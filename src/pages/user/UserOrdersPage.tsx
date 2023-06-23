@@ -6,6 +6,7 @@ import {settings} from "../../lib/settings.ts";
 import {doRequest} from "../../lib/fetch.ts";
 import OrderIteration from "../../components/Orders/OrderIteration.tsx";
 import UserPanel from "../../components/Users/UserPanel.tsx";
+import swal from "sweetalert";
 
 const UserOrdersPage = () => {
 
@@ -26,6 +27,23 @@ const UserOrdersPage = () => {
         }
     }
 
+    const cancel = async (id: string) => {
+        const api = settings.api.orders.cancel;
+        const response = await doRequest<Order>({
+            path: api.path + `/${id}`,
+            method: api.method,
+            jwt: myContext.userContext.jwt,
+        });
+        if (response) {
+            swal("Order cancelada", "", "success");
+            if (orders) {
+                const newOrders = {...orders};
+                newOrders.find(o => o.id === id)!.status = "CANCELLED";
+                setOrders(newOrders);
+            }
+        }
+    };
+
     useEffect(() => {
         getOrders();
     }, [])
@@ -41,7 +59,7 @@ const UserOrdersPage = () => {
                         <>
                             <h1 className={"fs-2 mb-4"}>Mis Pedidos</h1>
                             {orders ?
-                                <OrderIteration orders={orders} cancelable={true}/> :
+                                <OrderIteration orders={orders} cancelable={true} cancelMethod={cancel}/> :
                                 <>
                                     <p>Aún no has realizado pedidos</p>
                                     <p>Crea tu primer pedido desde la página princial</p>

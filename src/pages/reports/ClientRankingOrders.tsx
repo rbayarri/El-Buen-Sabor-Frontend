@@ -43,7 +43,7 @@ const ClientRankingOrders = () => {
                         <h1 className={"fs-2 mb-4"}>Pedidos</h1>
                         <div className="col-10">
                             {orders &&
-                                <OrderIteration orders={orders} cancelable={false}/>
+                                <OrderIteration orders={orders} cancelable={false} cancelMethod={undefined}/>
                             }
                         </div>
                     </>
