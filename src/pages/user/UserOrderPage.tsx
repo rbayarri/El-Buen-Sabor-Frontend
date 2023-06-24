@@ -169,21 +169,33 @@ const UserOrderPage = () => {
         }
     };
 
-    const cancel = async () => {
-        const api = settings.api.orders.cancel;
-        const response = await doRequest<Order>({
-            path: api.path + `/${id}`,
-            method: api.method,
-            jwt: myContext.userContext.jwt,
-        });
-        if (response) {
-            if (order) {
-                swal("Order cancelada", "", "success");
-                const newOrder = {...order};
-                newOrder.status = "CANCELLED";
-                setOrder(newOrder);
-            }
-        }
+    const cancel = () => {
+
+        swal({
+            title: "¿Estás seguro?",
+            text: "Esta acción no puede deshacerse",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(async ok => {
+                if (ok) {
+                    const api = settings.api.orders.cancel;
+                    const response = await doRequest<Order>({
+                        path: api.path + `/${id}`,
+                        method: api.method,
+                        jwt: myContext.userContext.jwt,
+                    });
+                    if (response) {
+                        if (order) {
+                            swal("Order cancelada", "", "success");
+                            const newOrder = {...order};
+                            newOrder.status = "CANCELLED";
+                            setOrder(newOrder);
+                        }
+                    }
+                }
+            });
     };
 
     const addMinutes = async () => {
@@ -281,7 +293,8 @@ const UserOrderPage = () => {
                                     </Button>
                                 )}
                                 {order.status === "READY" &&
-                                    order.deliveryMethod === "LOCAL_PICKUP" && (
+                                    order.deliveryMethod === "LOCAL_PICKUP" &&
+                                        order.paid && (
                                         <Button
                                             variant="info"
                                             className="mx-5"
@@ -313,7 +326,7 @@ const UserOrderPage = () => {
                                             Delivery
                                         </Button>
                                     )}
-                                {order.status !== "CANCELLED" &&
+                                {order.status !== "CANCELLED" && order.status !== "DELIVERED" &&
                                     <Button
                                         variant="danger"
                                         className="mx-5"

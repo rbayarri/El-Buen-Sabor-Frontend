@@ -30,31 +30,27 @@ export default function ChefOrders() {
 
     const toReady = async (id: string) => {
         const api = settings.api.orders.toReady;
-        const response = await doRequest<Order[]>({
+        const response = await doRequest<Order>({
             path: api.path + '/' + id,
             method: api.method,
             jwt: myContext.userContext.jwt
         });
         if (response) {
-            swal("Order pasada a lista", "", "success");
-            setOrders(orders.filter(o => o.id !== id));
+            await swal("Order pasada a lista", "", "success");
+            getOrders();
         }
     }
 
     const addMinutes = async (id: string) => {
         const api = settings.api.orders.addMinutes;
-        const response = await doRequest<Order[]>({
+        const response = await doRequest<Order>({
             path: api.path + '/' + id,
             method: api.method,
             jwt: myContext.userContext.jwt
         });
         if (response) {
-            const newOrder = orders.find(o => o.id === id);
-            if (newOrder) {
-                swal("Se agregaron 10 minutos", "", "success");
-                newOrder.cookingTime = newOrder.cookingTime + 10;
-                setOrders([...orders]);
-            }
+            await swal("Se agregaron 10 minutos", "", "success");
+            getOrders();
         }
     }
 

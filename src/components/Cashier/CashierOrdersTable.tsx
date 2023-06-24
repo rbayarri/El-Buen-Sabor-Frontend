@@ -117,21 +117,33 @@ export default function CashierOrdersTable(props: { orders: Order[] }) {
         }
     };
 
-    const cancel = async (id: string) => {
-        const api = settings.api.orders.cancel;
-        const response = await doRequest<Order>({
-            path: api.path + `/${id}`,
-            method: api.method,
-            jwt: myContext.userContext.jwt,
-        });
-        if (response) {
-            const newOrder = orders.find((o) => o.id === id);
-            if (newOrder) {
-                swal("Order cancelada", "", "success");
-                newOrder.status = "CANCELLED";
-                setOrders([...orders]);
-            }
-        }
+    const cancel = (id: string) => {
+
+        swal({
+            title: "¿Está seguro?",
+            text: "Esta acción no puede deshacerse",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(async ok => {
+                if (ok) {
+                    const api = settings.api.orders.cancel;
+                    const response = await doRequest<Order>({
+                        path: api.path + `/${id}`,
+                        method: api.method,
+                        jwt: myContext.userContext.jwt,
+                    });
+                    if (response) {
+                        const newOrder = orders.find((o) => o.id === id);
+                        if (newOrder) {
+                            swal("Order cancelada", "", "success");
+                            newOrder.status = "CANCELLED";
+                            setOrders([...orders]);
+                        }
+                    }
+                }
+            });
     };
 
     useEffect(() => {
@@ -251,7 +263,8 @@ export default function CashierOrdersTable(props: { orders: Order[] }) {
                                     </Button>
                                 )}
                                 {ord.status === "READY" &&
-                                    ord.deliveryMethod === "LOCAL_PICKUP" && (
+                                    ord.deliveryMethod === "LOCAL_PICKUP" &&
+                                    ord.paid && (
                                         <Button
                                             variant="info"
                                             size="sm"
@@ -285,7 +298,7 @@ export default function CashierOrdersTable(props: { orders: Order[] }) {
                                             Delivery
                                         </Button>
                                     )}
-                                {ord.status !== "CANCELLED" &&
+                                {ord.status !== "CANCELLED" && ord.status !== "DELIVERED" &&
                                     <Button
                                         variant="danger"
                                         size="sm"
