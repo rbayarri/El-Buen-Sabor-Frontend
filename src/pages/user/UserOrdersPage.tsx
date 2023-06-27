@@ -28,21 +28,34 @@ const UserOrdersPage = () => {
     }
 
     const cancel = async (id: string) => {
-        const api = settings.api.orders.cancel;
-        const response = await doRequest<Order>({
-            path: api.path + `/${id}`,
-            method: api.method,
-            jwt: myContext.userContext.jwt,
-        });
-        if (response) {
-            swal("Order cancelada", "", "success");
-            if (orders) {
-                const newOrders = {...orders};
-                newOrders.find(o => o.id === id)!.status = "CANCELLED";
-                setOrders(newOrders);
-            }
-        }
-    };
+
+        swal({
+            title: "¿Estás seguro?",
+            text: "Esta acción no puede deshacerse",
+            icon: "warning",
+            buttons: ["Cancelar", true],
+            dangerMode: true,
+        })
+            .then(async ok => {
+                if (ok) {
+
+                    const api = settings.api.orders.cancel;
+                    const response = await doRequest<Order>({
+                        path: api.path + `/${id}`,
+                        method: api.method,
+                        jwt: myContext.userContext.jwt,
+                    });
+                    if (response) {
+                        swal("Order cancelada", "", "success");
+                        if (orders) {
+                            const newOrders = {...orders};
+                            newOrders.find(o => o.id === id)!.status = "CANCELLED";
+                            setOrders(newOrders);
+                        }
+                    }
+                }
+            });
+    }
 
     useEffect(() => {
         getOrders();

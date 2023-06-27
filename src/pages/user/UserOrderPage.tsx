@@ -175,7 +175,7 @@ const UserOrderPage = () => {
             title: "¿Estás seguro?",
             text: "Esta acción no puede deshacerse",
             icon: "warning",
-            buttons: true,
+            buttons: ["Cancelar", true],
             dangerMode: true,
         })
             .then(async ok => {

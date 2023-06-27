@@ -17,7 +17,6 @@ const OrderOptionsPage = () => {
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(myContext.order.paymentMethod ? myContext.order.paymentMethod : "CASH" as PaymentMethod);
     const [addresses, setAddresses] = useState<Address[]>([]);
     const [phoneNumbers, setPhoneNumbers] = useState<PhoneNumber[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [addressId, setAddressId] = useState<string>();
     const [phoneNumberId, setPhoneNumberId] = useState<string>();
     const navigate = useNavigate();
@@ -56,7 +55,6 @@ const OrderOptionsPage = () => {
                 setPhoneNumberId(response.at(0)!.id)
             }
         }
-        setIsLoading(false);
     }
 
     const handleDeliveryMethodChange: ChangeEventHandler<HTMLInputElement> = (e) => {

@@ -39,7 +39,7 @@ const OrderIteration = (props: { orders: Order[], cancelable: boolean, cancelMet
                             {translateStatus(o.status)}
                         </p>
                         <div className="d-flex align-items-center justify-content-around">
-                            {cancelable && o.status !== "CANCELLED" && <p><Button variant="outline-danger" className="col me-1" onClick={() => cancelMethod!(o.id)}>Anular</Button></p>}
+                            {cancelable && o.status !== "CANCELLED" && !o.paid && <p><Button variant="outline-danger" className="col me-1" onClick={() => cancelMethod!(o.id)}>Anular</Button></p>}
                             <p><Link to={`/pedidos/${o.id}`}
                                      className="btn btn-primary col me-1">Detalle</Link>
                             </p>

@@ -123,7 +123,7 @@ export default function CashierOrdersTable(props: { orders: Order[] }) {
             title: "¿Está seguro?",
             text: "Esta acción no puede deshacerse",
             icon: "warning",
-            buttons: true,
+            buttons: ["Cancelar",true],
             dangerMode: true,
         })
             .then(async ok => {
