@@ -21,7 +21,8 @@ const headersWithJwt = (jwt: string) => {
     )
 }
 
-export const host = "http://localhost:8080/api/v1";
+// export const host = "http://localhost:8080/api/v1";
+export const host = "https://el-buen-sabor-backend-production.up.railway.app/api/v1";
 export const doRequest = async <E>({path, method, body, jwt}: RequestInformationProps) => {
 
     const requestOptions: RequestInit = {
