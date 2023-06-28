@@ -34,7 +34,7 @@ export default function CategorySection(props: { category: Category }) {
                 <div className='d-flex flex-wrap'>
                     {products && products.length > 0 ?
                         products.map((card: ClientProduct) => (
-                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex mt-3'
+                            <div className='col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mt-3'
                                  key={card.id + "-card"}>
                                 <ProductCard product={card}/>
                             </div>

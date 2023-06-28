@@ -245,22 +245,21 @@ const UserOrderPage = () => {
                         </section>
                     }
                     <div className="d-flex justify-content-around align-items-center mt-3 ">
-                        <Button variant="outline-danger" className="mx-5"
+                        <Button variant="outline-danger" className="mx-1 mx-lg-5"
                                 onClick={() => navigate(-1)}>Volver</Button>
                         {order.paid && order.status !== "CANCELLED" &&
-                            <a className="btn btn-primary mx-5"
-                               href={`${host}/orders/viewInvoice/${id}`}>VER FACTURA</a>}
+                            <a className="btn btn-primary mx-1 mx-lg-5"
+                               href={`${host}/orders/viewInvoice/${id}`}>Factura</a>}
                         {order.paid && order.status === "CANCELLED" &&
-                            <a className="btn btn-primary  mx-5"
-                               href={`${host}/orders/viewCreditNote/${id}`}>VER NOTA DE
-                                CRÉDITO</a>}
+                            <a className="btn btn-primary  mx-1 mx-lg-5"
+                               href={`${host}/orders/viewCreditNote/${id}`}>Nota de crédito</a>}
                         {myContext.userContext.role === "USER" && renderCheckoutButton({preferenceId: preferenceId})}
                         {myContext.userContext.role === "CASHIER" &&
                             <>
                                 {(order.status === "PENDING" && order.cookingTime > 0) &&
                                     <Button
                                         variant="warning"
-                                        className="mx-5"
+                                        className="mx-1 mx-lg-5"
                                         onClick={toCooking}
                                     >
                                         <SoupKitchenIcon></SoupKitchenIcon>
@@ -270,7 +269,7 @@ const UserOrderPage = () => {
                                 {order.status === "PENDING" && order.cookingTime === 0 && (
                                     <Button
                                         variant="success"
-                                        className="mx-5"
+                                        className="mx-1 mx-lg-5"
                                         onClick={toReady}
                                     >
                                         <DoneAllIcon></DoneAllIcon>
@@ -280,7 +279,7 @@ const UserOrderPage = () => {
                                 {!order.paid && (
                                     <Button
                                         variant="primary"
-                                        className="mx-5"
+                                        className="mx-1 mx-lg-5"
                                         style={{
                                             borderColor: "#003366",
                                             backgroundColor: "#003366",
@@ -297,7 +296,7 @@ const UserOrderPage = () => {
                                         order.paid && (
                                         <Button
                                             variant="info"
-                                            className="mx-5"
+                                            className="mx-1 mx-lg-5"
                                             style={{
                                                 backgroundColor: "#8B008B",
                                                 borderColor: "#8B008B",
@@ -314,7 +313,7 @@ const UserOrderPage = () => {
                                     order.deliveryMethod === "HOME_DELIVERY" && (
                                         <Button
                                             variant="info"
-                                            className="mx-5"
+                                            className="mx-1 mx-lg-5"
                                             style={{
                                                 backgroundColor: "#2ecc71",
                                                 borderColor: "#2ecc71",
@@ -329,7 +328,7 @@ const UserOrderPage = () => {
                                 {order.status !== "CANCELLED" && order.status !== "DELIVERED" &&
                                     <Button
                                         variant="danger"
-                                        className="mx-5"
+                                        className="mx-1 mx-lg-5"
                                         onClick={cancel}
                                     >
                                         <HighlightOffIcon></HighlightOffIcon>
@@ -340,10 +339,10 @@ const UserOrderPage = () => {
                         }
                         {myContext.userContext.role === "CHEF" && order.status === "COOKING" &&
                             <>
-                                <Button variant='success' className="mx-5" onClick={toReady}>
+                                <Button variant='success' className="mx-1 mx-lg-5" onClick={toReady}>
                                     Listo
                                 </Button>
-                                <Button className='mx-5 ' variant='danger'
+                                <Button className='mx-1 mx-lg-5 ' variant='danger'
                                         onClick={addMinutes}>
                                     <TimerOutlinedIcon/>
                                     + 10 minutos
@@ -354,7 +353,7 @@ const UserOrderPage = () => {
                             <>
                                 <Button
                                     variant="info"
-                                    className="mx-5"
+                                    className="mx-1 mx-lg-5"
                                     style={{
                                         backgroundColor: "#8B008B",
                                         borderColor: "#8B008B",

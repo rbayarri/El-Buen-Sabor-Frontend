@@ -1,0 +1,6 @@
+.selected-order{
+    cursor: pointer;
+}
+.selected-order:hover{
+    background-color: lightblue;
+}

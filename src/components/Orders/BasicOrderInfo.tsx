@@ -8,13 +8,13 @@ const BasicOrderInfo = (props: { order: ContextOrder | Order }) => {
 
     return (
         <div>
-            <div className="d-flex">
+            <div className="d-flex flex-column flex-lg-row">
                 {(order as Order).id && <p className="mb-0 col"><b>ID: </b>{(order as Order).id}</p>}
                 {(order as Order).status && <p className="mb-0 col"><b>Estado: </b>
                     {translateStatus((order as Order).status)}
                 </p>}
             </div>
-            <div className="d-flex">
+            <div className="d-flex flex-column flex-lg-row">
                 {(order as Order).dateTime &&
                     <p className="mb-0 col">
                         <b>Fecha: </b>

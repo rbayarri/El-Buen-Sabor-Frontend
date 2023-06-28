@@ -1,4 +1,4 @@
-import {Card, Col} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {OrderDetail} from "../../models/order.ts";
 import {useContext, useState} from "react";
@@ -50,58 +50,61 @@ const CartItem = (props: { orderDetail: ContextOrderDetail | OrderDetail, editMo
 
     if (orderDetail.product !== undefined) {
         return (
-            <Card className="d-flex flex-column flex-sm-row border-0 align-items-center justify-content-between">
-                <div className="d-none d-md-block col-2 p-3">
-                    <Card.Img
-                        src={orderDetail.product?.image?.location}/>
-                </div>
-                <div className="col-12 col-sm-5">
-                    <Card.Body>
-                        <Card.Title>{orderDetail.product?.name}</Card.Title>
-                        <Card.Text className="fw-bold">{unitPrice.toLocaleString('es-AR', {
-                            style: 'currency',
-                            currency: 'ARS'
-                        })}
-                        </Card.Text>
-                    </Card.Body>
-                </div>
-                <Col sm="3" md="2"
-                     className="d-flex flex-column justify-content-center align-items-center">
-                    <div
-                        className={`input-group ${editMode && "border"} d-flex align-items-center justify-content-center`}>
-                        {editMode && <span className="input-group-text py-1" style={{cursor: "pointer"}}
-                                           onClick={substractItem}>-</span>}
-                        <span
-                            className={`text-center ${editMode && "form-control form-control-sm "}border-0 fs-6 py-1`}>{orderDetail.quantity}</span>
-                        {editMode && <span className="input-group-text py-1" style={{cursor: "pointer"}}
-                                           onClick={addItem}>+</span>}
+            <Card className="d-flex flex-column flex-md-row border-0 align-items-center justify-content-between">
+                <div className="d-flex">
+                    <div className="col-4 p-3">
+                        <Card.Img
+                            src={orderDetail.product?.image?.location}/>
                     </div>
-                    {editMode && <span
-                        className="text-muted small">{(orderDetail as ContextOrderDetail).product?.stock} disponibles</span>}
-                </Col>
-                {myContext.userContext.role === "DELIVERY" ?
-                    <Col md="3"
-                         className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
-                    </Col> :
-                    myContext.userContext.role === "CHEF" ?
-                        <Col md="3" lg="3" xl="3"
-                             className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
-                            <Link to={`/cocina/producto/${orderDetail.product.id}`} className={"btn btn-success"}>Ver
-                                Receta</Link>
-                        </Col> :
-                        <Col md="3" lg="3" xl="3"
-                             className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                    <div className="col-8">
+                        <Card.Body>
+                            <Card.Title>{orderDetail.product?.name}</Card.Title>
+                            <Card.Text className="fw-bold">{unitPrice.toLocaleString('es-AR', {
+                                style: 'currency',
+                                currency: 'ARS'
+                            })}
+                            </Card.Text>
+                        </Card.Body>
+                    </div>
+                </div>
+                <div className="d-flex col-auto">
+                    <div className="d-flex flex-column justify-content-center align-items-center me-2">
+                        <div
+                            className={`input-group col-6 ${editMode && "border"} d-flex align-items-center justify-content-center`}>
+
+                            {editMode && <span className="input-group-text py-1" style={{cursor: "pointer"}}
+                                               onClick={substractItem}>-</span>}
+                            <span
+                                className={`text-center ${editMode && "form-control form-control-sm "}border-0 fs-6 py-1`}>{orderDetail.quantity}</span>
+                            {editMode && <span className="input-group-text py-1" style={{cursor: "pointer"}}
+                                               onClick={addItem}>+</span>}
+                        </div>
+                        {editMode && <span
+                            className="text-muted small">{(orderDetail as ContextOrderDetail).product?.stock} disponibles</span>}
+                    </div>
+                    {myContext.userContext.role === "DELIVERY" ?
+                        <div
+                            className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                        </div> :
+                        myContext.userContext.role === "CHEF" ?
+                            <div
+                                className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
+                                <Link to={`/cocina/producto/${orderDetail.product.id}`} className={"btn btn-success"}>Ver
+                                    Receta</Link>
+                            </div> :
+                            <div
+                                className={`d-flex justify-content-end align-items-center ${editMode && "pb-4"}`}>
                             <span
                                 className="fs-5 fw-bold me-3">{(orderDetail.quantity * unitPrice).toLocaleString('es-AR', {
                                 style: 'currency',
                                 currency: 'ARS'
                             })}</span>
-                            {editMode && <DeleteIcon htmlColor={"gray"} fontSize="small" className="me-2 mt-1"
-                                                     style={{cursor: "pointer"}}
-                                                     onClick={deleteItem}/>}
-                        </Col>
-                }
-
+                                {editMode && <DeleteIcon htmlColor={"gray"} fontSize="small" className="me-2 mt-1"
+                                                         style={{cursor: "pointer"}}
+                                                         onClick={deleteItem}/>}
+                            </div>
+                    }
+                </div>
             </Card>
         );
     }

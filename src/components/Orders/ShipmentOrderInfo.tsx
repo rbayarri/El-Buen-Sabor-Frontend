@@ -11,7 +11,7 @@ const ShipmentOrderInfo = (props: {
 
     return (
         <>
-            <div className="d-flex">
+            <div className="d-flex flex-column flex-lg-row">
                 <p className="mb-0 col">
                     <b>Calle y
                         Número: </b>
@@ -22,7 +22,7 @@ const ShipmentOrderInfo = (props: {
                     {user.name + " " + user.lastName}
                 </p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex flex-column flex-lg-row">
                 <p className="mb-0 col">
                     <b>Piso: </b>
                     {address.floor}
@@ -32,7 +32,7 @@ const ShipmentOrderInfo = (props: {
                     {address.apartment}
                 </p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex flex-column flex-lg-row">
                 <p className="mb-0 col">
                     <b>Comentarios: </b>
                     {address.details}
